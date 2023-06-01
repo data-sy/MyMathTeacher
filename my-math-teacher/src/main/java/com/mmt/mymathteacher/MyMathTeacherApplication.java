@@ -1,13 +1,13 @@
-package com.mmt.mathteacher;
+package com.mmt.mymathteacher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MathTeacherApplication {
+public class MyMathTeacherApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MathTeacherApplication.class, args);
+		SpringApplication.run(MyMathTeacherApplication.class, args);
 	}
 
 }

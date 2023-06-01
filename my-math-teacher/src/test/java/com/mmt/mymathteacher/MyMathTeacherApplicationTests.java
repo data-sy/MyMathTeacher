@@ -1,10 +1,10 @@
-package com.mmt.mathteacher;
+package com.mmt.mymathteacher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MathTeacherApplicationTests {
+class MyMathTeacherApplicationTests {
 
 	@Test
 	void contextLoads() {
