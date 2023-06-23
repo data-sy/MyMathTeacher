@@ -24,7 +24,7 @@ rnn_cells = {
 
 num_runs = 1
 num_epochs = 25
-batch_size = 32
+batch_size = 16
 keep_prob = 0.8656542586183774
 
 network_config = {}

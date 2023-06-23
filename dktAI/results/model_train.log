@@ -124,3 +124,161 @@ average test AUC Current for 1 runs: 0.9359199190044645
 latex: 
 cell_type & num. layer & layer_structure & learning rate & keep prob. & $\lambda_o$ & $\lambda_{w_1}$ & $\lambda_{w_2}$ & Avg. ACC(N) & Avg. AUC(N) & Avg. AUC(C) & Avg. $w_1$ & Avg. $w_2$ & Avg. $m_1$ & Avg. $m_2$\\ 
 LSTM & 1 & 102 & 0.0042 & 0.8657 & 0.1000 & 0.0300 & 3.0000 & 0.8019288622423488 $\pm$ 0.0 & 0.8332555102333279 $\pm$ 0.0 & 0.9355324089301191 $\pm$ 0.0 & 0.017404450293837487 $\pm$ 0.0 & 0.03560639455270133 $\pm$ 0.0 & 0.31654813917147684 $\pm$ 0.0 & 0.04600584718425312 $\pm$ 0.0\\ 
+Network Configuration:
+batch_size: 32
+hidden_layer_structure: [102]
+learning_rate: 0.004155923499457689
+keep_prob: 0.8656542586183774
+rnn_cell: <class 'tensorflow.python.ops.rnn_cell_impl.LSTMCell'>
+max_grad_norm: 5.0
+lambda_w1: 0.03
+lambda_w2: 3.0
+lambda_o: 0.1
+Num of problems: 1865
+Num of run: 1
+Max num of run: 25
+Keep Prob: 0.8656542586183774
+Network Configuration:
+batch_size: 16
+hidden_layer_structure: [102]
+learning_rate: 0.004155923499457689
+keep_prob: 0.8656542586183774
+rnn_cell: <class 'tensorflow.python.ops.rnn_cell_impl.LSTMCell'>
+max_grad_norm: 5.0
+lambda_w1: 0.03
+lambda_w2: 3.0
+lambda_o: 0.1
+Num of problems: 1865
+Num of run: 1
+Max num of run: 25
+Keep Prob: 0.8656542586183774
+Current time : 2023-06-22 01:43:50 KST
+Epoch    1, Train ACC: 0.70321, Train AUC: 0.73172, Train Loss: 0.6425
+Epoch    1, Valid ACC: 0.76253, Valid AUC: 0.78685, Valid AUC Curr: 0.9192, Valid Loss: 0.58766*
+Epoch    1, Test ACC: 0.76225, Test AUC: 0.78867, Test AUC Curr: 0.92006, Test Loss: 0.58752
+w_l1: 0.01051141508493796, w_l2: 0.022481846910993634
+m1: 0.279687682707742, m2: 0.02950235809388517. Saving the model
+time used for this epoch: 6190.766977310181s
+***********
+Current time : 2023-06-22 03:27:00 KST
+Epoch    2, Train ACC: 0.75442, Train AUC: 0.79509, Train Loss: 0.56392
+Epoch    2, Valid ACC: 0.79569, Valid AUC: 0.81769, Valid AUC Curr: 0.93611, Valid Loss: 0.50616*
+Epoch    2, Test ACC: 0.79489, Test AUC: 0.81927, Test AUC Curr: 0.93656, Test Loss: 0.50631
+w_l1: 0.013821686889510198, w_l2: 0.029075596700029512
+m1: 0.3662313571663956, m2: 0.04706667397019231. Saving the model
+time used for this epoch: 6549.7366461753845s
+***********
+Current time : 2023-06-22 05:16:10 KST
+Epoch    3, Train ACC: 0.7604, Train AUC: 0.807, Train Loss: 0.54989
+Epoch    3, Valid ACC: 0.79856, Valid AUC: 0.82483, Valid AUC Curr: 0.93906, Valid Loss: 0.49858*
+Epoch    3, Test ACC: 0.79739, Test AUC: 0.82637, Test AUC Curr: 0.93956, Test Loss: 0.49865
+w_l1: 0.014890725646278722, w_l2: 0.030963646843293082
+m1: 0.3560767930605606, m2: 0.04777534451226014. Saving the model
+time used for this epoch: 6568.331337451935s
+***********
+Current time : 2023-06-22 07:05:38 KST
+Epoch    4, Train ACC: 0.76411, Train AUC: 0.81466, Train Loss: 0.54148
+Epoch    4, Valid ACC: 0.79998, Valid AUC: 0.82755, Valid AUC Curr: 0.93482, Valid Loss: 0.49616*
+Epoch    4, Test ACC: 0.79857, Test AUC: 0.82867, Test AUC Curr: 0.93534, Test Loss: 0.49658
+w_l1: 0.01529014010454817, w_l2: 0.03169382051611381
+m1: 0.3408010970437223, m2: 0.04612271929499793. Saving the model
+time used for this epoch: 6595.917657375336s
+***********
+Current time : 2023-06-22 08:55:34 KST
+Epoch    5, Train ACC: 0.76735, Train AUC: 0.82032, Train Loss: 0.53608
+Epoch    5, Valid ACC: 0.801, Valid AUC: 0.83038, Valid AUC Curr: 0.9369, Valid Loss: 0.4925*
+Epoch    5, Test ACC: 0.79948, Test AUC: 0.83137, Test AUC Curr: 0.93724, Test Loss: 0.49312
+w_l1: 0.016003205729990956, w_l2: 0.03288292103010014
+m1: 0.34395297169159467, m2: 0.04772323421682711. Saving the model
+time used for this epoch: 6576.19389462471s
+***********
+Current time : 2023-06-22 10:45:11 KST
+Epoch    6, Train ACC: 0.77029, Train AUC: 0.82521, Train Loss: 0.52995
+Epoch    6, Valid ACC: 0.80103, Valid AUC: 0.83212, Valid AUC Curr: 0.93764, Valid Loss: 0.49191*
+Epoch    6, Test ACC: 0.79972, Test AUC: 0.8335, Test AUC Curr: 0.93835, Test Loss: 0.49215
+w_l1: 0.0173807322496652, w_l2: 0.03532250475118929
+m1: 0.3247307884470241, m2: 0.04816126917516881. Saving the model
+time used for this epoch: 6656.0076513290405s
+***********
+Current time : 2023-06-22 12:36:07 KST
+Epoch    7, Train ACC: 0.77305, Train AUC: 0.83002, Train Loss: 0.52509
+Epoch    7, Valid ACC: 0.80154, Valid AUC: 0.83256, Valid AUC Curr: 0.93743, Valid Loss: 0.49126*
+Epoch    7, Test ACC: 0.80026, Test AUC: 0.83388, Test AUC Curr: 0.93794, Test Loss: 0.49128
+w_l1: 0.017416015408226005, w_l2: 0.035559970002984234
+m1: 0.3183605999723613, m2: 0.04812979976701756. Saving the model
+time used for this epoch: 6727.867694854736s
+***********
+Current time : 2023-06-22 14:28:15 KST
+Epoch    8, Train ACC: 0.77577, Train AUC: 0.83416, Train Loss: 0.52062
+Epoch    8, Valid ACC: 0.80143, Valid AUC: 0.83364, Valid AUC Curr: 0.93551, Valid Loss: 0.49075
+time used for this epoch: 5510.64773774147s
+***********
+Current time : 2023-06-22 16:00:05 KST
+Epoch    9, Train ACC: 0.77868, Train AUC: 0.83832, Train Loss: 0.51566
+Epoch    9, Valid ACC: 0.801, Valid AUC: 0.83381, Valid AUC Curr: 0.93294, Valid Loss: 0.49174
+time used for this epoch: 5628.346542358398s
+***********
+Current time : 2023-06-22 17:33:54 KST
+Epoch   10, Train ACC: 0.78153, Train AUC: 0.84251, Train Loss: 0.51026
+Epoch   10, Valid ACC: 0.80042, Valid AUC: 0.8336, Valid AUC Curr: 0.93145, Valid Loss: 0.49321
+time used for this epoch: 5576.293904781342s
+***********
+Current time : 2023-06-22 19:06:50 KST
+Epoch   11, Train ACC: 0.78414, Train AUC: 0.84664, Train Loss: 0.50562
+Epoch   11, Valid ACC: 0.79989, Valid AUC: 0.83328, Valid AUC Curr: 0.92983, Valid Loss: 0.49437
+time used for this epoch: 5623.204852104187s
+***********
+Current time : 2023-06-22 20:40:33 KST
+Epoch   12, Train ACC: 0.7871, Train AUC: 0.85047, Train Loss: 0.50063
+Epoch   12, Valid ACC: 0.79952, Valid AUC: 0.83291, Valid AUC Curr: 0.92836, Valid Loss: 0.49544
+time used for this epoch: 5640.688902854919s
+***********
+Current time : 2023-06-22 22:14:34 KST
+Epoch   13, Train ACC: 0.78942, Train AUC: 0.85394, Train Loss: 0.49688
+Epoch   13, Valid ACC: 0.79813, Valid AUC: 0.83215, Valid AUC Curr: 0.92662, Valid Loss: 0.49818
+time used for this epoch: 5664.131317138672s
+***********
+Current time : 2023-06-22 23:48:58 KST
+Epoch   14, Train ACC: 0.79209, Train AUC: 0.85762, Train Loss: 0.49209
+Epoch   14, Valid ACC: 0.79792, Valid AUC: 0.83116, Valid AUC Curr: 0.92475, Valid Loss: 0.50045
+time used for this epoch: 5642.830017328262s
+***********
+Current time : 2023-06-23 01:23:01 KST
+Epoch   15, Train ACC: 0.79429, Train AUC: 0.86065, Train Loss: 0.48868
+Epoch   15, Valid ACC: 0.79699, Valid AUC: 0.83037, Valid AUC Curr: 0.92341, Valid Loss: 0.5024
+time used for this epoch: 5686.139293909073s
+***********
+Current time : 2023-06-23 02:57:47 KST
+Epoch   16, Train ACC: 0.79717, Train AUC: 0.86368, Train Loss: 0.48434
+Epoch   16, Valid ACC: 0.79644, Valid AUC: 0.83007, Valid AUC Curr: 0.92216, Valid Loss: 0.504
+time used for this epoch: 5735.058651447296s
+***********
+Current time : 2023-06-23 04:33:22 KST
+Epoch   17, Train ACC: 0.7989, Train AUC: 0.86646, Train Loss: 0.48158
+Epoch   17, Valid ACC: 0.79522, Valid AUC: 0.8285, Valid AUC Curr: 0.91934, Valid Loss: 0.50795
+time used for this epoch: 5708.8856246471405s
+***********
+No improvement shown in 10 epochs. Quit Training.
+The best validation result occured at: 7-th epoch, with validation ACC: 0.80154 and AUC: 0.83256
+The best testing result occured at: 7-th epoch, with testing ACC: 0.80026 and AUC: 0.83388
+*********************************
+average validation ACC for 1 runs: 0.8015381998703107
+average validation AUC for 1 runs: 0.8325565863309434
+average validation AUC Current for 1 runs: 0.937426371413574
+
+average waviness-l1 for 1 runs: 0.017416015408226005
+average waviness-l2 for 1 runs: 0.035559970002984234
+average consistency_m1 for 1 runs: 0.3183605999723613
+average consistency_m1 for 1 runs: 0.04812979976701756
+
+test ACC for 1 runs : [0.8002589829225469]
+test AUC for 1 runs : [0.8338837830232374]
+
+average test ACC for 1 runs: 0.8002589829225469
+average test AUC for 1 runs: 0.8338837830232374
+average test AUC Current for 1 runs: 0.9379353607775276
+
+latex: 
+cell_type & num. layer & layer_structure & learning rate & keep prob. & $\lambda_o$ & $\lambda_{w_1}$ & $\lambda_{w_2}$ & Avg. ACC(N) & Avg. AUC(N) & Avg. AUC(C) & Avg. $w_1$ & Avg. $w_2$ & Avg. $m_1$ & Avg. $m_2$\\ 
+LSTM & 1 & 102 & 0.0042 & 0.8657 & 0.1000 & 0.0300 & 3.0000 & 0.8015381998703107 $\pm$ 0.0 & 0.8325565863309434 $\pm$ 0.0 & 0.937426371413574 $\pm$ 0.0 & 0.017416015408226005 $\pm$ 0.0 & 0.035559970002984234 $\pm$ 0.0 & 0.3183605999723613 $\pm$ 0.0 & 0.04812979976701756 $\pm$ 0.0\\ 
+

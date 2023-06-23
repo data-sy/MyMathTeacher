@@ -167,9 +167,7 @@ class DKTData:
         self.num_problems = max(num_problems_test, num_problems_train, num_problems_valid)
         self.max_seq_length = max(max_seq_length_train, max_seq_length_test, max_seq_length_valid)
 
-        # 문제 시퀀스
         problem_seqs = [student[1] for student in self.students_train]
-        # 정오답 시퀀스
         correct_seqs = [student[2] for student in self.students_train]
         self.train = BatchGenerator(problem_seqs, correct_seqs, self.num_problems, batch_size)
 
