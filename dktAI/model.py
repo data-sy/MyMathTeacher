@@ -109,7 +109,16 @@ class Model(object):
 
     def _add_summary(self):
         pass
-
+    # def _add_summary(self, y_true, y_pred):
+    #     # 정확도 계산
+    #     acc = accuracy_score(y_true, y_pred)
+    #
+    #     # AUC 계산
+    #     auc = roc_auc_score(y_true, y_pred)
+    #
+    #     # 결과 출력
+    #     print(f'Accuracy: {acc}')
+    #     print(f'AUC: {auc}')
     def build_graph(self):
         self._create_placeholder()
         self._influence()
