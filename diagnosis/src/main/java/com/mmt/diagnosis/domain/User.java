@@ -1,8 +1,10 @@
 package com.mmt.diagnosis.domain;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     private String userId;
