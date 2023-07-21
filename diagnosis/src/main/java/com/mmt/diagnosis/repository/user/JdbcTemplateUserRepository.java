@@ -27,21 +27,21 @@ public class JdbcTemplateUserRepository implements UserRepository {
         jdbcTemplate.update(sql, id, password, name, phone);
     }
 
-    @Override
-    public Optional<User> findById(String id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
-        List<User> result = jdbcTemplate.query(sql, userRowMapper(), id);
-        return Optional.empty();
-    }
-
-    private RowMapper<User> userRowMapper() {
-        return (rs, rowNum) -> {
-            User user = new User();
-            user.setUserId(rs.getString("user_id"));
-            user.setUserPassword(rs.getString("user_password"));
-            user.setUserName(rs.getString("user_name"));
-            user.setUserPhone(rs.getString("user_phone"));
-            return user;
-        };
-    }
+//    @Override
+//    public Optional<User> findById(String id) {
+//        String sql = "SELECT * FROM users WHERE user_id = ?";
+//        List<User> result = jdbcTemplate.query(sql, userRowMapper(), id);
+//        return Optional.empty();
+//    }
+//
+//    private RowMapper<User> userRowMapper() {
+//        return (rs, rowNum) -> {
+//            User user = new User();
+//            user.setUserId(rs.getString("user_id"));
+//            user.setUserPassword(rs.getString("user_password"));
+//            user.setUserName(rs.getString("user_name"));
+//            user.setUserPhone(rs.getString("user_phone"));
+//            return user;
+//        };
+//    }
 }
