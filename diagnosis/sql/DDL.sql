@@ -1,25 +1,59 @@
--- DROP 순서 : 답안 -> 학습지_문항 -> 유저, 학습지, 문항. 지식체계 -> 단위개념
+-- DROP 순서 : 답안 -> 학습지_문항 -> 학습지, 문항. 학생 -> 사용자. 지식체계 -> 단위개념
 DROP TABLE IF EXISTS ANSWERS;
 DROP TABLE IF EXISTS TESTS_ITEMS;
 
-DROP TABLE IF EXISTS USERS;
-DROP TABLE IF EXISTS TESTS;
 DROP TABLE IF EXISTS ITEMS;
+DROP TABLE IF EXISTS TESTS;
+DROP TABLE IF EXISTS STUDENTS;
+DROP TABLE IF EXISTS USERS;
 
 DROP TABLE IF EXISTS KNOWLEDGE_TAGS;
 DROP TABLE IF EXISTS CONCEPTS;
+
+-- 단위개념 테이블
+CREATE TABLE CONCEPTS (
+	concept_id INT,
+	concept_name VARCHAR(20),
+	concept_school_level CHAR(2),
+	concept_grade_level CHAR(2),
+	concept_semester CHAR(3),
+	concept_description VARCHAR(200),
+	concept_chapter_id VARCHAR(20),
+	concept_chapter_name VARCHAR(20),
+	concept_achievement_id VARCHAR(20),
+	concept_achievement_name VARCHAR(20),
+	PRIMARY KEY (concept_id)
+);
+
+-- 지식체계 테이블
+CREATE TABLE KNOWLEDGE_TAGS (
+	knowledge_tag_id INT,
+	from_concept_id INT,
+	to_concept_id INT,
+	PRIMARY KEY (knowledge_tag_id),
+	FOREIGN KEY (from_concept_id) REFERENCES CONCEPTS (concept_id),
+	FOREIGN KEY (to_concept_id) REFERENCES CONCEPTS (concept_id)
+);
 
 -- 사용자 테이블
 CREATE TABLE USERS (
 	user_id	VARCHAR(20),
 	user_password VARCHAR(20),
 	user_name VARCHAR(20),
-	user_phone CHAR(8),
-	user_birthdate DATE,
-	user_school VARCHAR(20),
-	user_comments VARCHAR(200),
+	user_phone VARCHAR(20),
+	PRIMARY KEY (user_id)
+);
+
+-- 학생 테이블
+CREATE TABLE STUDENTS (
+	student_id	VARCHAR(20),
+	student_name VARCHAR(20),
+	student_phone VARCHAR(20),
+	student_birthdate DATE,
+	student_school VARCHAR(20),
+	student_comments VARCHAR(200),
 	teacher_id VARCHAR(20),
-	PRIMARY KEY (user_id),
+	PRIMARY KEY (student_id),
 	FOREIGN KEY (teacher_id) REFERENCES USERS (user_id)
 );
 
@@ -58,38 +92,12 @@ CREATE TABLE TESTS_ITEMS (
 -- 답안 테이블
 CREATE TABLE ANSWERS (
 	answer_id INT,
-	user_id	VARCHAR(20),
+	student_id	VARCHAR(20),
 	test_item_id INT,
 	answer_code	INT,
 	answer_probability DECIMAL(5,2),
 	answer_timestamp DATETIME,
 	PRIMARY KEY (answer_id),
-	FOREIGN KEY (user_id) REFERENCES USERS (user_id),
+	FOREIGN KEY (student_id) REFERENCES STUDENTS (student_id),
 	FOREIGN KEY (test_item_id) REFERENCES TESTS_ITEMS (test_item_id)
-);
-
--- 단위개념 테이블
-CREATE TABLE CONCEPTS (
-	concept_id INT,
-	concept_name VARCHAR(20),
-	concept_school_level CHAR(2),
-	concept_grade_level CHAR(2),
-	concept_semester CHAR(3),
-	concept_description VARCHAR(200),
-	concept_chapter_id VARCHAR(20),
-	concept_chapter_name VARCHAR(20),
-	concept_achievement_id VARCHAR(20),
-	concept_achievement_name VARCHAR(20),
-	PRIMARY KEY (concept_id)
-);
-
--- 지식체계 테이블
-CREATE TABLE KNOWLEDGE_TAGS (
-	knowledge_tag_id INT,
-	from_concept_id INT,
-	to_concept_id INT,
-	PRIMARY KEY (knowledge_tag_id),
-	FOREIGN KEY (from_concept_id) REFERENCES CONCEPTS (concept_id),
-	FOREIGN KEY (to_concept_id) REFERENCES CONCEPTS (concept_id)
-
 );
