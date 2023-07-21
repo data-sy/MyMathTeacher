@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS KNOWLEDGE_TAGS;
 DROP TABLE IF EXISTS CONCEPTS;
 
+-- id가 auto_increment : 학생, 학습지, 문항, 학습지_문항, 답안
+
 -- 단위개념 테이블
 CREATE TABLE CONCEPTS (
 	concept_id INT,
@@ -46,7 +48,7 @@ CREATE TABLE USERS (
 
 -- 학생 테이블
 CREATE TABLE STUDENTS (
-	student_id	VARCHAR(20),
+	student_id	INT auto_increment,
 	student_name VARCHAR(20),
 	student_phone VARCHAR(20),
 	student_birthdate DATE,
@@ -59,7 +61,7 @@ CREATE TABLE STUDENTS (
 
 -- 학습지 테이블
 CREATE TABLE TESTS (
-	test_id	INT,
+	test_id	INT auto_increment,
 	test_name VARCHAR(20),
 	test_comments VARCHAR(200),
 	test_timestamp DATETIME,
@@ -70,7 +72,7 @@ CREATE TABLE TESTS (
 
 -- 문항 테이블
 CREATE TABLE ITEMS (
-	item_id	INT,
+	item_id	INT auto_increment,
 	item_answer	VARCHAR(20),
 	item_image_path	VARCHAR(255),
 	concept_id INT,
@@ -80,7 +82,7 @@ CREATE TABLE ITEMS (
 
 -- 학습지-문항 테이블
 CREATE TABLE TESTS_ITEMS (
-	test_item_id INT,
+	test_item_id INT auto_increment,
 	test_id	INT,
 	item_id	INT,
 	test_item_number INT,
@@ -91,8 +93,8 @@ CREATE TABLE TESTS_ITEMS (
 
 -- 답안 테이블
 CREATE TABLE ANSWERS (
-	answer_id INT,
-	student_id	VARCHAR(20),
+	answer_id INT auto_increment,
+	student_id	INT,
 	test_item_id INT,
 	answer_code	INT,
 	answer_probability DECIMAL(5,2),
