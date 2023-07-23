@@ -1,17 +1,12 @@
 package com.mmt.diagnosis.repository.student;
 
 import com.mmt.diagnosis.domain.Student;
-import com.mmt.diagnosis.domain.User;
 import com.mmt.diagnosis.repository.StudentRepository;
-import com.mmt.diagnosis.repository.UserRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Primary
@@ -28,22 +23,23 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
         String sql = "INSERT INTO students(student_name, student_phone, student_birthdate, student_school, student_comments, teacher_id ) VALUES(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId());
     }
-//
-//    @Override
-//    public Optional<User> findById(String id) {
-//        String sql = "SELECT * FROM users WHERE user_id = ?";
-//        List<User> result = jdbcTemplate.query(sql, userRowMapper(), id);
-//        return Optional.empty();
-//    }
-//
-//    private RowMapper<User> userRowMapper() {
-//        return (rs, rowNum) -> {
-//            User user = new User();
-//            user.setUserId(rs.getString("user_id"));
-//            user.setUserPassword(rs.getString("user_password"));
-//            user.setUserName(rs.getString("user_name"));
-//            user.setUserPhone(rs.getString("user_phone"));
-//            return user;
-//        };
-//    }
+
+    @Override
+    public boolean isStudentNotExist(int id){
+        String readSql = "SELECT * FROM students WHERE student_id = ?";
+        return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
+    }
+
+    @Override
+    public void updateStudent(Student student){
+        String sql = "UPDATE students SET student_name=? , student_phone=?, student_birthdate=?, student_school=?, student_comments=?, teacher_id=? WHERE student_id = ?";
+        jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId(), student.getStudentId());
+    }
+
+    @Override
+    public void deleteStudent(int id) {
+        String sql = "DELETE FROM students WHERE student_id = ?";
+        jdbcTemplate.update(sql, id);
+    }
+
 }

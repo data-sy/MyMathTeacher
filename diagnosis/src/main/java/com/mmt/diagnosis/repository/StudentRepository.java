@@ -9,14 +9,12 @@ import java.util.Optional;
 public interface StudentRepository {
 
     void saveStudent(Student student);
-//
-//    List<Student> findAll();
-//
-//    updateStudent
-//
-//    deleteStudent
-//
-//    Optional<Student> findById(int id);
+
+    boolean isStudentNotExist(int id);
+
+    void updateStudent(Student student);
+
+    void deleteStudent(int id);
 
 
 }

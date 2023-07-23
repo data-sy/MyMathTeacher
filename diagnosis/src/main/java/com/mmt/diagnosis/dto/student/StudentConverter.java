@@ -14,6 +14,18 @@ public class StudentConverter {
         student.setTeacherId(studentCreateRequest.getTeacherId());
         return student;
     }
+    public static Student convertToStudent(StudentUpdateRequest studentUpdateRequest) {
+        Student student = new Student();
+        student.setStudentId(studentUpdateRequest.getStudentId());
+        student.setStudentName(studentUpdateRequest.getStudentName());
+        student.setStudentPhone(studentUpdateRequest.getStudentPhone());
+        student.setStudentBirthdate(studentUpdateRequest.getStudentBirthdate());
+        student.setStudentSchool(studentUpdateRequest.getStudentSchool());
+        student.setStudentComments(studentUpdateRequest.getStudentComments());
+        student.setTeacherId(studentUpdateRequest.getTeacherId());
+        return student;
+    }
+
 
     public static StudentResponse convertToStudentResponse(Student student) {
         StudentResponse studentResponse = new StudentResponse();
