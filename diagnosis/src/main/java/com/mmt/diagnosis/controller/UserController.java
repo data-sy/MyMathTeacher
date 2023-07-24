@@ -1,8 +1,7 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.user.UserRequest;
+import com.mmt.diagnosis.dto.user.UserCreateRequest;
 import com.mmt.diagnosis.service.UserService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +16,8 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public void saveUser(@RequestBody UserRequest request) {
-        userService.saveUser(request);
+    public void create(@RequestBody UserCreateRequest request) {
+        userService.join(request);
     }
 
 }

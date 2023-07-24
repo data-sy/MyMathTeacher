@@ -1,8 +1,6 @@
 package com.mmt.diagnosis.service;
 
-import com.mmt.diagnosis.domain.User;
-import com.mmt.diagnosis.dto.user.UserConverter;
-import com.mmt.diagnosis.dto.user.UserRequest;
+import com.mmt.diagnosis.dto.user.UserCreateRequest;
 import com.mmt.diagnosis.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void saveUser(UserRequest request) {
-        userRepository.saveUser(request.getUserId(), request.getUserPassword(), request.getUserName(), request.getUserPhone());
+    public void join(UserCreateRequest request) {
+        userRepository.save(request.getUserId(), request.getUserPassword(), request.getUserName(), request.getUserPhone());
     }
 
 }

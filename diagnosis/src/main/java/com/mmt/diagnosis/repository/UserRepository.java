@@ -6,8 +6,6 @@ import java.util.Optional;
 
 public interface UserRepository {
 
-    void saveUser(String id, String password, String name, String phone);
-
-//    Optional<User> findById(String id);
+    void save(String id, String password, String name, String phone);
 
 }

@@ -3,7 +3,7 @@ package com.mmt.diagnosis.dto.user;
 import lombok.Data;
 
 @Data
-public class UserRequest {
+public class UserCreateRequest {
 
     private String userId;
     private String userPassword;
