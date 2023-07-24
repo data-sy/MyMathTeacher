@@ -6,15 +6,14 @@ import java.util.List;
 
 public interface StudentRepository {
 
-    void saveStudent(Student student);
+    void save(Student student);
 
     List<Student> findAll(String teacherId);
 
     boolean isStudentNotExist(int id);
 
-    void updateStudent(Student student);
+    void update(Student student);
 
-    void deleteStudent(int id);
-
+    void delete(int id);
 
 }

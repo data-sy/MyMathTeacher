@@ -19,21 +19,21 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public void saveStudent(@RequestBody StudentCreateRequest request) {
-        studentService.saveStudent(request);
+    public void create(@RequestBody StudentCreateRequest request) {
+        studentService.join(request);
     }
 
     @GetMapping("/students")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
-        return studentService.getStudents(request.getTeacherId());
+        return studentService.findStudents(request.getTeacherId());
     }
 
     @PutMapping("/students")
-    public void updateStudent(@RequestBody StudentUpdateRequest request) {
-        studentService.updateStudent(request);
+    public void update(@RequestBody StudentUpdateRequest request) {
+        studentService.update(request);
     }
 
     @DeleteMapping("/students")
-    public void deleteStudent(@RequestParam int id) { studentService.deleteStudent(id); }
+    public void delete(@RequestParam int id) { studentService.delete(id); }
 
 }

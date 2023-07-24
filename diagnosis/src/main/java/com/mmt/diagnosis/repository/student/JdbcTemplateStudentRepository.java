@@ -22,14 +22,13 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public void saveStudent(Student student) {
+    public void save(Student student) {
         String sql = "INSERT INTO students(student_name, student_phone, student_birthdate, student_school, student_comments, teacher_id ) VALUES(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId());
     }
 
     @Override
     public List<Student> findAll(String teacherId){
-        System.out.println("teacherId : " + teacherId);
         String sql = "SELECT * FROM students WHERE teacher_id = ?";
         return jdbcTemplate.query(sql, studentRowMapper(), teacherId);
     }
@@ -41,13 +40,13 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public void updateStudent(Student student){
+    public void update(Student student){
         String sql = "UPDATE students SET student_name=? , student_phone=?, student_birthdate=?, student_school=?, student_comments=?, teacher_id=? WHERE student_id = ?";
         jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId(), student.getStudentId());
     }
 
     @Override
-    public void deleteStudent(int id) {
+    public void delete(int id) {
         String sql = "DELETE FROM students WHERE student_id = ?";
         jdbcTemplate.update(sql, id);
     }

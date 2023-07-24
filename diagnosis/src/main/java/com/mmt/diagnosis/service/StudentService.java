@@ -19,27 +19,27 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public void saveStudent(StudentCreateRequest request) {
+    public void join(StudentCreateRequest request) {
         Student student = StudentConverter.convertToStudent(request);
-        studentRepository.saveStudent(student);
+        studentRepository.save(student);
     }
 
-    public List<StudentResponse> getStudents(String teacherId){
+    public List<StudentResponse> findStudents(String teacherId){
         return StudentConverter.convertListToStudentResponseList(studentRepository.findAll(teacherId));
     }
 
-    public void updateStudent(StudentUpdateRequest request) {
+    public void update(StudentUpdateRequest request) {
         if(studentRepository.isStudentNotExist(request.getStudentId())){
             throw new IllegalArgumentException();
         }
         Student student = StudentConverter.convertToStudent(request);
-        studentRepository.updateStudent(student);
+        studentRepository.update(student);
     }
-    public void deleteStudent(int id) {
+    public void delete(int id) {
         if(studentRepository.isStudentNotExist(id)){
             throw new IllegalArgumentException();
         }
-        studentRepository.deleteStudent(id);
+        studentRepository.delete(id);
     }
 
 }
