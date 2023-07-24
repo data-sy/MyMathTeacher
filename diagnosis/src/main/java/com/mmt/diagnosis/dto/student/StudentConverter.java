@@ -2,6 +2,9 @@ package com.mmt.diagnosis.dto.student;
 
 import com.mmt.diagnosis.domain.Student;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentConverter {
 
     public static Student convertToStudent(StudentCreateRequest studentCreateRequest) {
@@ -38,5 +41,11 @@ public class StudentConverter {
         studentResponse.setTeacherId(student.getTeacherId());
         return studentResponse;
     }
-
+    public static List<StudentResponse> convertListToStudentResponseList(List<Student> studentList) {
+        List<StudentResponse> responseList = new ArrayList<>();
+        for (Student student : studentList) {
+            responseList.add(convertToStudentResponse(student));
+        }
+        return responseList;
+    }
 }

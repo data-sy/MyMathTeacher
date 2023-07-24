@@ -4,9 +4,12 @@ import com.mmt.diagnosis.domain.Student;
 import com.mmt.diagnosis.repository.StudentRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Primary
@@ -22,6 +25,13 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     public void saveStudent(Student student) {
         String sql = "INSERT INTO students(student_name, student_phone, student_birthdate, student_school, student_comments, teacher_id ) VALUES(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId());
+    }
+
+    @Override
+    public List<Student> findAll(String teacherId){
+        System.out.println("teacherId : " + teacherId);
+        String sql = "SELECT * FROM students WHERE teacher_id = ?";
+        return jdbcTemplate.query(sql, studentRowMapper(), teacherId);
     }
 
     @Override
@@ -42,4 +52,17 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
         jdbcTemplate.update(sql, id);
     }
 
+    private RowMapper<Student> studentRowMapper() {
+        return (rs, rowNum) -> {
+            Student student = new Student();
+            student.setStudentId(rs.getInt("student_id"));
+            student.setStudentName(rs.getString("student_name"));
+            student.setStudentPhone(rs.getString("student_phone"));
+            student.setStudentBirthdate(rs.getDate("student_birthdate").toLocalDate());
+            student.setStudentSchool(rs.getString("student_school"));
+            student.setStudentComments(rs.getString("student_comments"));
+            student.setTeacherId(rs.getString("teacher_id"));
+            return student;
+        };
+    }
 }

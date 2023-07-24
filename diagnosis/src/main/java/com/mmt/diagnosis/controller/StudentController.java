@@ -1,9 +1,13 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.student.StudentCreateRequest;
+import com.mmt.diagnosis.dto.student.StudentGetRequest;
+import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.student.StudentUpdateRequest;
 import com.mmt.diagnosis.service.StudentService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class StudentController {
@@ -19,7 +23,10 @@ public class StudentController {
         studentService.saveStudent(request);
     }
 
-
+    @GetMapping("/students")
+    public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
+        return studentService.getStudents(request.getTeacherId());
+    }
 
     @PutMapping("/students")
     public void updateStudent(@RequestBody StudentUpdateRequest request) {
