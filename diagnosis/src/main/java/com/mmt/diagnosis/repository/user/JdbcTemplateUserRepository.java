@@ -1,15 +1,11 @@
 package com.mmt.diagnosis.repository.user;
 
-import com.mmt.diagnosis.domain.User;
 import com.mmt.diagnosis.repository.UserRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Primary
