@@ -10,10 +10,12 @@ public interface StudentRepository {
 
     List<Student> findAll(String teacherId);
 
+    Student findById(int studentId);
+
     boolean isStudentNotExist(int id);
 
     void update(Student student);
 
-    void delete(int id);
+    void delete(int studentId);
 
 }

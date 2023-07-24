@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Primary
@@ -34,6 +33,13 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
+    public Student findById(int studentId){
+        System.out.println("studentId : " + studentId);
+        String sql = "SELECT * FROM students WHERE student_id = ?";
+        return jdbcTemplate.query(sql, studentRowMapper(), studentId).get(0);
+    }
+
+    @Override
     public boolean isStudentNotExist(int id){
         String readSql = "SELECT * FROM students WHERE student_id = ?";
         return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
@@ -46,9 +52,9 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int studentId) {
         String sql = "DELETE FROM students WHERE student_id = ?";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, studentId);
     }
 
     private RowMapper<Student> studentRowMapper() {

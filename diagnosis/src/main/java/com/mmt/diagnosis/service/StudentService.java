@@ -9,6 +9,7 @@ import com.mmt.diagnosis.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -28,6 +29,10 @@ public class StudentService {
         return StudentConverter.convertListToStudentResponseList(studentRepository.findAll(teacherId));
     }
 
+    public StudentResponse findOne(int studentId){
+        return StudentConverter.convertToStudentResponse(studentRepository.findById(studentId));
+    }
+
     public void update(StudentUpdateRequest request) {
         if(studentRepository.isStudentNotExist(request.getStudentId())){
             throw new IllegalArgumentException();
@@ -35,11 +40,11 @@ public class StudentService {
         Student student = StudentConverter.convertToStudent(request);
         studentRepository.update(student);
     }
-    public void delete(int id) {
-        if(studentRepository.isStudentNotExist(id)){
+    public void delete(int studentId) {
+        if(studentRepository.isStudentNotExist(studentId)){
             throw new IllegalArgumentException();
         }
-        studentRepository.delete(id);
+        studentRepository.delete(studentId);
     }
 
 }

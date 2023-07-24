@@ -8,6 +8,7 @@ import com.mmt.diagnosis.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StudentController {
@@ -28,12 +29,17 @@ public class StudentController {
         return studentService.findStudents(request.getTeacherId());
     }
 
+    @GetMapping("/students/{studentId}")
+    public StudentResponse getStudentById(@PathVariable int studentId){
+        return studentService.findOne(studentId);
+    }
+
     @PutMapping("/students")
     public void update(@RequestBody StudentUpdateRequest request) {
         studentService.update(request);
     }
 
     @DeleteMapping("/students")
-    public void delete(@RequestParam int id) { studentService.delete(id); }
+    public void delete(@RequestParam int studentId) { studentService.delete(studentId); }
 
 }
