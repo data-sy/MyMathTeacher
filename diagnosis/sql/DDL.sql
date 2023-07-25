@@ -15,15 +15,15 @@ DROP TABLE IF EXISTS CONCEPTS;
 -- 단위개념 테이블
 CREATE TABLE CONCEPTS (
 	concept_id INT,
-	concept_name VARCHAR(20),
+	concept_name VARCHAR(70),
 	concept_school_level CHAR(2),
 	concept_grade_level CHAR(2),
-	concept_semester CHAR(3),
-	concept_description VARCHAR(200),
-	concept_chapter_id VARCHAR(20),
-	concept_chapter_name VARCHAR(20),
-	concept_achievement_id VARCHAR(20),
-	concept_achievement_name VARCHAR(20),
+	concept_semester VARCHAR(3),
+	concept_description TEXT,
+	concept_chapter_id INT,
+	concept_chapter_name VARCHAR(60),
+	concept_achievement_id INT,
+	concept_achievement_name VARCHAR(120),
 	PRIMARY KEY (concept_id)
 );
 
@@ -64,7 +64,7 @@ CREATE TABLE TESTS (
 	test_id	INT auto_increment,
 	test_name VARCHAR(20),
 	test_comments VARCHAR(200),
-	test_timestamp DATETIME,
+	test_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	diagnostic_test_id INT,
 	PRIMARY KEY (test_id),
 	FOREIGN KEY (diagnostic_test_id) REFERENCES TESTS (test_id)
@@ -98,7 +98,7 @@ CREATE TABLE ANSWERS (
 	test_item_id INT,
 	answer_code	INT,
 	answer_probability DECIMAL(5,2),
-	answer_timestamp DATETIME,
+	answer_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (answer_id),
 	FOREIGN KEY (student_id) REFERENCES STUDENTS (student_id),
 	FOREIGN KEY (test_item_id) REFERENCES TESTS_ITEMS (test_item_id)
