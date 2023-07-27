@@ -21,3 +21,5 @@ select * from items;
 select * from items where item_id>4890;
 
 select count(*) from items;
+
+select * from tests_items;
