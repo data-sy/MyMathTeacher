@@ -1,17 +1,3 @@
--- DROP 순서 : 답안 -> 학습지_문항 -> 학습지, 문항. 학생 -> 사용자. 지식체계 -> 단위개념
-DROP TABLE IF EXISTS ANSWERS;
-DROP TABLE IF EXISTS TESTS_ITEMS;
-
-DROP TABLE IF EXISTS ITEMS;
-DROP TABLE IF EXISTS TESTS;
-DROP TABLE IF EXISTS STUDENTS;
-DROP TABLE IF EXISTS USERS;
-
-DROP TABLE IF EXISTS KNOWLEDGE_TAGS;
-DROP TABLE IF EXISTS CONCEPTS;
-
--- id가 auto_increment : 학생, 학습지, 문항, 학습지_문항, 답안
-
 -- 단위개념 테이블
 CREATE TABLE CONCEPTS (
 	concept_id INT,
@@ -35,6 +21,7 @@ CREATE TABLE KNOWLEDGE_TAGS (
 	PRIMARY KEY (knowledge_tag_id),
 	FOREIGN KEY (from_concept_id) REFERENCES CONCEPTS (concept_id),
 	FOREIGN KEY (to_concept_id) REFERENCES CONCEPTS (concept_id)
+
 );
 
 -- 사용자 테이블
