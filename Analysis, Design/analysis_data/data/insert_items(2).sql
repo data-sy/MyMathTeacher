@@ -1,4 +1,4 @@
-INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', '/images/1(1)', 7618);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', '/images/1(1)', 7618);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('4', '/images/1(2)', 7618);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/1(3)', 7618);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', '/images/2(1)', 7620);
