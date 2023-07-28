@@ -16,3 +16,6 @@ DROP TABLE IF EXISTS TESTS_ITEMS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS KNOWLEDGE_TAGS;
 DROP TABLE IF EXISTS CONCEPTS;
+
+-- insert 순서
+-- insert_diag_test -> insert_items_missing -> insert_diag_items -> insert_diag_testsitems

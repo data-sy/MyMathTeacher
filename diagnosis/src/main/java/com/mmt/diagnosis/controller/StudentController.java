@@ -29,7 +29,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/{studentId}")
-    public StudentResponse getStudentById(@PathVariable int studentId){
+    public StudentResponse getStudentById(@PathVariable Long studentId){
         return studentService.findOne(studentId);
     }
 
@@ -39,6 +39,6 @@ public class StudentController {
     }
 
     @DeleteMapping("/students")
-    public void delete(@RequestParam int studentId) { studentService.delete(studentId); }
+    public void delete(@RequestParam Long studentId) { studentService.delete(studentId); }
 
 }

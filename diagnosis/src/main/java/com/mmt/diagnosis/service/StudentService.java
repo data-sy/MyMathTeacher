@@ -28,7 +28,7 @@ public class StudentService {
         return StudentConverter.convertListToStudentResponseList(studentRepository.findAll(teacherId));
     }
 
-    public StudentResponse findOne(int studentId){
+    public StudentResponse findOne(Long studentId){
         return StudentConverter.convertToStudentResponse(studentRepository.findById(studentId));
     }
 
@@ -39,7 +39,7 @@ public class StudentService {
         Student student = StudentConverter.convertToStudent(request);
         studentRepository.update(student);
     }
-    public void delete(int studentId) {
+    public void delete(Long studentId) {
         if(studentRepository.isStudentNotExist(studentId)){
             throw new IllegalArgumentException();
         }

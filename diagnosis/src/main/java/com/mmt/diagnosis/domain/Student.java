@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Student {
 
-    private int studentId;
+    private Long studentId;
     private String studentName;
     private String studentPhone;
     private LocalDate studentBirthdate;

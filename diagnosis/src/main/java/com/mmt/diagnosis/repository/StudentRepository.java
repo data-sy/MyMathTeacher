@@ -10,12 +10,12 @@ public interface StudentRepository {
 
     List<Student> findAll(String teacherId);
 
-    Student findById(int studentId);
+    Student findById(Long studentId);
 
-    boolean isStudentNotExist(int id);
+    boolean isStudentNotExist(Long id);
 
     void update(Student student);
 
-    void delete(int studentId);
+    void delete(Long studentId);
 
 }

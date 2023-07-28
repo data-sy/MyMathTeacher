@@ -22,7 +22,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
 
     @Override
     public void save(Student student) {
-        String sql = "INSERT INTO students(student_name, student_phone, student_birthdate, student_school, student_comments, teacher_id ) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO students(student_name, student_phone, student_birthdate, student_school, student_comments, teacher_id) VALUES(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, student.getStudentName(), student.getStudentPhone(), student.getStudentBirthdate(), student.getStudentSchool(), student.getStudentComments(), student.getTeacherId());
     }
 
@@ -33,14 +33,14 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public Student findById(int studentId){
+    public Student findById(Long studentId){
         System.out.println("studentId : " + studentId);
         String sql = "SELECT * FROM students WHERE student_id = ?";
         return jdbcTemplate.query(sql, studentRowMapper(), studentId).get(0);
     }
 
     @Override
-    public boolean isStudentNotExist(int id){
+    public boolean isStudentNotExist(Long id){
         String readSql = "SELECT * FROM students WHERE student_id = ?";
         return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
     }
@@ -52,7 +52,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public void delete(int studentId) {
+    public void delete(Long studentId) {
         String sql = "DELETE FROM students WHERE student_id = ?";
         jdbcTemplate.update(sql, studentId);
     }
@@ -60,7 +60,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     private RowMapper<Student> studentRowMapper() {
         return (rs, rowNum) -> {
             Student student = new Student();
-            student.setStudentId(rs.getInt("student_id"));
+            student.setStudentId(rs.getLong("student_id"));
             student.setStudentName(rs.getString("student_name"));
             student.setStudentPhone(rs.getString("student_phone"));
             student.setStudentBirthdate(rs.getDate("student_birthdate").toLocalDate());
