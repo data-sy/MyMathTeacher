@@ -39,6 +39,7 @@ public class StudentService {
         Student student = StudentConverter.convertToStudent(request);
         studentRepository.update(student);
     }
+
     public void delete(Long studentId) {
         if(studentRepository.isStudentNotExist(studentId)){
             throw new IllegalArgumentException();
