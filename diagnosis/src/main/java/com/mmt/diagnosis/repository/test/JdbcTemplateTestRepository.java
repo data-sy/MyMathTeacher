@@ -31,11 +31,11 @@ public class JdbcTemplateTestRepository implements TestRepository {
     private RowMapper<Test> testRowMapper() {
         return (rs, rowNum) -> {
             Test test = new Test();
-            test.setTestId(rs.getInt("test_id"));
+            test.setTestId(rs.getLong("test_id"));
             Optional.ofNullable(rs.getString("test_name")).ifPresent(test::setTestName);
             Optional.ofNullable(rs.getString("test_comments")).ifPresent(test::setTestComments);
             test.setTestTimestamp(rs.getTimestamp("test_timestamp").toLocalDateTime());
-            int diagnosticTestId = rs.getInt("diagnostic_test_id");
+            Long diagnosticTestId = rs.getLong("diagnostic_test_id");
             if (!rs.wasNull()) {
                 test.setDiagnosticTestId(diagnosticTestId);
             }

@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TestItem {
 
-    private int testItemId;
-    private int testId;
-    private int itemId;
+    private Long testItemId;
+    private Long testId;
+    private Long itemId;
     private int testItemNumber;
 
 }

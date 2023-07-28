@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Test {
 
-    private int testId;
+    private Long testId;
     private String testName;
     private String testComments;
     private LocalDateTime testTimestamp;
-    private int diagnosticTestId;
+    private Long diagnosticTestId;
 
 }

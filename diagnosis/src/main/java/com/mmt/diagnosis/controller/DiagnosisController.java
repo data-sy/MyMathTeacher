@@ -3,7 +3,9 @@ package com.mmt.diagnosis.controller;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
+import com.mmt.diagnosis.dto.testitem.TestItemResponse;
 import com.mmt.diagnosis.service.StudentService;
+import com.mmt.diagnosis.service.TestItemService;
 import com.mmt.diagnosis.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +19,12 @@ public class DiagnosisController {
 
     private final StudentService studentService;
     private final TestService testService;
+    private final TestItemService testItemService;
 
-    public DiagnosisController(StudentService studentService, TestService testService) {
+    public DiagnosisController(StudentService studentService, TestService testService, TestItemService testItemService) {
         this.studentService = studentService;
         this.testService = testService;
+        this.testItemService = testItemService;
     }
 
     /**
@@ -35,7 +39,7 @@ public class DiagnosisController {
      * 학생 상세보기
      */
     @GetMapping("/diagnosis/students/{studentId}")
-    public StudentResponse getStudentById(@PathVariable int studentId){
+    public StudentResponse getStudentById(@PathVariable Long studentId){
         return studentService.findOne(studentId);
     }
 
@@ -45,6 +49,14 @@ public class DiagnosisController {
     @GetMapping("/diagnosis/tests")
     public List<TestResponse> getTests(){
         return testService.findTests();
+    }
+
+    /**
+     * 학습지 상세보기
+     */
+    @GetMapping("/diagnosis/tests/{testId}")
+    public List<TestItemResponse> getTestItems(@PathVariable Long testId){
+        return testItemService.findTestItems(testId);
     }
 
 }
