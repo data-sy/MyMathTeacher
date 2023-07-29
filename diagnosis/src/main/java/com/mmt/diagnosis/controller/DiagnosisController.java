@@ -62,14 +62,27 @@ public class DiagnosisController {
     }
 
     /**
-     * 진단학습지 다운로드 : (1) answers 테이블에 입력 (2) 진단 학습지 다운로드
-     * 리팩토링 : 우선 한 메서드 안에 만들고 필요하다면 나중에 쪼개기
+     * 다운로드할 학습지 미리보기
+     */
+    @GetMapping("/diagnosis/preview")
+    public DownloadResponse getPreview(@RequestBody DownloadRequest request){
+        DownloadResponse downloadResponse = new DownloadResponse();
+        downloadResponse.setStudentName(studentService.findName(request.getStudentId()));
+        downloadResponse.setTestName(testService.findNameComments(request.getTestId()).getTestName());
+        downloadResponse.setTestComments(testService.findNameComments(request.getTestId()).getTestComments());
+        downloadResponse.setTestItemDataList(testItemService.findDataList(request.getTestId()));
+        return downloadResponse;
+    }
+
+    /**
+     * 다운로드 : (1)answers 테이블에 입력 (2)진단 학습지 다운로드
      */
     @PostMapping("/diagnosis/download")
-    public List<DownloadResponse> create(@RequestBody DownloadRequest request){
+    public void create(@RequestBody DownloadRequest request){
         // answers 테이블에 insert
         answerService.create(request);
-        return null;
+        // 진단 학습지 다운로드
+        // preview에서 화면에 보인 이미지를 pdf로 저장해서 다운로드 할 수 있는 방법 찾기
     }
 
 }

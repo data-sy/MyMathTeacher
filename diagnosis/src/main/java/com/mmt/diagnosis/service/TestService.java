@@ -20,4 +20,8 @@ public class TestService {
         return TestConverter.convertListToTestResponseList(testRepository.findAll());
     }
 
+    public TestResponse findNameComments(Long testId){
+        return TestConverter.convertToTestNameComments(testRepository.findNameComments(testId));
+    }
+
 }

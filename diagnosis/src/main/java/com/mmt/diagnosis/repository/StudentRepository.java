@@ -12,6 +12,8 @@ public interface StudentRepository {
 
     Student findById(Long studentId);
 
+    Student findNameById(Long studentId);
+
     boolean isStudentNotExist(Long id);
 
     void update(Student student);

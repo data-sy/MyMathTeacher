@@ -32,6 +32,10 @@ public class StudentService {
         return StudentConverter.convertToStudentResponse(studentRepository.findById(studentId));
     }
 
+    public String findName(Long studentId){
+        return studentRepository.findNameById(studentId).getStudentName();
+    }
+
     public void update(StudentUpdateRequest request) {
         if(studentRepository.isStudentNotExist(request.getStudentId())){
             throw new IllegalArgumentException();

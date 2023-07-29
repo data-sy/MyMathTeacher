@@ -8,4 +8,6 @@ public interface TestRepository {
 
     List<Test> findAll();
 
+    Test findNameComments(Long testId);
+
 }

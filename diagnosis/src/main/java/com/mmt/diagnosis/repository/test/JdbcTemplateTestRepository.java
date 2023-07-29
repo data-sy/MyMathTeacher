@@ -28,6 +28,12 @@ public class JdbcTemplateTestRepository implements TestRepository {
         return jdbcTemplate.query(sql, testRowMapper());
     }
 
+    @Override
+    public Test findNameComments(Long testId){
+        String sql = "SELECT test_name, test_comments FROM tests WHERE test_id = ?";
+        return jdbcTemplate.queryForObject(sql, testNameRowMapper(), testId);
+    }
+
     private RowMapper<Test> testRowMapper() {
         return (rs, rowNum) -> {
             Test test = new Test();
@@ -39,6 +45,14 @@ public class JdbcTemplateTestRepository implements TestRepository {
             if (!rs.wasNull()) {
                 test.setDiagnosticTestId(diagnosticTestId);
             }
+            return test;
+        };
+    }
+    private RowMapper<Test> testNameRowMapper() {
+        return (rs, rowNum) -> {
+            Test test = new Test();
+            test.setTestName(rs.getString("test_name"));
+            test.setTestComments(rs.getString("test_comments"));
             return test;
         };
     }

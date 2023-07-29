@@ -34,10 +34,27 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
 
     @Override
     public Student findById(Long studentId){
-        System.out.println("studentId : " + studentId);
         String sql = "SELECT * FROM students WHERE student_id = ?";
         return jdbcTemplate.query(sql, studentRowMapper(), studentId).get(0);
     }
+
+    @Override
+    public Student findNameById(Long studentId){
+        String sql = "SELECT student_name FROM students WHERE student_id = ?";
+        return jdbcTemplate.queryForObject(sql, studentNameRowMapper(), studentId);
+    }
+
+//    // 리팩토링 : 옵셔널 & try catch로 검증
+//    public Optional<Student> findNameById(Long studentId){
+//        String sql = "SELECT student_name FROM students WHERE student_id = ?";
+//        try {
+//            Student student = jdbcTemplate.queryForObject(sql, studentNameRowMapper(), studentId);
+//            return Optional.ofNullable(student);
+//        } catch (EmptyResultDataAccessException e) {
+//            System.out.println("Student not found.");
+//            return Optional.empty();
+//        }
+//    }
 
     @Override
     public boolean isStudentNotExist(Long id){
@@ -67,6 +84,13 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
             student.setStudentSchool(rs.getString("student_school"));
             student.setStudentComments(rs.getString("student_comments"));
             student.setTeacherId(rs.getString("teacher_id"));
+            return student;
+        };
+    }
+    private RowMapper<Student> studentNameRowMapper() {
+        return (rs, rowNum) -> {
+            Student student = new Student();
+            student.setStudentName(rs.getString("student_name"));
             return student;
         };
     }

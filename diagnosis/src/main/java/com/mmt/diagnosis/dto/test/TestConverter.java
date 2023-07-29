@@ -23,4 +23,11 @@ public class TestConverter {
         }
         return responseList;
     }
+
+    public static TestResponse convertToTestNameComments(Test test) {
+        TestResponse testResponse = new TestResponse();
+        testResponse.setTestName(test.getTestName());
+        testResponse.setTestComments(test.getTestComments());
+        return testResponse;
+    }
 }
