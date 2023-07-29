@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Answer {
 
-    private int answerId;
-    private int studentId;
-    private int testItemId;
+    private Long answerId;
+    private Long studentId;
+    private Long testItemId;
     private int answerCode;
     private double answerProbability;
     private LocalDateTime answerTimestamp;

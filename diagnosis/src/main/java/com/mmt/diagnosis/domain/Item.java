@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Item {
 
-    private int itemId;
+    private Long itemId;
     private String itemAnswer;
     private String itemImagePath;
     private int conceptId;
