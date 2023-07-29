@@ -6,6 +6,7 @@ import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.testitem.TestItemResponse;
+import com.mmt.diagnosis.service.AnswerService;
 import com.mmt.diagnosis.service.StudentService;
 import com.mmt.diagnosis.service.TestItemService;
 import com.mmt.diagnosis.service.TestService;
@@ -68,7 +69,7 @@ public class DiagnosisController {
     public List<DownloadResponse> create(@RequestBody DownloadRequest request){
         // answers 테이블에 insert
         answerService.create(request);
-
+        return null;
     }
 
 }
