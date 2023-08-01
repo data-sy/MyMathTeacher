@@ -160,3 +160,5 @@ FROM ctable c
 INNER JOIN atable a ON a.a_id = c.a_id
 -- 조인조건 둘 중 하나만 써도 가능, 물론 둘 다 써도 가능하고 INNER JOIN a2table a2 ON a2.a2_id = c.a2_id
 WHERE c.whe = "학생2";
+
+-- 테이블이 바뀌었으니 실험1의 insert, update 구문도 수정되어야 함. 실험은 생략하고 바로 프로젝트에서 수정하자.
