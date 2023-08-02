@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.service;
+package com.mmt.diagnosis.service.user;
 
 import com.mmt.diagnosis.dto.user.UserCreateRequest;
 import com.mmt.diagnosis.repository.UserRepository;

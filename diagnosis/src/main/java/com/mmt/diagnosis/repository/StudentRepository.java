@@ -12,7 +12,7 @@ public interface StudentRepository {
 
     Student findById(Long studentId);
 
-    Student findNameById(Long studentId);
+    Student findName(Long studentId);
 
     boolean isStudentNotExist(Long id);
 

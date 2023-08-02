@@ -4,7 +4,7 @@ import com.mmt.diagnosis.dto.student.StudentCreateRequest;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.student.StudentUpdateRequest;
-import com.mmt.diagnosis.service.StudentService;
+import com.mmt.diagnosis.service.student.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

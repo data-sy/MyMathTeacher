@@ -1,7 +1,7 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.user.UserCreateRequest;
-import com.mmt.diagnosis.service.UserService;
+import com.mmt.diagnosis.service.user.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

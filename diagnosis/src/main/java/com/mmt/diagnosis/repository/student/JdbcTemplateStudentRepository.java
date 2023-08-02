@@ -39,7 +39,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public Student findNameById(Long studentId){
+    public Student findName(Long studentId){
         String sql = "SELECT student_name FROM students WHERE student_id = ?";
         return jdbcTemplate.queryForObject(sql, studentNameRowMapper(), studentId);
     }

@@ -1,7 +1,6 @@
-package com.mmt.diagnosis.service;
+package com.mmt.diagnosis.service.student;
 
 import com.mmt.diagnosis.domain.Student;
-import com.mmt.diagnosis.dto.student.StudentConverter;
 import com.mmt.diagnosis.dto.student.StudentCreateRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.student.StudentUpdateRequest;
@@ -33,7 +32,7 @@ public class StudentService {
     }
 
     public String findName(Long studentId){
-        return studentRepository.findNameById(studentId).getStudentName();
+        return studentRepository.findName(studentId).getStudentName();
     }
 
     public void update(StudentUpdateRequest request) {
