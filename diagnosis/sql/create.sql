@@ -10,6 +10,7 @@ CREATE TABLE CONCEPTS (
 	concept_chapter_name VARCHAR(60),
 	concept_achievement_id INT,
 	concept_achievement_name VARCHAR(120),
+    skill_id INT,
 	PRIMARY KEY (concept_id)
 );
 
@@ -96,7 +97,7 @@ CREATE TABLE PROBABILITYS (
 	probability_id BIGINT auto_increment,
 	answer_id BIGINT,
     concept_id INT,
-    probability_depth INT,
+    to_concept_depth INT,
 	probability_percent DECIMAL(5,2),
 	probability_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (probability_id),

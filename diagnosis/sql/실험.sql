@@ -162,3 +162,7 @@ INNER JOIN atable a ON a.a_id = c.a_id
 WHERE c.whe = "학생2";
 
 -- 테이블이 바뀌었으니 실험1의 insert, update 구문도 수정되어야 함. 실험은 생략하고 바로 프로젝트에서 수정하자.
+-- 오개념 찾음 : 기존 논리로는 한 시험지를 재사용할 수 없음...시험지에 맞춰서 학생을 업데이트 하니까 (수정 전에도 오류였음)
+	-- 실험1의 테이블 그대로 사용
+insert into exprm1 (student_id, test_item_id) select 1000 AS student_id, test_item_id from exprm2 where test_id=2;
+select * from exprm1;
