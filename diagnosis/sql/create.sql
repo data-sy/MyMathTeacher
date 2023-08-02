@@ -82,11 +82,24 @@ CREATE TABLE TESTS_ITEMS (
 CREATE TABLE ANSWERS (
 	answer_id BIGINT auto_increment,
 	student_id BIGINT,
-	test_item_id BIGINT,
+	test_id BIGINT,
+	item_id BIGINT,
 	answer_code	INT,
-	answer_probability DECIMAL(5,2),
-	answer_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (answer_id),
 	FOREIGN KEY (student_id) REFERENCES STUDENTS (student_id),
-	FOREIGN KEY (test_item_id) REFERENCES TESTS_ITEMS (test_item_id)
+	FOREIGN KEY (test_id) REFERENCES TESTS_ITEMS (test_id),
+	FOREIGN KEY (item_id) REFERENCES TESTS_ITEMS (item_id)
+);
+
+-- 확률 테이블
+CREATE TABLE PROBABILITYS (
+	probability_id BIGINT auto_increment,
+	answer_id BIGINT,
+    concept_id INT,
+    probability_depth INT,
+	probability_percent DECIMAL(5,2),
+	probability_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (probability_id),
+	FOREIGN KEY (answer_id) REFERENCES ANSWERS (answer_id),
+	FOREIGN KEY (concept_id) REFERENCES CONCEPTS (concept_id)
 );

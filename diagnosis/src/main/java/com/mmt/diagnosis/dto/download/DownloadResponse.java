@@ -11,7 +11,7 @@ public class DownloadResponse {
     private String testName;
     private String testComments;
     private String studentName;
-    // String itemAnswer, String itemImagePath, int testItemNumber
+    // int testItemNumber, String itemAnswer, String itemImagePath
     private List<TestItemData> testItemDataList;
 
 }

@@ -82,7 +82,7 @@ public class DiagnosisController {
         // answers 테이블에 insert
         answerService.create(request);
         // 진단 학습지 다운로드
-        // preview에서 화면에 보인 이미지를 pdf로 저장해서 다운로드 할 수 있는 방법 찾기
+            // preview에서 화면에 보인 이미지를 pdf로 저장해서 다운로드 할 수 있는 방법 찾기
     }
 
 }

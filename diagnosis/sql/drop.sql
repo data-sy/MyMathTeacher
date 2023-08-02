@@ -1,4 +1,5 @@
--- DROP 순서 : 답안 -> 학습지_문항 -> 학습지, 문항. 학생 -> 사용자. 지식체계 -> 단위개념
+-- DROP 순서 : 확률 -> 답안 -> 학습지_문항 -> 학습지, 문항. 학생 -> 사용자. 지식체계 -> 단위개념
+DROP TABLE IF EXISTS PROBABILITYS;
 DROP TABLE IF EXISTS ANSWERS;
 DROP TABLE IF EXISTS TESTS_ITEMS;
 

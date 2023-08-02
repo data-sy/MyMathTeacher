@@ -19,11 +19,9 @@ public class JdbcTemplateAnswerRepository implements AnswerRepository {
 
     @Override
     public void save(Long studentId, Long testId) {
-        String subQuery = "SELECT test_item_id FROM tests_items WHERE test_id=?";
-        String insertSql = String.format("INSERT INTO answers (test_item_id) %s", subQuery);
-        jdbcTemplate.update(insertSql, testId);
-        String updateSql = String.format("UPDATE answers SET student_id=? WHERE test_item_id IN (%s)", subQuery);
-        jdbcTemplate.update(updateSql, studentId, testId);
+        String sql =  "INSERT INTO answers (student_id, test_id, item_id) SELECT ? AS student_id, test_id, item_id FROM tests_items WHERE test_id=?";
+        jdbcTemplate.update(sql, studentId, testId);
+        // Q. 한 번 실행 시킬 때 마다 answer_id 11개가 날라감. why?????
     }
 
 }
