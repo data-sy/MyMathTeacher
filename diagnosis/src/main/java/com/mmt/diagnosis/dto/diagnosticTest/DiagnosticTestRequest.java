@@ -1,9 +1,9 @@
-package com.mmt.diagnosis.dto.download;
+package com.mmt.diagnosis.dto.diagnosticTest;
 
 import lombok.Data;
 
 @Data
-public class DownloadRequest {
+public class DiagnosticTestRequest {
 
     private Long studentId;
     private Long testId;

@@ -1,15 +1,15 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.download.DownloadRequest;
-import com.mmt.diagnosis.dto.download.DownloadResponse;
+import com.mmt.diagnosis.dto.diagnosticTest.DiagnosticTestRequest;
+import com.mmt.diagnosis.dto.diagnosticTest.DiagnosticTestResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
-import com.mmt.diagnosis.dto.testitem.TestItemResponse;
+import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.service.AnswerService;
-import com.mmt.diagnosis.service.StudentService;
-import com.mmt.diagnosis.service.TestItemService;
-import com.mmt.diagnosis.service.TestService;
+import com.mmt.diagnosis.service.student.StudentService;
+import com.mmt.diagnosis.service.test.TestService;
+import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,28 +57,30 @@ public class DiagnosisController {
      * 학습지 상세보기
      */
     @GetMapping("/diagnosis/tests/{testId}")
-    public List<TestItemResponse> getTestItems(@PathVariable Long testId){
+    public List<TestItemsResponse> getTestItems(@PathVariable Long testId){
+        // 리팩토링 : 사실 여기서는 답안 필요 없는데 메서드 재사용하려고 item_answer도 같이 리스펀스
         return testItemService.findTestItems(testId);
     }
 
     /**
-     * 다운로드할 학습지 미리보기
+     * 진단 학습지 상세보기 : 선택한 student_id와 test_id에 따른 진단 학습지 생성
      */
-    @GetMapping("/diagnosis/preview")
-    public DownloadResponse getPreview(@RequestBody DownloadRequest request){
-        DownloadResponse downloadResponse = new DownloadResponse();
-        downloadResponse.setStudentName(studentService.findName(request.getStudentId()));
-        downloadResponse.setTestName(testService.findNameComments(request.getTestId()).getTestName());
-        downloadResponse.setTestComments(testService.findNameComments(request.getTestId()).getTestComments());
-        downloadResponse.setTestItemDataList(testItemService.findDataList(request.getTestId()));
-        return downloadResponse;
+    @GetMapping("/diagnosis/diagnostic-test")
+    public DiagnosticTestResponse getDiagnosticTest(@RequestBody DiagnosticTestRequest request){
+        // 리팩토링 : 각각의 서비스를 사용하기 때문에 여기서 객체 생성하고 집어 넣었지만, 컨트롤러에서 하는 게 맞을까?
+        DiagnosticTestResponse diagnosticTestResponse = new DiagnosticTestResponse();
+        diagnosticTestResponse.setStudentName(studentService.findName(request.getStudentId()));
+        diagnosticTestResponse.setTestName(testService.findNameComments(request.getTestId()).getTestName());
+        diagnosticTestResponse.setTestComments(testService.findNameComments(request.getTestId()).getTestComments());
+        diagnosticTestResponse.setTestItemsResponses(testItemService.findTestItems(request.getTestId()));
+        return diagnosticTestResponse;
     }
 
     /**
-     * 다운로드 : (1)answers 테이블에 입력 (2)진단 학습지 다운로드
+     * 진단 학습지 다운로드 : (1)answers 테이블에 입력 (2)진단 학습지 다운로드
      */
-    @PostMapping("/diagnosis/download")
-    public void create(@RequestBody DownloadRequest request){
+    @PostMapping("/diagnosis/diagnostic-test")
+    public void create(@RequestBody DiagnosticTestRequest request){
         // answers 테이블에 insert
         answerService.create(request);
         // 진단 학습지 다운로드
