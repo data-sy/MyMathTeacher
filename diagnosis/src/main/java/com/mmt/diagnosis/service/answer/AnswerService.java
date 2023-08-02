@@ -1,8 +1,12 @@
-package com.mmt.diagnosis.service;
+package com.mmt.diagnosis.service.answer;
 
+import com.mmt.diagnosis.dto.answer.IsRecordRequest;
+import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.diagnosticTest.DiagnosticTestRequest;
 import com.mmt.diagnosis.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AnswerService {
@@ -15,6 +19,10 @@ public class AnswerService {
 
     public void create(DiagnosticTestRequest request) {
         answerRepository.save(request.getStudentId(), request.getTestId());
+    }
+
+    public List<IsRecordResponse> findTests(IsRecordRequest request) {
+        return AnswerConverter.convertListToIsRecordResponseList(answerRepository.findByStudentId(request.getStudentId()));
     }
 
 }

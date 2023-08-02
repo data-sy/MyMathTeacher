@@ -1,6 +1,6 @@
 package com.mmt.diagnosis.service.test;
 
-import com.mmt.diagnosis.dto.test.IsRecordResponse;
+import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.repository.TestRepository;
 import org.springframework.stereotype.Service;
@@ -22,10 +22,6 @@ public class TestService {
 
     public TestResponse findNameComments(Long testId){
         return TestConverter.convertToTestNameComments(testRepository.findNameComments(testId));
-    }
-
-    public List<IsRecordResponse> findByStudentId(Long studentId){
-        return testRepository.findByStudentId(studentId);
     }
 
 }

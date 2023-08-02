@@ -1,21 +1,16 @@
 package com.mmt.diagnosis.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Answer {
+    // students 테이블 + tests 테이블 + items 테이블 + tests_items 테이블
 
     private Long answerId;
     private Long studentId;
-    private Long testItemId;
-    private int answerCode;
-    private double answerProbability;
-    private LocalDateTime answerTimestamp;
+    private Long testId;
+    private String testName;
+    private Long itemId;
+    private Integer answerCode;
 
 }
