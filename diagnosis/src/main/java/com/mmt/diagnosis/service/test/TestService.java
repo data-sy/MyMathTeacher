@@ -19,8 +19,8 @@ public class TestService {
         return TestConverter.convertListToTestResponseList(testRepository.findAll());
     }
 
-    public TestResponse findNameComments(Long testId){
-        return TestConverter.convertToTestResponse(testRepository.findNameComments(testId));
+    public TestResponse findOne(Long testId){
+        return TestConverter.convertToTestResponse(testRepository.findById(testId));
     }
 
 }

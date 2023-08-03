@@ -21,7 +21,7 @@ public class JdbcTemplateTestItemRepository implements TestItemRepository {
     }
 
     @Override
-    public List<TestItems> findTestItems(Long testId){
+    public List<TestItems> findByTestId(Long testId){
         String sql = "SELECT i.item_id, i.item_answer, i.item_image_path, ti.test_item_number FROM tests_items ti JOIN items i ON ti.item_id = i.item_id WHERE ti.test_id = ?";
         return jdbcTemplate.query(sql, testItemsRowMapper(), testId);
     }

@@ -24,13 +24,13 @@ public class TestItemService {
     }
 
     public List<TestItemsResponse> findTestItems(Long testId){
-        return TestItemConverter.convertListToTestItemsResponseList(testItemRepository.findTestItems(testId));
+        return TestItemConverter.convertListToTestItemsResponseList(testItemRepository.findByTestId(testId));
     }
 
     public ViewDetailResponse viewDetails(Long studentId, Long testId){
         ViewDetailResponse viewDetailResponse = new ViewDetailResponse();
         viewDetailResponse.setStudentName(studentService.findName(studentId));
-        TestResponse testResponse = testService.findNameComments(testId);
+        TestResponse testResponse = testService.findOne(testId);
         viewDetailResponse.setTestName(testResponse.getTestName());
         viewDetailResponse.setTestComments(testResponse.getTestComments());
         viewDetailResponse.setTestItemsResponses(findTestItems(testId));

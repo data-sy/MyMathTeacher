@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TestItemRepository {
 
-    List<TestItems> findTestItems(Long testId);
+    List<TestItems> findByTestId(Long testId);
 
 }
