@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.dto.diagnosticTest;
+package com.mmt.diagnosis.dto.viewDetail;
 
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class DiagnosticTestResponse {
+public class ViewDetailResponse {
 
     private String testName;
     private String testComments;

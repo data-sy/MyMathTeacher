@@ -1,7 +1,7 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.diagnosticTest.DiagnosticTestRequest;
-import com.mmt.diagnosis.dto.diagnosticTest.DiagnosticTestResponse;
+import com.mmt.diagnosis.dto.viewDetail.ViewDetailRequest;
+import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
@@ -67,21 +67,15 @@ public class DiagnosisController {
      * 리팩토링 : 같은 학생, 같은 학습지를 선택했을 시 '재시험'이라는 것을 명시해주는 알람 띄우는 검증 로직 추가하기
      */
     @GetMapping("/diagnosis/diagnostic-test")
-    public DiagnosticTestResponse getDiagnosticTest(@RequestBody DiagnosticTestRequest request){
-        // 리팩토링 : 각각의 서비스를 사용하기 때문에 여기서 객체 생성하고 집어 넣었지만, 컨트롤러에서 하는 게 맞을까?
-        DiagnosticTestResponse diagnosticTestResponse = new DiagnosticTestResponse();
-        diagnosticTestResponse.setStudentName(studentService.findName(request.getStudentId()));
-        diagnosticTestResponse.setTestName(testService.findNameComments(request.getTestId()).getTestName());
-        diagnosticTestResponse.setTestComments(testService.findNameComments(request.getTestId()).getTestComments());
-        diagnosticTestResponse.setTestItemsResponses(testItemService.findTestItems(request.getTestId()));
-        return diagnosticTestResponse;
+    public ViewDetailResponse getDiagnosticTest(@RequestBody ViewDetailRequest request){
+        return testItemService.viewDetails(request.getStudentId(), request.getTestId());
     }
 
     /**
      * 진단 학습지 다운로드 : (1)answers 테이블에 입력 (2)진단 학습지 다운로드
      */
     @PostMapping("/diagnosis/diagnostic-test")
-    public void create(@RequestBody DiagnosticTestRequest request){
+    public void create(@RequestBody ViewDetailRequest request){
         // answers 테이블에 insert
         answerService.create(request);
         // 진단 학습지 다운로드

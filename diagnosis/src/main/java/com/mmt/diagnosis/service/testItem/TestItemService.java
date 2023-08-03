@@ -1,7 +1,10 @@
 package com.mmt.diagnosis.service.testItem;
 
+import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.repository.TestItemRepository;
+import com.mmt.diagnosis.service.student.StudentService;
+import com.mmt.diagnosis.service.test.TestService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,14 +12,27 @@ import java.util.List;
 @Service
 public class TestItemService {
 
-    private final TestItemRepository testitemRepository;
+    private final TestItemRepository testItemRepository;
+    private final StudentService studentService;
+    private final TestService testService;
 
-    public TestItemService(TestItemRepository testitemRepository) {
-        this.testitemRepository = testitemRepository;
+    public TestItemService(TestItemRepository testitemRepository, StudentService studentService, TestService testService) {
+        this.testItemRepository = testitemRepository;
+        this.studentService = studentService;
+        this.testService = testService;
     }
 
     public List<TestItemsResponse> findTestItems(Long testId){
-        return TestItemConverter.convertListToTestItemsResponseList(testitemRepository.findTestItems(testId));
+        return TestItemConverter.convertListToTestItemsResponseList(testItemRepository.findTestItems(testId));
+    }
+
+    public ViewDetailResponse viewDetails(Long studentId, Long testId){
+        ViewDetailResponse viewDetailResponse = new ViewDetailResponse();
+        viewDetailResponse.setStudentName(studentService.findName(studentId));
+        viewDetailResponse.setTestName(testService.findNameComments(testId).getTestName());
+        viewDetailResponse.setTestComments(testService.findNameComments(testId).getTestComments());
+        viewDetailResponse.setTestItemsResponses(findTestItems(testId));
+        return viewDetailResponse;
     }
 
 }
