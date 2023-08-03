@@ -13,10 +13,9 @@ public class TestConverter {
         testResponse.setTestId(test.getTestId());
         testResponse.setTestName(test.getTestName());
         testResponse.setTestComments(test.getTestComments());
-        testResponse.setTestTimestamp(test.getTestTimestamp());
-        testResponse.setDiagnosticTestId(test.getDiagnosticTestId());
         return testResponse;
     }
+
     public static List<TestResponse> convertListToTestResponseList(List<Test> testList) {
         List<TestResponse> responseList = new ArrayList<>();
         for (Test test : testList) {
@@ -25,10 +24,4 @@ public class TestConverter {
         return responseList;
     }
 
-    public static TestResponse convertToTestNameComments(Test test) {
-        TestResponse testResponse = new TestResponse();
-        testResponse.setTestName(test.getTestName());
-        testResponse.setTestComments(test.getTestComments());
-        return testResponse;
-    }
 }

@@ -10,7 +10,5 @@ public class TestResponse {
     private Long testId;
     private String testName;
     private String testComments;
-    private LocalDateTime testTimestamp;
-    private Long diagnosticTestId;
 
 }

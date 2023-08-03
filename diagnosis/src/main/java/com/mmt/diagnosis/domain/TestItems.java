@@ -4,12 +4,13 @@ import lombok.Data;
 
 @Data
 public class TestItems {
-    // tests 테이블 + items 테이블 + tests_items 테이블
+    // tests_items 테이블 + tests 테이블 + items 테이블
 
-//    private Long testId;
-//    private Long itemId;
-    private int testItemNumber;
+    // items
+    private Long itemId;
+    private String itemAnswer;
     private String itemImagePath;
-    String itemAnswer;
+    // tests_items
+    private int testItemNumber;
 
 }

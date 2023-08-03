@@ -1,5 +1,6 @@
 package com.mmt.diagnosis.service.testItem;
 
+import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.repository.TestItemRepository;
@@ -29,8 +30,9 @@ public class TestItemService {
     public ViewDetailResponse viewDetails(Long studentId, Long testId){
         ViewDetailResponse viewDetailResponse = new ViewDetailResponse();
         viewDetailResponse.setStudentName(studentService.findName(studentId));
-        viewDetailResponse.setTestName(testService.findNameComments(testId).getTestName());
-        viewDetailResponse.setTestComments(testService.findNameComments(testId).getTestComments());
+        TestResponse testResponse = testService.findNameComments(testId);
+        viewDetailResponse.setTestName(testResponse.getTestName());
+        viewDetailResponse.setTestComments(testResponse.getTestComments());
         viewDetailResponse.setTestItemsResponses(findTestItems(testId));
         return viewDetailResponse;
     }

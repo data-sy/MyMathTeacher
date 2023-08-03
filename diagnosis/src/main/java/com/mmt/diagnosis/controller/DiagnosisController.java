@@ -1,13 +1,13 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.viewDetail.ViewDetailRequest;
-import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
-import com.mmt.diagnosis.service.answer.AnswerService;
+import com.mmt.diagnosis.dto.viewDetail.ViewDetailRequest;
+import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
 import com.mmt.diagnosis.service.student.StudentService;
+import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import com.mmt.diagnosis.service.test.TestService;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +20,13 @@ public class DiagnosisController {
     private final StudentService studentService;
     private final TestService testService;
     private final TestItemService testItemService;
-    private final AnswerService answerService;
+    private final StudentTestService studentTestService;
 
-    public DiagnosisController(StudentService studentService, TestService testService, TestItemService testItemService, AnswerService answerService) {
+    public DiagnosisController(StudentService studentService, TestService testService, TestItemService testItemService, StudentTestService studentTestService) {
         this.studentService = studentService;
         this.testService = testService;
         this.testItemService = testItemService;
-        this.answerService = answerService;
+        this.studentTestService = studentTestService;
     }
 
     /**
@@ -41,7 +41,7 @@ public class DiagnosisController {
      * 학생 상세보기
      */
     @GetMapping("/diagnosis/students/{studentId}")
-    public StudentResponse getStudentById(@PathVariable Long studentId){
+    public StudentResponse getStudent(@PathVariable Long studentId){
         return studentService.findOne(studentId);
     }
 
@@ -72,14 +72,13 @@ public class DiagnosisController {
     }
 
     /**
-     * 진단 학습지 다운로드 : (1)answers 테이블에 입력 (2)진단 학습지 다운로드
+     * 진단 학습지 다운로드 : (1) student_test 테이블에 입력 (2)진단 학습지 다운로드
      */
     @PostMapping("/diagnosis/diagnostic-test")
     public void create(@RequestBody ViewDetailRequest request){
-        // answers 테이블에 insert
-        answerService.create(request);
+        studentTestService.create(request.getStudentId(), request.getTestId());
         // 진단 학습지 다운로드
-            // preview에서 화면에 보인 이미지를 pdf로 저장해서 다운로드 할 수 있는 방법 찾기
+            // 화면에 보인 이미지를 pdf로 저장해서 다운로드 할 수 있는 방법 찾기
     }
 
 }

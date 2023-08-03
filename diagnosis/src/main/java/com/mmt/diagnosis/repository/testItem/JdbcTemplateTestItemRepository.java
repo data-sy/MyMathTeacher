@@ -22,17 +22,17 @@ public class JdbcTemplateTestItemRepository implements TestItemRepository {
 
     @Override
     public List<TestItems> findTestItems(Long testId){
-        String sql = "SELECT ti.test_item_number, i.item_image_path, i.item_answer FROM tests_items ti JOIN items i ON ti.item_id = i.item_id WHERE ti.test_id = ?";
-
+        String sql = "SELECT i.item_id, i.item_answer, i.item_image_path, ti.test_item_number FROM tests_items ti JOIN items i ON ti.item_id = i.item_id WHERE ti.test_id = ?";
         return jdbcTemplate.query(sql, testItemsRowMapper(), testId);
     }
 
     private RowMapper<TestItems> testItemsRowMapper() {
         return (rs, rowNum) -> {
             TestItems testItems = new TestItems();
-            testItems.setTestItemNumber(rs.getInt("test_item_number"));
-            testItems.setItemImagePath(rs.getString("item_image_path"));
+            testItems.setItemId(rs.getLong("item_id"));
             testItems.setItemAnswer(rs.getString("item_answer"));
+            testItems.setItemImagePath(rs.getString("item_image_path"));
+            testItems.setTestItemNumber(rs.getInt("test_item_number"));
             return testItems;
         };
     }

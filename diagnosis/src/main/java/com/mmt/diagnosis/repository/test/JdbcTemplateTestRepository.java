@@ -21,7 +21,7 @@ public class JdbcTemplateTestRepository implements TestRepository {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    // 리팩토링할 것 : 진단id가 null이거나 로그인한 선생님을 teacherId로 가지는 학생과 연관이 있는 학습지만 보여주기
+    // 리팩토링할 것 : 진단학습지나 로그인한 선생님을 teacherId로 가지는 학생과 연관이 있는 학습지만 보여주기
     @Override
     public List<Test> findAll(){
         String sql = "SELECT * FROM tests";
@@ -40,11 +40,6 @@ public class JdbcTemplateTestRepository implements TestRepository {
             test.setTestId(rs.getLong("test_id"));
             Optional.ofNullable(rs.getString("test_name")).ifPresent(test::setTestName);
             Optional.ofNullable(rs.getString("test_comments")).ifPresent(test::setTestComments);
-            test.setTestTimestamp(rs.getTimestamp("test_timestamp").toLocalDateTime());
-            Long diagnosticTestId = rs.getLong("diagnostic_test_id");
-            if (!rs.wasNull()) {
-                test.setDiagnosticTestId(diagnosticTestId);
-            }
             return test;
         };
     }

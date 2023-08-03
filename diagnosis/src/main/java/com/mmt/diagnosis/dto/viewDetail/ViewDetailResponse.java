@@ -11,7 +11,7 @@ public class ViewDetailResponse {
     private String testName;
     private String testComments;
     private String studentName;
-    // int testItemNumber, String itemImagePath, String itemAnswer
+    // Long itemId, String itemAnswer, String itemImagePath, int testItemNumber
     private List<TestItemsResponse> testItemsResponses;
 
 }

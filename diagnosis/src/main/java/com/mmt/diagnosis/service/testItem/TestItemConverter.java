@@ -10,9 +10,10 @@ public class TestItemConverter {
 
     public static TestItemsResponse convertToTestItemsResponse(TestItems testItems) {
         TestItemsResponse testItemsResponse = new TestItemsResponse();
-        testItemsResponse.setTestItemNumber(testItems.getTestItemNumber());
-        testItemsResponse.setItemImagePath(testItems.getItemImagePath());
+        testItemsResponse.setItemId(testItems.getItemId());
         testItemsResponse.setItemAnswer(testItems.getItemAnswer());
+        testItemsResponse.setItemImagePath(testItems.getItemImagePath());
+        testItemsResponse.setTestItemNumber(testItems.getTestItemNumber());
         return testItemsResponse;
     }
 

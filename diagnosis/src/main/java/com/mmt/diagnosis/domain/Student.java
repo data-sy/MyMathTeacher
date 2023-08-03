@@ -1,12 +1,10 @@
 package com.mmt.diagnosis.domain;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 public class Student {
 
     private Long studentId;
