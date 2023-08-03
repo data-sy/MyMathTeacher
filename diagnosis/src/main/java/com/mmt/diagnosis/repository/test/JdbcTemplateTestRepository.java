@@ -29,7 +29,7 @@ public class JdbcTemplateTestRepository implements TestRepository {
     }
 
     @Override
-    public Test findNameComments(Long testId){
+    public Test findById(Long testId){
         String sql = "SELECT test_name, test_comments FROM tests WHERE test_id = ?";
         return jdbcTemplate.queryForObject(sql, testNameCommentsRowMapper(), testId);
     }
