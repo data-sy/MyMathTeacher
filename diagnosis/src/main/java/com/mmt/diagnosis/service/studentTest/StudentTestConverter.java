@@ -4,7 +4,6 @@ import com.mmt.diagnosis.domain.StudentTests;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class StudentTestConverter {

@@ -2,8 +2,6 @@ package com.mmt.diagnosis.domain;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 public class StudentTests {
     // students_tests 테이블 + students 테이블 + tests 테이블
