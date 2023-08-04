@@ -8,7 +8,11 @@ public class StudentTests {
 
     // students_tests
     private Long studentTestId;
+    // students
+    private Long studentId;
+    private String studentName;
     // tests
+    private Long testId;
     private String testName;
     private String testComments;
 

@@ -166,3 +166,23 @@ WHERE c.whe = "학생2";
 	-- 실험1의 테이블 그대로 사용
 insert into exprm1 (student_id, test_item_id) select 1000 AS student_id, test_item_id from exprm2 where test_id=2;
 select * from exprm1;
+
+-- isRecord DB단에서 처리하기
+SELECT
+    st.student_test_id,
+    t.test_name,
+    t.test_comments,
+    CASE
+        WHEN EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id) THEN 'true'
+        ELSE 'false'
+    END AS is_record
+FROM students_tests st
+JOIN tests t
+ON st.test_id = t.test_id
+WHERE st.student_id = 3;
+
+SELECT st.student_test_id, t.test_name, t.test_comments, 
+CASE WHEN EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id) 
+THEN TRUE ELSE FALSE END AS is_record 
+FROM students_tests st JOIN tests t ON st.test_id = t.test_id
+WHERE st.student_id = 1;

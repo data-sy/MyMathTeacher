@@ -29,4 +29,3 @@ SELECT a.answer_id, a.test_id, t.test_name, a.answer_code FROM answers a JOIN te
 select test_id, min(item_id) from answers group by test_id having min(item_id);
 
 select * from students_tests;
-

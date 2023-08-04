@@ -4,14 +4,14 @@ import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
-import com.mmt.diagnosis.dto.viewDetail.ViewDetailRequest;
-import com.mmt.diagnosis.dto.viewDetail.ViewDetailResponse;
+import com.mmt.diagnosis.dto.preview.PreviewResponse;
 //import com.mmt.diagnosis.service.answer.AnswerService;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import com.mmt.diagnosis.service.test.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,16 +46,16 @@ public class RecordController {
      */
     @GetMapping("/record/tests")
     public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
-        return studentTestService.findAll(request.getStudentId());
+        return studentTestService.findTests(request.getStudentId());
     }
 
     /**
      * 답안 기록 : 선택한 학습지 상세보기
      */
-//    @GetMapping("record/answers")
-//    public ViewDetailResponse getDiagnosticTest(@RequestBody ViewDetailRequest request){
-//        return testItemService.viewDetails(request.getStudentId(), request.getTestId());
-//    }
+    @GetMapping("record/tests/{studentTestId}")
+    public PreviewResponse getTest(@PathVariable Long studentTestId){
+        return studentTestService.preview(studentTestId);
+    }
 
     /**
      * 답안 기록 저장
