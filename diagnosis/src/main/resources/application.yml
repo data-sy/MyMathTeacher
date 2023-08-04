@@ -2,5 +2,6 @@ spring:
   datasource:
     url: "jdbc:mysql://localhost/mmt"
     username: "root"
-    password: "Show0715!"
+    password: "show0715!"    # 윈도우
+#    password: "Show0715!"    # 맥북
     driver-class-name: com.mysql.cj.jdbc.Driver

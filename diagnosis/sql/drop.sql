@@ -1,3 +1,7 @@
+show databases;
+create database mmt;
+use mmt;
+
 -- DROP 순서 (CREATE의 역순)
 	-- 확률 -> 답안 -> 학생_학습지, 학습지_문항 -> 학습지
     -- 문항, 지식체계 -> 단위개념

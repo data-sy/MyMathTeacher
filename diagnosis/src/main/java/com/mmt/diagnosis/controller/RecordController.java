@@ -1,19 +1,17 @@
 package com.mmt.diagnosis.controller;
 
+import com.mmt.diagnosis.dto.answer.AnswerRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordRequest;
-import com.mmt.diagnosis.dto.student.StudentGetRequest;
-import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
-//import com.mmt.diagnosis.service.answer.AnswerService;
+import com.mmt.diagnosis.dto.student.StudentGetRequest;
+import com.mmt.diagnosis.dto.student.StudentResponse;
+import com.mmt.diagnosis.service.answer.AnswerService;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
-import com.mmt.diagnosis.service.testItem.TestItemService;
 import com.mmt.diagnosis.service.test.TestService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.mmt.diagnosis.service.testItem.TestItemService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +21,13 @@ public class RecordController {
     private final StudentService studentService;
     private final StudentTestService studentTestService;
     private final TestItemService testItemService;
-//    private final AnswerService answerService;
+    private final AnswerService answerService;
 
-    public RecordController(StudentService studentService, TestService testService, StudentTestService studentTestService, TestItemService testItemService) {
+    public RecordController(StudentService studentService, TestService testService, StudentTestService studentTestService, TestItemService testItemService, AnswerService answerService) {
         this.studentService = studentService;
         this.studentTestService = studentTestService;
         this.testItemService = testItemService;
-//        this.answerService = answerService;
+        this.answerService = answerService;
     }
 
     /**
@@ -60,10 +58,9 @@ public class RecordController {
     /**
      * 답안 기록 저장
      */
-//    @PostMapping("record/answers")
-//    public void create(@RequestBody AnswerCreateRequest request){
-//
-//    }
-
+    @PostMapping("record/answers")
+    public void create(@RequestBody AnswerRequest request){
+        answerService.create(request);
+    }
 
 }
