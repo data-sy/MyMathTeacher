@@ -1,9 +1,9 @@
-package com.mmt.diagnosis.dto.viewDetail;
+package com.mmt.diagnosis.dto.preview;
 
 import lombok.Data;
 
 @Data
-public class ViewDetailRequest {
+public class PreviewRequest {
 
     private Long studentId;
     private Long testId;
