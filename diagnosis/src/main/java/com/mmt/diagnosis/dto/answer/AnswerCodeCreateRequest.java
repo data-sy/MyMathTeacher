@@ -3,7 +3,7 @@ package com.mmt.diagnosis.dto.answer;
 import lombok.Data;
 
 @Data
-public class AnswerCodeRequest {
+public class AnswerCodeCreateRequest {
 
     private Long itemId;
     private Integer answerCode;

@@ -7,6 +7,7 @@ import com.mmt.diagnosis.repository.StudentTestRepository;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,6 +37,10 @@ public class StudentTestService {
         PreviewResponse previewResponse = testItemService.preview(studentTests.getStudentId(), studentTests.getTestId());
         previewResponse.setStudentTestId(studentTestId);
         return previewResponse;
+    }
+    // 지금까지의 답안 기록 시간 순으로 추출하기 위해 stid들을 추출한 메서드
+    public List<Long> findBefore(Long studentTestId){
+        return studentTestRepository.findStudentTestIds(studentTestId);
     }
 
 }

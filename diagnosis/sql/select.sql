@@ -29,3 +29,24 @@ SELECT a.answer_id, a.test_id, t.test_name, a.answer_code FROM answers a JOIN te
 select test_id, min(item_id) from answers group by test_id having min(item_id);
 
 select * from students_tests;
+
+select * from answers;
+
+-- skill_id당 정오답 결과
+SELECT c.skill_id, a.answer_code FROM answers a JOIN items i ON a.item_id = i.item_id JOIN concepts c ON c.concept_id = i.concept_id WHERE a.student_test_id=3;
+SELECT c.skill_id, a.answer_code FROM answers a JOIN items i ON a.item_id = i.item_id JOIN concepts c ON c.concept_id = i.concept_id WHERE a.student_test_id=4;
+
+-- AIInput을 위해 해당 학생의 (답안을 기록한) 학생_학습지 아이디를 시간순으로 추출
+SELECT student_id FROM students_tests WHERE student_test_id=7;
+SELECT student_test_timestamp FROM students_tests WHERE student_test_id=7;
+SELECT student_test_id FROM answers;
+	-- 2개 모두 가능 (나중에 성능 테스트 해보기. 우선 두 번째 선택)
+SELECT student_test_id FROM students_tests WHERE student_id = (SELECT student_id FROM students_tests WHERE student_test_id=7) AND student_test_id IN (SELECT student_test_id FROM answers);
+SELECT student_test_id FROM students_tests st WHERE student_id = (SELECT student_id FROM students_tests WHERE student_test_id=7) AND EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id);
+	-- 여기에 타임스탬프 추가
+SELECT student_test_id FROM students_tests st WHERE student_id = (SELECT student_id FROM students_tests WHERE student_test_id=5) AND student_test_timestamp <= (SELECT student_test_timestamp FROM students_tests WHERE student_test_id=5) AND EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id);
+
+SELECT student_test_id FROM students_tests st 
+WHERE student_id = (SELECT student_id FROM students_tests WHERE student_test_id=5) 
+AND student_test_timestamp <= (SELECT student_test_timestamp FROM students_tests WHERE student_test_id=5) 
+AND EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id);

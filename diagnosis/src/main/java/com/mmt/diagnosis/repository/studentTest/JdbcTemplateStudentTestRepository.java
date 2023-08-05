@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -40,7 +41,19 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
     @Override
     public StudentTests findIds(Long studentTestId) {
         String sql = "SELECT student_id, test_id FROM students_tests WHERE student_test_id=?";
-        return jdbcTemplate.queryForObject(sql, IdsRowMapper(), studentTestId);
+        return jdbcTemplate.queryForObject(sql, idsRowMapper(), studentTestId);
+    }
+
+    @Override
+    public List<Long> findStudentTestIds(Long studentTestId) {
+        // 조건1 : 해당 학생
+        String condition1 = "student_id = (SELECT student_id FROM students_tests WHERE student_test_id=?)";
+        // 조건2 : 해당 학습지보다 이전의 학습지
+        String condition2 = "student_test_timestamp <= (SELECT student_test_timestamp FROM students_tests WHERE student_test_id=?)";
+        // 조건3 : 답안 기록이 있는 것들
+        String condition3 = "EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id)";
+        String sql = String.format("SELECT student_test_id FROM students_tests st WHERE %s AND %s AND %s", condition1, condition2, condition3);
+        return jdbcTemplate.queryForList(sql, Long.class, studentTestId, studentTestId);
     }
 
     private RowMapper<StudentTests> studentTestsRowMapper() {
@@ -53,7 +66,7 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
             return studentTests;
         };
     }
-    private RowMapper<StudentTests> IdsRowMapper() {
+    private RowMapper<StudentTests> idsRowMapper() {
         return (rs, rowNum) -> {
             StudentTests studentTests = new StudentTests();
             studentTests.setStudentId(rs.getLong("student_id"));
@@ -61,4 +74,5 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
             return studentTests;
         };
     }
+
 }

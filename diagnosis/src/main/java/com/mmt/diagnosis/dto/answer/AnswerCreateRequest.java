@@ -5,9 +5,9 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AnswerRequest {
+public class AnswerCreateRequest {
 
     private Long studentTestId;
-    private List<AnswerCodeRequest> answerCodeRequestList;
+    private List<AnswerCodeCreateRequest> answerCodeCreateRequestList;
 
 }

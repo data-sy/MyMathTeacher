@@ -6,6 +6,7 @@ import com.mmt.diagnosis.repository.AnswerRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -42,4 +43,20 @@ public class JdbcTemplateAnswerRepository implements AnswerRepository {
             }
         });
     }
+
+    @Override
+    public List<AnswerCode> findAnswerCode(Long studentTestId) {
+        String sql = "SELECT c.skill_id, a.answer_code FROM answers a JOIN items i ON a.item_id = i.item_id JOIN concepts c ON c.concept_id = i.concept_id WHERE a.student_test_id=?";
+        return jdbcTemplate.query(sql, answerCodeRowMapper(), studentTestId);
+    }
+
+    private RowMapper<AnswerCode> answerCodeRowMapper() {
+        return (rs, rowNum) -> {
+            AnswerCode answerCode = new AnswerCode();
+            answerCode.setSkillId(rs.getInt("skill_id"));
+            answerCode.setAnswerCode(rs.getInt("answer_code"));
+            return answerCode;
+        };
+    }
+
 }

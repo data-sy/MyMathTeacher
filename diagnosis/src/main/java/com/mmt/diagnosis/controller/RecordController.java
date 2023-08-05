@@ -1,6 +1,6 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.answer.AnswerRequest;
+import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
@@ -59,7 +59,7 @@ public class RecordController {
      * 답안 기록 저장
      */
     @PostMapping("record/answers")
-    public void create(@RequestBody AnswerRequest request){
+    public void create(@RequestBody AnswerCreateRequest request){
         answerService.create(request);
     }
 

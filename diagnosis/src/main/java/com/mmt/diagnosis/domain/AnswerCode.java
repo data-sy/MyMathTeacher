@@ -6,6 +6,7 @@ import lombok.Data;
 public class AnswerCode {
 
     private Long itemId;
+    private Integer skillId;
     private Integer answerCode;
 
 }

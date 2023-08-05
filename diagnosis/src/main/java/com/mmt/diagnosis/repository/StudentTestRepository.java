@@ -12,4 +12,6 @@ public interface StudentTestRepository {
 
     StudentTests findIds(Long studentTestId);
 
+    List<Long> findStudentTestIds(Long studentTestId);
+
 }
