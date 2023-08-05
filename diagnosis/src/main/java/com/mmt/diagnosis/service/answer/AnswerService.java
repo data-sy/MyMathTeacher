@@ -1,6 +1,7 @@
 package com.mmt.diagnosis.service.answer;
 
-import com.mmt.diagnosis.domain.AnswerCode;
+import com.mmt.diagnosis.dto.AI.AIInputResponse;
+import com.mmt.diagnosis.dto.answer.AnswerCodeResponse;
 import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
 import com.mmt.diagnosis.repository.AnswerRepository;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
@@ -24,16 +25,16 @@ public class AnswerService {
         answerRepository.save(AnswerConverter.convertToAnswer(request));
     }
 
-    public List<List<List<Integer>>> findAIInput(Long studentTestId){
-        // 최종 배열 선언
-        List<List<AnswerCode>> result = new ArrayList<>();
+    public AIInputResponse findAIInput(Long studentTestId){
+        AIInputResponse aiInputResponse = new AIInputResponse(studentTestId);
+        List<List<AnswerCodeResponse>> answerCodeResponseList = new ArrayList<>();
         // 조건에 맞는 student_test_id들 찾기
         List<Long> stIdList = studentTestService.findBefore(studentTestId);
-        // student_test_id별 정오답 기록을 최종 배열에 넣기
+        // student_test_id별 정오답 기록을 answerCodeList에 넣기
         for (Long stId : stIdList){
-            result.add(answerRepository.findAnswerCode(stId));
+            answerCodeResponseList.add(AnswerConverter.convertListToAnswerCodeResponseList(answerRepository.findAnswerCode(stId)));
         }
-        // List<List<AnswerCode>>를 List<List<List<Integer>로 컨버터
-        return AnswerConverter.convertToThreeDimensionalList(result);
+        aiInputResponse.setAnswerCodeResponseList(answerCodeResponseList);
+        return aiInputResponse;
     }
 }
