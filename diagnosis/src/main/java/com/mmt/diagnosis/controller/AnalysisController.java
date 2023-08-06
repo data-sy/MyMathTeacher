@@ -36,8 +36,7 @@ public class AnalysisController {
      */
     @PostMapping("/analysis")
     public void create(@RequestBody AIOutputRequest request){
-        probabilityService.create(request.getProbabilityList());
+        probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
     }
-
 
 }

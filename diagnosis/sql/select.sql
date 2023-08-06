@@ -50,3 +50,10 @@ SELECT student_test_id FROM students_tests st
 WHERE student_id = (SELECT student_id FROM students_tests WHERE student_test_id=5) 
 AND student_test_timestamp <= (SELECT student_test_timestamp FROM students_tests WHERE student_test_id=5) 
 AND EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id);
+
+-- st_id에 따른 문항들의 skill_id 찾기
+SELECT a.answer_id, i.concept_id, c.skill_id FROM items i JOIN answers a ON a.item_id=i.item_id JOIN concepts c ON c.concept_id=i.concept_id WHERE a.student_test_id = 7;
+
+select * from probabilities;
+
+SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_tags k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = 6104;
