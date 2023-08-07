@@ -12,7 +12,7 @@ public class DetailsResponse {
     private LocalDate studentBirthdate;
     private String testName;
 
-    private List<아직못정함> 못정함;
+    private List<ItemProbabilityResponse> itemProbabilityResponseList;
 
     private List<String> conceptNameList;
     private List<String> toConceptNameList;

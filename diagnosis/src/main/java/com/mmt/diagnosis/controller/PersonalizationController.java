@@ -5,7 +5,7 @@ import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
-import com.mmt.diagnosis.service.ProbabilityService;
+import com.mmt.diagnosis.service.probability.ProbabilityService;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import org.springframework.web.bind.annotation.GetMapping;

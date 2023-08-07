@@ -1,5 +1,6 @@
 package com.mmt.diagnosis.repository.probability;
 
+import com.mmt.diagnosis.domain.ItemProbability;
 import com.mmt.diagnosis.domain.Probability;
 import com.mmt.diagnosis.repository.ProbabilityRepository;
 import org.springframework.context.annotation.Primary;
@@ -67,6 +68,12 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
         return jdbcTemplate.queryForList(sql, String.class , studentTestId);
     }
 
+    @Override
+    public List<ItemProbability> findItemProbability(Long studentTestId) {
+        String join = "JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item_id JOIN probabilities p ON p.answer_id = a.answer_id JOIN concepts c ON c.concept_id = i.concept_id";
+        String sql = String.format("SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a %s WHERE a.student_test_id = ? AND p.to_concept_depth = 0", join);
+        return jdbcTemplate.query(sql, itemProbabilityRowMapper(), studentTestId);
+    }
 
     private RowMapper<Probability> idsRowMapper(Long answerId) {
         return (rs, rowNum) -> {
@@ -75,6 +82,18 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
             probability.setConceptId(rs.getInt("to_concept_id"));
             probability.setSkillId(rs.getInt("skill_id"));
             return probability;
+        };
+    }
+
+    private RowMapper<ItemProbability> itemProbabilityRowMapper() {
+        return (rs, rowNum) -> {
+            ItemProbability itemProbability = new ItemProbability();
+            itemProbability.setTestItemNumber(rs.getInt("test_item_number"));
+            itemProbability.setItemImagePath(rs.getString("item_image_path"));
+            itemProbability.setConceptId(rs.getInt("concept_id"));
+            itemProbability.setConceptName(rs.getString("concept_name"));
+            itemProbability.setProbabilityPercent(rs.getDouble("probability_percent"));
+            return itemProbability;
         };
     }
 

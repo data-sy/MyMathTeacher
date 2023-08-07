@@ -74,5 +74,24 @@ AND CASE
 	END;
 SELECT c.concept_name, p.to_concept_depth FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = 7 AND p.to_concept_depth=2 AND CASE WHEN p.to_concept_depth=0 THEN p.probability_percent<= 0.5 ELSE TRUE END;
 
---
+-- 뎁스 1, 2는 모두 셀렉트
+SELECT c.concept_name, p.to_concept_depth, p.probability_percent FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = 7 AND p.to_concept_depth>0 ORDER BY p.probability_percent;
+-- 뎁스 0은 50% 이하만 셀렉트
 
+-- 후수단위개념
+SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = 7;
+SELECT c.concept_name FROM concepts c JOIN knowledge_tags k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = 7);
+
+-- item별 확률 등의 정보
+SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent 
+FROM answers a 
+JOIN items i ON i.item_id = a.item_id 
+JOIN tests_items ti ON ti.item_id = a.item_id 
+JOIN probabilities p ON p.answer_id = a.answer_id 
+JOIN concepts c ON c.concept_id = i.concept_id
+WHERE a.student_test_id = 7
+AND p.to_concept_depth = 0 ;
+
+SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a 
+JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item_id JOIN probabilities p ON p.answer_id = a.answer_id JOIN concepts c ON c.concept_id = i.concept_id 
+WHERE a.student_test_id = 7 AND p.to_concept_depth = 0 ;

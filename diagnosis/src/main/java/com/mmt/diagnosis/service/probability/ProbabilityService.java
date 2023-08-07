@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.service;
+package com.mmt.diagnosis.service.probability;
 
 import com.mmt.diagnosis.domain.Probability;
 import com.mmt.diagnosis.domain.StudentTests;
@@ -65,6 +65,7 @@ public class ProbabilityService {
         // 마지막으로 insert
         probabilityRepository.save(finalList);
     }
+
     // 리팩토링 : 지금은 선수(후수)단위개념이 어떤 단위개념에서 파생됐는지 연결 x
     public DetailsResponse findDetails(Long studentTestId){
         DetailsResponse detailsResponse = new DetailsResponse();
@@ -74,13 +75,12 @@ public class ProbabilityService {
         detailsResponse.setStudentBirthdate(studentTests.getStudentBirthdate());
         detailsResponse.setTestName(studentTests.getTestName());
         //
+        detailsResponse.setItemProbabilityResponseList(ProbabilityConverter.convertListToItemProbabilityResponseList(probabilityRepository.findItemProbability(studentTestId)));
 
         // 확률 50% 이하인 단위개념
         detailsResponse.setConceptNameList(probabilityRepository.findConceptNameUnder50(studentTestId));
-
         // 추가 학습이 필요한 선수단위개념
         detailsResponse.setToConceptNameList(probabilityRepository.findToConceptName(studentTestId));
-
         // 후속 학습의 후수단위개념
         detailsResponse.setFromConceptNameList(probabilityRepository.findFromConceptName(studentTestId));
         return detailsResponse;

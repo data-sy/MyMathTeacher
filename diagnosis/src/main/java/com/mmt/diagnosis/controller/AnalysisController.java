@@ -3,7 +3,7 @@ package com.mmt.diagnosis.controller;
 import com.mmt.diagnosis.dto.AI.AIInputRequest;
 import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.AI.AIOutputRequest;
-import com.mmt.diagnosis.service.ProbabilityService;
+import com.mmt.diagnosis.service.probability.ProbabilityService;
 import com.mmt.diagnosis.service.answer.AnswerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
