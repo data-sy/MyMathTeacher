@@ -57,3 +57,22 @@ SELECT a.answer_id, i.concept_id, c.skill_id FROM items i JOIN answers a ON a.it
 select * from probabilities;
 
 SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_tags k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = 6104;
+
+select * from probabilities p join answers a on a.answer_id=p.answer_id where a.student_test_id=7;
+
+SELECT c.concept_name, p.to_concept_depth FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = 7 AND p.probability_percent<= 0.5;
+
+-- sql 안에서의 조건문인데 레파지토리 메서드 안에서 if문 처리하는 걸로 수정해서 사용하진 않음
+SELECT c.concept_name, p.to_concept_depth FROM concepts c 
+JOIN probabilities p ON c.concept_id=p.concept_id 
+JOIN answers a ON a.answer_id=p.answer_id 
+WHERE a.student_test_id = 7
+AND p.to_concept_depth=2
+AND CASE
+		WHEN p.to_concept_depth=0 THEN p.probability_percent<= 0.5
+	ELSE TRUE
+	END;
+SELECT c.concept_name, p.to_concept_depth FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = 7 AND p.to_concept_depth=2 AND CASE WHEN p.to_concept_depth=0 THEN p.probability_percent<= 0.5 ELSE TRUE END;
+
+--
+

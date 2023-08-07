@@ -10,4 +10,10 @@ public interface ProbabilityRepository {
 
     List<Probability> findToConcept(Long answerId, int conceptId);
 
+    List<String> findConceptNameUnder50(Long studentTestId);
+
+    List<String> findToConceptName(Long studentTestId);
+
+    List<String> findFromConceptName(Long studentTestId);
+
 }

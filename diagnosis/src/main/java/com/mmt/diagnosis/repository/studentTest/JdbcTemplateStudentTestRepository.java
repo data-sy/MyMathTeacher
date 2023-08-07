@@ -56,6 +56,12 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
         return jdbcTemplate.queryForList(sql, Long.class, studentTestId, studentTestId);
     }
 
+    @Override
+    public StudentTests findDetails(Long studentTestId) {
+        String sql = "SELECT s.student_name, s.student_birthdate, t.test_name FROM students_tests st JOIN students s ON s.student_id=st.student_id JOIN tests t ON t.test_id=st.test_id WHERE st.student_test_id = ?";
+        return jdbcTemplate.queryForObject(sql, detailsRowMapper(), studentTestId);
+    }
+
     private RowMapper<StudentTests> studentTestsRowMapper() {
         return (rs, rowNum) -> {
             StudentTests studentTests = new StudentTests();
@@ -74,5 +80,13 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
             return studentTests;
         };
     }
-
+    private RowMapper<StudentTests> detailsRowMapper() {
+        return (rs, rowNum) -> {
+            StudentTests studentTests = new StudentTests();
+            studentTests.setStudentName(rs.getString("student_name"));
+            studentTests.setStudentBirthdate(rs.getDate("student_birthdate").toLocalDate());
+            studentTests.setTestName(rs.getString("test_name"));
+            return studentTests;
+        };
+    }
 }

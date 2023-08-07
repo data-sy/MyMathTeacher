@@ -48,6 +48,26 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
         return jdbcTemplate.query(sql, idsRowMapper(answerId), conceptId);
     }
 
+    @Override
+    public List<String> findConceptNameUnder50(Long studentTestId) {
+        String sql = "SELECT c.concept_name FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = ? AND p.to_concept_depth=0 AND p.probability_percent<= 0.5";
+        return jdbcTemplate.queryForList(sql, String.class , studentTestId);
+    }
+
+    @Override
+    public List<String> findToConceptName(Long studentTestId) {
+        String sql = "SELECT c.concept_name FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = ? AND p.to_concept_depth > 0 ORDER BY p.probability_percent";
+        return jdbcTemplate.queryForList(sql, String.class , studentTestId);
+    }
+
+    @Override
+    public List<String> findFromConceptName(Long studentTestId) {
+        String subQuery = "SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = ?";
+        String sql = String.format("SELECT c.concept_name FROM concepts c JOIN knowledge_tags k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (%s);", subQuery);
+        return jdbcTemplate.queryForList(sql, String.class , studentTestId);
+    }
+
+
     private RowMapper<Probability> idsRowMapper(Long answerId) {
         return (rs, rowNum) -> {
             Probability probability = new Probability();

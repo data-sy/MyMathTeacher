@@ -43,4 +43,8 @@ public class StudentTestService {
         return studentTestRepository.findStudentTestIds(studentTestId);
     }
 
+    public StudentTests findDetails(Long studentTestId){
+        return studentTestRepository.findDetails(studentTestId);
+    }
+
 }
