@@ -95,3 +95,7 @@ AND p.to_concept_depth = 0 ;
 SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a 
 JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item_id JOIN probabilities p ON p.answer_id = a.answer_id JOIN concepts c ON c.concept_id = i.concept_id 
 WHERE a.student_test_id = 7 AND p.to_concept_depth = 0 ;
+
+-- c_id로 선수, 후수 단위개념 찾기
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept id FROM knowledge_tags WHERE from_concept_id=6104);
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept id FROM knowledge_tags WHERE to_concept_id=6104);
