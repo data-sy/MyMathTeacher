@@ -1,5 +1,6 @@
 package com.mmt.diagnosis.repository.probability;
 
+import com.mmt.diagnosis.domain.Item;
 import com.mmt.diagnosis.domain.ItemProbability;
 import com.mmt.diagnosis.domain.Probability;
 import com.mmt.diagnosis.repository.ProbabilityRepository;
@@ -75,6 +76,14 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
         return jdbcTemplate.query(sql, itemProbabilityRowMapper(), studentTestId);
     }
 
+    @Override
+    public List<Item> findItem(Long studentTestId, int toConceptDepth) {
+        String join = "JOIN concepts c ON p.concept_id=c.concept_id JOIN items i ON i.concept_id=c.concept_id";
+        String suqQuery = "SELECT answer_id FROM answers WHERE student_test_id = ?";
+        String sql = String.format("SELECT i.item_id, i.item_image_path, i.concept_id, c.concept_name, p.probability_percent FROM probabilities p %s WHERE p.answer_id IN (%s) AND p.to_concept_depth = ?", join, suqQuery);
+        return jdbcTemplate.query(sql, itemRowMapper(toConceptDepth), studentTestId, toConceptDepth);
+    }
+
     private RowMapper<Probability> idsRowMapper(Long answerId) {
         return (rs, rowNum) -> {
             Probability probability = new Probability();
@@ -95,6 +104,19 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
             itemProbability.setConceptName(rs.getString("concept_name"));
             itemProbability.setProbabilityPercent(rs.getDouble("probability_percent"));
             return itemProbability;
+        };
+    }
+
+    private RowMapper<Item> itemRowMapper(int toConceptDepth) {
+        return (rs, rowNum) -> {
+            Item item = new Item();
+            item.setItemId(rs.getLong("item_id"));
+            item.setItemImagePath(rs.getString("item_image_path"));
+            item.setConceptId(rs.getInt("concept_id"));
+            item.setConceptName(rs.getString("concept_name"));
+            item.setToConceptDepth(toConceptDepth);
+            item.setProbabilityPercent(rs.getDouble("probability_percent"));
+            return item;
         };
     }
 
