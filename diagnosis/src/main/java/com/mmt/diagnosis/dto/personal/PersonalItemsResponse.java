@@ -3,8 +3,8 @@ package com.mmt.diagnosis.dto.personal;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class PersonalItemsResponse {
@@ -13,7 +13,7 @@ public class PersonalItemsResponse {
     private String studentName;
     private LocalDate studentBirthdate;
 
-    private HashMap<String, List<ItemResponse>> itemResponseHashMap;
+    private Map<String, List<ItemResponse>> itemResponseMap;
 
     private List<String> conceptNameList;
     private List<String> toConceptNameList;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PersonalService {
@@ -28,13 +29,13 @@ public class PersonalService {
         response.setStudentTestId(studentTestId);
         response.setStudentName(request.getStudentName());
         response.setStudentBirthdate(request.getStudentBirthdate());
-        HashMap<String, List<ItemResponse>> itemResponseHashMap = new HashMap<>();
+        Map<String, List<ItemResponse>> itemResponseMap = new HashMap<>();
         // 뎁스 0
-        itemResponseHashMap.put("depth0", PersonalConverter.convertListToItemResponseList(request.getItemRequestList()));
+        itemResponseMap.put("depth0", PersonalConverter.convertListToItemResponseList(request.getItemRequestList()));
         // 뎁스 1, 2
-        itemResponseHashMap.put("depth1", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 1)));
-        itemResponseHashMap.put("depth2", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 2)));
-        response.setItemResponseHashMap(itemResponseHashMap);
+        itemResponseMap.put("depth1", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 1)));
+        itemResponseMap.put("depth2", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 2)));
+        response.setItemResponseMap(itemResponseMap);
         response.setConceptNameList(request.getConceptNameList());
         response.setToConceptNameList(request.getToConceptNameList());
         response.setFromConceptNameList(request.getFromConceptNameList());
@@ -49,11 +50,11 @@ public class PersonalService {
         response.setTestName(request.getTestName());
         response.setStudentTestId(request.getStudentTestId());
 
-        HashMap<Long, Integer> itemNumHashMap = request.getItemNumHashMap();
-        List<Long> itemIdList = new ArrayList<>(itemNumHashMap.keySet());
+        Map<Long, Integer> itemNumMap = request.getItemNumMap();
+        List<Long> itemIdList = new ArrayList<>(itemNumMap.keySet());
         List<TestItems> testItemsList = itemService.findItems(itemIdList);
         for (TestItems item : testItemsList){
-            item.setTestItemNumber(itemNumHashMap.get(item.getItemId()));
+            item.setTestItemNumber(itemNumMap.get(item.getItemId()));
         }
         response.setTestItemsResponseList(TestItemConverter.convertListToTestItemsResponseList(testItemsList));
         return response;

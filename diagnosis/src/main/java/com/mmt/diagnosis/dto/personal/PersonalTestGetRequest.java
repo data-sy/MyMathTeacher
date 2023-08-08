@@ -2,7 +2,7 @@ package com.mmt.diagnosis.dto.personal;
 
 import lombok.Data;
 
-import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class PersonalTestGetRequest {
@@ -13,6 +13,6 @@ public class PersonalTestGetRequest {
     private String testName;
     private Long studentTestId;
 
-    private HashMap<Long, Integer> itemNumHashMap;
+    private Map<Long, Integer> itemNumMap;
 
 }
