@@ -78,7 +78,7 @@ public class ProbabilityService {
         detailsResponse.setItemProbabilityResponseList(ProbabilityConverter.convertListToItemProbabilityResponseList(probabilityRepository.findItemProbability(studentTestId)));
 
         // 확률 50% 이하인 단위개념
-        detailsResponse.setConceptNameList(probabilityRepository.findConceptNameUnder50(studentTestId));
+        detailsResponse.setConceptNameList(probabilityRepository.findConceptNameUnder50(studentTestId, 0));
         // 추가 학습이 필요한 선수단위개념
         detailsResponse.setToConceptNameList(probabilityRepository.findToConceptName(studentTestId));
         // 후속 학습의 후수단위개념

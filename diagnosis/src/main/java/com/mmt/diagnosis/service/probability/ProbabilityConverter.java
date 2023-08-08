@@ -10,6 +10,7 @@ public class ProbabilityConverter {
 
     public static ItemProbabilityResponse convertToItemProbabilityResponse(ItemProbability itemProbability){
         ItemProbabilityResponse itemProbabilityResponse = new ItemProbabilityResponse();
+        itemProbabilityResponse.setItemId(itemProbability.getItemId());
         itemProbabilityResponse.setTestItemNumber(itemProbability.getTestItemNumber());
         itemProbabilityResponse.setItemImagePath(itemProbability.getItemImagePath());
         itemProbabilityResponse.setConceptId(itemProbability.getConceptId());

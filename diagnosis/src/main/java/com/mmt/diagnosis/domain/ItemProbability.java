@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ItemProbability {
 
+    private Long itemId;
     private int testItemNumber;
     private String itemImagePath ;
     private int conceptId;

@@ -50,9 +50,9 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
     }
 
     @Override
-    public List<String> findConceptNameUnder50(Long studentTestId) {
-        String sql = "SELECT c.concept_name FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = ? AND p.to_concept_depth=0 AND p.probability_percent<= 0.5";
-        return jdbcTemplate.queryForList(sql, String.class , studentTestId);
+    public List<String> findConceptNameUnder50(Long studentTestId, int depth) {
+        String sql = "SELECT c.concept_name FROM concepts c JOIN probabilities p ON c.concept_id=p.concept_id JOIN answers a ON a.answer_id=p.answer_id WHERE a.student_test_id = ? AND p.to_concept_depth=? AND p.probability_percent<= 0.5";
+        return jdbcTemplate.queryForList(sql, String.class , studentTestId, depth);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
     @Override
     public List<ItemProbability> findItemProbability(Long studentTestId) {
         String join = "JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item_id JOIN probabilities p ON p.answer_id = a.answer_id JOIN concepts c ON c.concept_id = i.concept_id";
-        String sql = String.format("SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a %s WHERE a.student_test_id = ? AND p.to_concept_depth = 0", join);
+        String sql = String.format("SELECT i.item_id, ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a %s WHERE a.student_test_id = ? AND p.to_concept_depth = 0", join);
         return jdbcTemplate.query(sql, itemProbabilityRowMapper(), studentTestId);
     }
 
@@ -88,6 +88,7 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
     private RowMapper<ItemProbability> itemProbabilityRowMapper() {
         return (rs, rowNum) -> {
             ItemProbability itemProbability = new ItemProbability();
+            itemProbability.setItemId(rs.getLong("item_id"));
             itemProbability.setTestItemNumber(rs.getInt("test_item_number"));
             itemProbability.setItemImagePath(rs.getString("item_image_path"));
             itemProbability.setConceptId(rs.getInt("concept_id"));
