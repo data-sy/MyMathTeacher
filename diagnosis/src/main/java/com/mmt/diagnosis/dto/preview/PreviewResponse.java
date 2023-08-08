@@ -13,6 +13,6 @@ public class PreviewResponse {
     private String testComments;
     private String studentName;
     // Long itemId, String itemAnswer, String itemImagePath, int testItemNumber
-    private List<TestItemsResponse> testItemsResponses;
+    private List<TestItemsResponse> testItemsResponseList;
 
 }

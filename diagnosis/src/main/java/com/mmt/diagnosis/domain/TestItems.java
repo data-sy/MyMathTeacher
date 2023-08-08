@@ -13,4 +13,10 @@ public class TestItems {
     // tests_items
     private int testItemNumber;
 
+    // 디버깅 용 : System.out.println(testItems);
+    @Override
+    public String toString() {
+        return String.format("testItems{ itemId = %d, itemAnswer = %s, itemImagePath = %s, testItemNumber = %d }", itemId, itemAnswer, itemImagePath, testItemNumber);
+    }
+
 }

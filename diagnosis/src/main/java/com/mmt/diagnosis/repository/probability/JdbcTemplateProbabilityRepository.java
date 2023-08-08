@@ -77,7 +77,7 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
     }
 
     @Override
-    public List<Item> findItem(Long studentTestId, int toConceptDepth) {
+    public List<Item> findItems(Long studentTestId, int toConceptDepth) {
         String join = "JOIN concepts c ON p.concept_id=c.concept_id JOIN items i ON i.concept_id=c.concept_id";
         String suqQuery = "SELECT answer_id FROM answers WHERE student_test_id = ?";
         String sql = String.format("SELECT i.item_id, i.item_image_path, i.concept_id, c.concept_name, p.probability_percent FROM probabilities p %s WHERE p.answer_id IN (%s) AND p.to_concept_depth = ?", join, suqQuery);

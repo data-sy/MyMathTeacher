@@ -4,8 +4,10 @@ import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.concept.ConceptResponse;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
-import com.mmt.diagnosis.dto.personal.PersonalGetRequest;
-import com.mmt.diagnosis.dto.personal.PersonalResponse;
+import com.mmt.diagnosis.dto.personal.PersonalItemsGetRequest;
+import com.mmt.diagnosis.dto.personal.PersonalItemsResponse;
+import com.mmt.diagnosis.dto.personal.PersonalTestGetRequest;
+import com.mmt.diagnosis.dto.personal.PersonalTestResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.service.concept.ConceptService;
@@ -71,16 +73,16 @@ public class PersonalizationController {
      * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
     @GetMapping("personalization/personalized-assessment-items")
-    public PersonalResponse getPersonalization(@RequestBody PersonalGetRequest request){
-        return personalService.findPersonalization(request);
+    public PersonalItemsResponse getPersonalItems(@RequestBody PersonalItemsGetRequest request){
+        return personalService.findPersonalItems(request);
     }
 
     /**
      * 맞춤 학습지 미리보기
      */
     @GetMapping("personalization/personalized-tests")
-    public void getPersonalizedTest(){
-        // 서비스 메서드 preview
+    public PersonalTestResponse getPersonalTest(@RequestBody PersonalTestGetRequest request){
+        return personalService.preview(request);
     }
 
     /**
@@ -88,6 +90,7 @@ public class PersonalizationController {
      */
     @PostMapping("personalization/personalized-tests")
     public void create(){
+        // 필요한 곳에 다 저장
     }
 
 

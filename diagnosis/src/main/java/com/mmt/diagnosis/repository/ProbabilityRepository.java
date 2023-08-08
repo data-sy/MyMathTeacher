@@ -20,6 +20,6 @@ public interface ProbabilityRepository {
 
     List<ItemProbability> findItemProbability(Long studentTestId);
 
-    List<Item> findItem(Long studentTestId, int toConceptDepth);
+    List<Item> findItems(Long studentTestId, int toConceptDepth);
 
 }

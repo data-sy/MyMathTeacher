@@ -3,17 +3,16 @@ package com.mmt.diagnosis.dto.personal;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 
 @Data
-public class PersonalResponse {
+public class PersonalItemsGetRequest {
 
     private Long studentTestId;
     private String studentName;
     private LocalDate studentBirthdate;
 
-    private HashMap<String, List<ItemResponse>> itemResponseHashMap;
+    private List<ItemRequest> itemRequestList;
 
     private List<String> conceptNameList;
     private List<String> toConceptNameList;

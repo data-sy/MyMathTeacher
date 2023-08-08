@@ -33,7 +33,7 @@ public class TestItemService {
         TestResponse testResponse = testService.findOne(testId);
         previewResponse.setTestName(testResponse.getTestName());
         previewResponse.setTestComments(testResponse.getTestComments());
-        previewResponse.setTestItemsResponses(findTestItems(testId));
+        previewResponse.setTestItemsResponseList(findTestItems(testId));
         return previewResponse;
     }
 
