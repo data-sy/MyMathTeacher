@@ -15,6 +15,11 @@ public class TestService {
         this.testRepository = testRepository;
     }
 
+    public Long create(String testName, String testComments){
+        Long testId = testRepository.save(testName, testComments);
+        return testId;
+    }
+
     public List<TestResponse> findTests(){
         return TestConverter.convertListToTestResponseList(testRepository.findAll());
     }

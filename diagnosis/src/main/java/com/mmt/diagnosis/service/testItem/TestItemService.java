@@ -2,6 +2,7 @@ package com.mmt.diagnosis.service.testItem;
 
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
+import com.mmt.diagnosis.dto.testItem.TestItemCreateRequest;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.repository.TestItemRepository;
 import com.mmt.diagnosis.service.student.StudentService;
@@ -21,6 +22,10 @@ public class TestItemService {
         this.testItemRepository = testitemRepository;
         this.studentService = studentService;
         this.testService = testService;
+    }
+
+    public void create(Long testId, List<TestItemCreateRequest> testItemCreateRequestList){
+        testItemRepository.save(testId, TestItemConverter.convertListToTestItemsList(testItemCreateRequestList));
     }
 
     public List<TestItemsResponse> findTestItems(Long testId){

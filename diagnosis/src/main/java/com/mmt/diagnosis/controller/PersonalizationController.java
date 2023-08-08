@@ -4,10 +4,7 @@ import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.concept.ConceptResponse;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
-import com.mmt.diagnosis.dto.personal.PersonalItemsGetRequest;
-import com.mmt.diagnosis.dto.personal.PersonalItemsResponse;
-import com.mmt.diagnosis.dto.personal.PersonalTestGetRequest;
-import com.mmt.diagnosis.dto.personal.PersonalTestResponse;
+import com.mmt.diagnosis.dto.personal.*;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.service.concept.ConceptService;
@@ -15,6 +12,8 @@ import com.mmt.diagnosis.service.personal.PersonalService;
 import com.mmt.diagnosis.service.probability.ProbabilityService;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
+import com.mmt.diagnosis.service.test.TestService;
+import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +26,17 @@ public class PersonalizationController {
     private final ProbabilityService probabilityService;
     private final ConceptService conceptService;
     private final PersonalService personalService;
+    private final TestService testService;
+    private final TestItemService testItemService;
 
-    public PersonalizationController(StudentService studentService, StudentTestService studentTestService, ProbabilityService probabilityService, ConceptService conceptService, PersonalService personalService) {
+    public PersonalizationController(StudentService studentService, StudentTestService studentTestService, ProbabilityService probabilityService, ConceptService conceptService, PersonalService personalService, TestService testService, TestItemService testItemService) {
         this.studentService = studentService;
         this.studentTestService = studentTestService;
         this.probabilityService = probabilityService;
         this.conceptService = conceptService;
         this.personalService = personalService;
+        this.testService = testService;
+        this.testItemService = testItemService;
     }
 
     /**
@@ -89,8 +92,10 @@ public class PersonalizationController {
      * 맞춤 학습지 다운로드
      */
     @PostMapping("personalization/personalized-tests")
-    public void create(){
-        // 필요한 곳에 다 저장
+    public void create(@RequestBody PersonalCreateRequest request){
+        Long testId = testService.create(request.getNewTestName(), request.getNewTestComments());
+        studentTestService.create(request.getStudentId(), testId, request.getStudentTestId());
+        testItemService.create(testId, request.getTestItemCreateRequestList());
     }
 
 

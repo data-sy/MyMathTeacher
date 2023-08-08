@@ -7,7 +7,6 @@ import com.mmt.diagnosis.repository.StudentTestRepository;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,6 +22,10 @@ public class StudentTestService {
 
     public void create(Long studentId, Long testId){
         studentTestRepository.save(studentId, testId);
+    }
+
+    public void create(Long studentId, Long testId, Long diagnosisId){
+        studentTestRepository.save(studentId, testId, diagnosisId);
     }
 
     public List<IsRecordResponse> findTests(Long studentId){

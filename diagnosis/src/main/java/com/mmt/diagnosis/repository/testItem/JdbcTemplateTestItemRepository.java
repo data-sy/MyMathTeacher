@@ -3,11 +3,14 @@ package com.mmt.diagnosis.repository.testItem;
 import com.mmt.diagnosis.domain.TestItems;
 import com.mmt.diagnosis.repository.TestItemRepository;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -18,6 +21,24 @@ public class JdbcTemplateTestItemRepository implements TestItemRepository {
 
     public JdbcTemplateTestItemRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public void save(Long testId, List<TestItems> testItemsList) {
+        String sql =  "INSERT INTO tests_items (test_id, item_id, test_item_number) VALUES (?, ?, ?)";
+        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setLong(1, testId);
+                TestItems testItems = testItemsList.get(i);
+                ps.setLong(2, testItems.getItemId());
+                ps.setInt(3, testItems.getTestItemNumber());
+            }
+            @Override
+            public int getBatchSize() {
+                return testItemsList.size();
+            }
+        });
     }
 
     @Override

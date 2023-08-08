@@ -4,6 +4,10 @@ select * from students;
 
 select * from tests;
 
+select * from students_tests;
+
+select * from tests_items;
+
 show tables;
 
 select * from concepts;
@@ -103,3 +107,10 @@ select * from concepts;
 select * from knowledge_tags;
 SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_tags WHERE from_concept_id=843);
 SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_tags WHERE to_concept_id=843);
+
+SELECT i.item_id, i.item_image_path, i.concept_id, c.concept_name, p.probability_percent FROM probabilities p
+JOIN concepts c ON p.concept_id=c.concept_id JOIN items i ON i.concept_id=c.concept_id
+WHERE p.answer_id IN (SELECT answer_id FROM answers WHERE student_test_id = 7) 
+AND p.to_concept_depth = 2;
+
+SELECT item_id, item_answer, item_image_path FROM items WHERE item_id IN (1, 2, 10, 12, 30);

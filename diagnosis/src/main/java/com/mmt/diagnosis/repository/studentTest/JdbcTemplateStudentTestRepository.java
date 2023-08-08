@@ -28,6 +28,12 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
     }
 
     @Override
+    public void save(Long studentId, Long testId, Long diagnosisId) {
+        String sql = "INSERT INTO students_tests (student_id, test_id, diagnosis_id) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, studentId, testId, diagnosisId);
+    }
+
+    @Override
     public List<StudentTests> findByStudentId(Long studentId) {
         // answers 테이블애 student_test_id가 있는지 없는지에 따라 t/f를 반환하게 만듦
         String sql = "SELECT st.student_test_id, t.test_name, t.test_comments, \n" +
