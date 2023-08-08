@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.dto.details;
+package com.mmt.diagnosis.dto.personal;
 
 import lombok.Data;
 
@@ -6,14 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class DetailsResponse {
+public class PersonalGetRequest {
 
-    private Long StudentTestId;
+    private Long studentTestId;
     private String studentName;
     private LocalDate studentBirthdate;
-    private String testName;
 
-    private List<ItemProbabilityResponse> itemProbabilityResponseList;
+    private List<ItemRequest> itemRequestList;
 
     private List<String> conceptNameList;
     private List<String> toConceptNameList;

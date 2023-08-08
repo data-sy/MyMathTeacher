@@ -69,6 +69,7 @@ public class ProbabilityService {
     // 리팩토링 : 지금은 선수(후수)단위개념이 어떤 단위개념에서 파생됐는지 연결 x
     public DetailsResponse findDetails(Long studentTestId){
         DetailsResponse detailsResponse = new DetailsResponse();
+        detailsResponse.setStudentTestId(studentTestId);
         // studentName, studentBirthdate, testName
         StudentTests studentTests = studentTestService.findDetails(studentTestId);
         detailsResponse.setStudentName(studentTests.getStudentName());

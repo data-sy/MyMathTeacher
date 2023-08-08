@@ -63,7 +63,7 @@ public class DiagnosisController {
     }
 
     /**
-     * 진단 학습지 상세보기 : 선택한 student_id와 test_id에 따른 진단 학습지 생성
+     * 진단 학습지 미리보기 : 선택한 student_id와 test_id에 따른 진단 학습지 생성
      * 리팩토링 : 같은 학생, 같은 학습지를 선택했을 시 '재시험'이라는 것을 명시해주는 알람 띄우는 검증 로직 추가하기
      */
     @GetMapping("/diagnosis/diagnostic-test")

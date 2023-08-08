@@ -6,6 +6,8 @@ select * from tests;
 
 show tables;
 
+select * from concepts;
+
 select count(*) from concepts;
 
 select count(*) from knowledge_tags;
@@ -97,5 +99,7 @@ JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item
 WHERE a.student_test_id = 7 AND p.to_concept_depth = 0 ;
 
 -- c_id로 선수, 후수 단위개념 찾기
-SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept id FROM knowledge_tags WHERE from_concept_id=6104);
-SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept id FROM knowledge_tags WHERE to_concept_id=6104);
+select * from concepts;
+select * from knowledge_tags;
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_tags WHERE from_concept_id=843);
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_tags WHERE to_concept_id=843);

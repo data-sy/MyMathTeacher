@@ -1,19 +1,19 @@
-package com.mmt.diagnosis.dto.details;
+package com.mmt.diagnosis.dto.personal;
 
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @Data
-public class DetailsResponse {
+public class PersonalResponse {
 
-    private Long StudentTestId;
+    private Long studentTestId;
     private String studentName;
     private LocalDate studentBirthdate;
-    private String testName;
 
-    private List<ItemProbabilityResponse> itemProbabilityResponseList;
+    private HashMap<String, List<ItemResponse>> itemResponseHashMap;
 
     private List<String> conceptNameList;
     private List<String> toConceptNameList;

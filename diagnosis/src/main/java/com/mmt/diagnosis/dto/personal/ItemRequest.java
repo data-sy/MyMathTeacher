@@ -1,12 +1,11 @@
-package com.mmt.diagnosis.domain;
+package com.mmt.diagnosis.dto.personal;
 
 import lombok.Data;
 
 @Data
-public class ItemProbability {
+public class ItemRequest {
 
     private Long itemId;
-    private int testItemNumber;
     private String itemImagePath;
     private int conceptId;
     private String conceptName;

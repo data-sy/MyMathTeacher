@@ -4,16 +4,16 @@ import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.concept.ConceptResponse;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
+import com.mmt.diagnosis.dto.personal.PersonalGetRequest;
+import com.mmt.diagnosis.dto.personal.PersonalResponse;
 import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.service.concept.ConceptService;
+import com.mmt.diagnosis.service.personal.PersonalService;
 import com.mmt.diagnosis.service.probability.ProbabilityService;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +24,14 @@ public class PersonalizationController {
     private final StudentTestService studentTestService;
     private final ProbabilityService probabilityService;
     private final ConceptService conceptService;
+    private final PersonalService personalService;
 
-    public PersonalizationController(StudentService studentService, StudentTestService studentTestService, ProbabilityService probabilityService, ConceptService conceptService) {
+    public PersonalizationController(StudentService studentService, StudentTestService studentTestService, ProbabilityService probabilityService, ConceptService conceptService, PersonalService personalService) {
         this.studentService = studentService;
         this.studentTestService = studentTestService;
         this.probabilityService = probabilityService;
         this.conceptService = conceptService;
+        this.personalService = personalService;
     }
 
     /**
@@ -65,7 +67,29 @@ public class PersonalizationController {
     }
 
     /**
-     * 
+     * 맞춤 학습지 만들기
+     * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
+    @GetMapping("personalization/personalized-assessment-items")
+    public PersonalResponse getPersonalization(@RequestBody PersonalGetRequest request){
+        System.out.println(request);
+        return personalService.findPersonalization(request);
+    }
+
+    /**
+     * 맞춤 학습지 미리보기
+     */
+    @GetMapping("personalization/personalized-tests")
+    public void getPersonalizedTest(){
+        // 서비스 메서드 preview
+    }
+
+    /**
+     * 맞춤 학습지 다운로드
+     */
+    @PostMapping("personalization/personalized-tests")
+    public void create(){
+    }
+
 
 }
