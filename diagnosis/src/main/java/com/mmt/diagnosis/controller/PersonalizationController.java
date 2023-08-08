@@ -72,7 +72,6 @@ public class PersonalizationController {
      */
     @GetMapping("personalization/personalized-assessment-items")
     public PersonalResponse getPersonalization(@RequestBody PersonalGetRequest request){
-        System.out.println(request);
         return personalService.findPersonalization(request);
     }
 
