@@ -1,9 +1,13 @@
+show databases;
+create database mmt;
+use mmt;
+
 -- DROP 순서 (CREATE의 역순)
 	-- 확률 -> 답안 -> 학생_학습지, 학습지_문항 -> 학습지
     -- 문항, 지식체계 -> 단위개념
     -- 학생 -> 사용자
 
-DROP TABLE IF EXISTS PROBABILITYS;
+DROP TABLE IF EXISTS PROBABILITIES;
 DROP TABLE IF EXISTS ANSWERS;
 DROP TABLE IF EXISTS TESTS_ITEMS;
 DROP TABLE IF EXISTS STUDENTS_TESTS;

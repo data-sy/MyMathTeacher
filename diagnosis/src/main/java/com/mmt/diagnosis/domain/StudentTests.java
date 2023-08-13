@@ -2,6 +2,8 @@ package com.mmt.diagnosis.domain;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class StudentTests {
     // students_tests 테이블 + students 테이블 + tests 테이블
@@ -11,6 +13,7 @@ public class StudentTests {
     // students
     private Long studentId;
     private String studentName;
+    private LocalDate studentBirthdate;
     // tests
     private Long testId;
     private String testName;

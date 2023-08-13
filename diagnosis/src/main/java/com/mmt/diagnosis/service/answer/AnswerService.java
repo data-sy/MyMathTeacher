@@ -1,28 +1,40 @@
-//package com.mmt.diagnosis.service.answer;
-//
-//import com.mmt.diagnosis.dto.answer.IsRecordRequest;
-//import com.mmt.diagnosis.dto.answer.IsRecordResponse;
-//import com.mmt.diagnosis.dto.viewDetail.ViewDetailRequest;
-//import com.mmt.diagnosis.repository.AnswerRepository;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//
-//@Service
-//public class AnswerService {
-//
-//    private final AnswerRepository answerRepository;
-//
-//    public AnswerService(AnswerRepository answerRepository) {
-//        this.answerRepository = answerRepository;
-//    }
-//
-//    public void create(ViewDetailRequest request) {
-//        answerRepository.save(request.getStudentId(), request.getTestId());
-//    }
-//
-//    public List<IsRecordResponse> findTests(IsRecordRequest request) {
-//        return AnswerConverter.convertListToIsRecordResponseList(answerRepository.findByStudentId(request.getStudentId()));
-//    }
-//
-//}
+package com.mmt.diagnosis.service.answer;
+
+import com.mmt.diagnosis.dto.AI.AIInputResponse;
+import com.mmt.diagnosis.dto.answer.AnswerCodeResponse;
+import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
+import com.mmt.diagnosis.repository.AnswerRepository;
+import com.mmt.diagnosis.service.studentTest.StudentTestService;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class AnswerService {
+
+    private final AnswerRepository answerRepository;
+    private final StudentTestService studentTestService;
+
+    public AnswerService(AnswerRepository answerRepository, StudentTestService studentTestService) {
+        this.answerRepository = answerRepository;
+        this.studentTestService = studentTestService;
+    }
+
+    public void create(AnswerCreateRequest request) {
+        answerRepository.save(AnswerConverter.convertToAnswer(request));
+    }
+
+    public AIInputResponse findAIInput(Long studentTestId){
+        AIInputResponse aiInputResponse = new AIInputResponse(studentTestId);
+        List<List<AnswerCodeResponse>> answerCodeResponseList = new ArrayList<>();
+        // 조건에 맞는 student_test_id들 찾기
+        List<Long> stIdList = studentTestService.findBefore(studentTestId);
+        // student_test_id별 정오답 기록을 answerCodeList에 넣기
+        for (Long stId : stIdList){
+            answerCodeResponseList.add(AnswerConverter.convertListToAnswerCodeResponseList(answerRepository.findAnswerCode(stId)));
+        }
+        aiInputResponse.setAnswerCodeResponseList(answerCodeResponseList);
+        return aiInputResponse;
+    }
+}

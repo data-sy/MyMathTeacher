@@ -167,7 +167,7 @@ WHERE c.whe = "학생2";
 insert into exprm1 (student_id, test_item_id) select 1000 AS student_id, test_item_id from exprm2 where test_id=2;
 select * from exprm1;
 
--- isRecord DB단에서 처리하기
+-- 실험3 : isRecord DB단에서 처리하기
 SELECT
     st.student_test_id,
     t.test_name,
@@ -186,3 +186,16 @@ CASE WHEN EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_t
 THEN TRUE ELSE FALSE END AS is_record 
 FROM students_tests st JOIN tests t ON st.test_id = t.test_id
 WHERE st.student_id = 1;
+
+-- 실험4 : 다중 value 문법 확인
+use mmt;
+CREATE TABLE atable (
+	a_id BIGINT auto_increment,
+	in_1 BIGINT,
+    in_2 BIGINT,
+    in_3 INT,
+	PRIMARY KEY (a_id)
+);
+INSERT INTO atable(in_1, in_2, in_3) VALUES (1, 1, 0), (1, 2, 1), (1, 3, 1), (1, 4, 1), (1, 5, 1);
+select * from atable;
+-- 근데 jdbcTemplate이므로 배치사이즈업 사용!

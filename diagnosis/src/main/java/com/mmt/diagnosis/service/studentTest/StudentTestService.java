@@ -24,6 +24,10 @@ public class StudentTestService {
         studentTestRepository.save(studentId, testId);
     }
 
+    public void create(Long studentId, Long testId, Long diagnosisId){
+        studentTestRepository.save(studentId, testId, diagnosisId);
+    }
+
     public List<IsRecordResponse> findTests(Long studentId){
         return StudentTestConverter.convertListToStudentTestResponseList(studentTestRepository.findByStudentId(studentId));
     }
@@ -36,6 +40,14 @@ public class StudentTestService {
         PreviewResponse previewResponse = testItemService.preview(studentTests.getStudentId(), studentTests.getTestId());
         previewResponse.setStudentTestId(studentTestId);
         return previewResponse;
+    }
+    // 지금까지의 답안 기록 시간 순으로 추출하기 위해 stid들을 추출한 메서드
+    public List<Long> findBefore(Long studentTestId){
+        return studentTestRepository.findStudentTestIds(studentTestId);
+    }
+
+    public StudentTests findDetails(Long studentTestId){
+        return studentTestRepository.findDetails(studentTestId);
     }
 
 }

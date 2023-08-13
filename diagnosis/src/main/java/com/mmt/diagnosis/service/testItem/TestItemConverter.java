@@ -1,6 +1,7 @@
 package com.mmt.diagnosis.service.testItem;
 
 import com.mmt.diagnosis.domain.TestItems;
+import com.mmt.diagnosis.dto.testItem.TestItemCreateRequest;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 
 import java.util.ArrayList;
@@ -23,6 +24,21 @@ public class TestItemConverter {
             responseList.add(convertToTestItemsResponse(testItems));
         }
         return responseList;
+    }
+
+    public static TestItems convertToTestItems(TestItemCreateRequest request) {
+        TestItems testItems = new TestItems();
+        testItems.setItemId(request.getItemId());
+        testItems.setTestItemNumber(request.getTestItemNumber());
+        return testItems;
+    }
+
+    public static List<TestItems> convertListToTestItemsList(List<TestItemCreateRequest> requestList) {
+        List<TestItems> testItemsList = new ArrayList<>();
+        for (TestItemCreateRequest request : requestList) {
+            testItemsList.add(convertToTestItems(request));
+        }
+        return testItemsList;
     }
 
 }

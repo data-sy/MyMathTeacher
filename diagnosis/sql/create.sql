@@ -104,13 +104,14 @@ CREATE TABLE ANSWERS (
 	FOREIGN KEY (item_id) REFERENCES TESTS_ITEMS (item_id)
 );
 
+DROP TABLE IF EXISTS PROBABILITIES;
 -- 확률 테이블
-CREATE TABLE PROBABILITYS (
+CREATE TABLE PROBABILITIES (
 	probability_id BIGINT auto_increment,
 	answer_id BIGINT,
     concept_id INT,
     to_concept_depth INT,
-	probability_percent DECIMAL(5,2),
+	probability_percent DOUBLE,
 	probability_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (probability_id),
 	FOREIGN KEY (answer_id) REFERENCES ANSWERS (answer_id),

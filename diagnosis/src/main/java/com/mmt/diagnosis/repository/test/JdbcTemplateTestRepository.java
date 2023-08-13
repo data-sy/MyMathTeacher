@@ -5,10 +5,13 @@ import com.mmt.diagnosis.repository.TestRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -19,6 +22,18 @@ public class JdbcTemplateTestRepository implements TestRepository {
 
     public JdbcTemplateTestRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public Long save(String testName, String testComments) {
+        SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("tests")
+                .usingGeneratedKeyColumns("test_id");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("test_name", testName);
+        parameters.put("test_comments", testComments);
+        Long testId = insert.executeAndReturnKey(parameters).longValue();
+        return testId;
     }
 
     // 리팩토링할 것 : 진단학습지나 로그인한 선생님을 teacherId로 가지는 학생과 연관이 있는 학습지만 보여주기
