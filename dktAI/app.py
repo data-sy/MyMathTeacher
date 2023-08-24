@@ -1,4 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
+import requests
+
+# 다 한 뒤에 cors 붙여보기
 
 app = Flask(__name__)
 
@@ -6,32 +9,34 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello world!'
 
-@app.route('/analysis', methods=['GET'])
-def inference():
+@app.route('/connect-test', methods=['POST'])
+def connect_test():
+    # {
+    #     "studentTestId": 7
+    # }
     param = request.get_json()
-    student_test_id = param['stduentTestId']
-    answer_code_response_list = param['answerCodeResponseList']
+    print(param)
 
-    # 우선 여기에 쭉 쓰고 리팩토링 (메서드로 만들기, 적절한 위치로 옮기기)
+    spring_api_url = 'http://localhost:8080/ai-input'
+    response = requests.get(spring_api_url, json=param)
 
-    # 데이터 전처리
-    input_data = []
-    for test in answer_code_response_list :
-        input = []
-        for item in test :
-            # 순서를 정확히 해야 하므로 values 사용 안 함
-            dic_to_list = [item['skillId'], item['answerCode']]
-            input.append(dic_to_list)
-        input_data.append(input)
+    if response.status_code == 200:
+        ai_input_response = response.json()
+        print(ai_input_response)
 
-    # 진단하는 기능 넣기
+        # 데이터 전처리
 
-    # test용
-    test_data = {
-        'studentTestId': 7,
-        'probabilityList': [0.2, 0.4, 0.6, 0.8]
-    }
-    return test_data
+        # 진단
+
+        # 임시 결과
+        test_data = {
+            'studentTestId': 7,
+            'probabilityList': [0.2, 0.4, 0.6, 0.8]
+        }
+
+        return jsonify(test_data), 200
+    else:
+        return 'Failed to fetch data from Spring', 500
 
 if __name__ == '__main__':
     app.run()

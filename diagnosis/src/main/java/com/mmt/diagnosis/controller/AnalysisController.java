@@ -39,4 +39,9 @@ public class AnalysisController {
         probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
     }
 
+    @GetMapping("/ai-input")
+    public AIInputResponse connectTest(@RequestBody AIInputRequest request){
+        return answerService.findAIInput(request.getStudentTestId());
+    }
+
 }
