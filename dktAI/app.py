@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import requests
 
-# 다 한 뒤에 cors 붙여보기
+from predict import predict
 
 app = Flask(__name__)
 
@@ -9,29 +9,28 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello world!'
 
-@app.route('/connect-test', methods=['POST'])
-def connect_test():
-    # {
-    #     "studentTestId": 7
-    # }
-    param = request.get_json()
-    print(param)
+@app.route('/analysis', methods=['POST'])
+def analysis():
 
     spring_api_url = 'http://localhost:8080/ai-input'
-    response = requests.get(spring_api_url, json=param)
+    response = requests.get(spring_api_url, json=request.get_json())
 
     if response.status_code == 200:
         ai_input_response = response.json()
-        print(ai_input_response)
+        student_test_id = ai_input_response['studentTestid']
+        input_data = ai_input_response['answerCodeResponseList']
 
-        # 데이터 전처리
+        print(ai_input_response)
+        print(input_data)
 
         # 진단
+        output = predict(input_data)
 
         # 임시 결과
+
         test_data = {
-            'studentTestId': 7,
-            'probabilityList': [0.2, 0.4, 0.6, 0.8]
+            'studentTestId': student_test_id,
+            'probabilityList': output
         }
 
         return jsonify(test_data), 200
