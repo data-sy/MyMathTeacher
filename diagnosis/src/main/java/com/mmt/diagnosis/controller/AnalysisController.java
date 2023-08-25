@@ -21,10 +21,8 @@ public class AnalysisController {
         this.probabilityService = probabilityService;
     }
 
-
     /**
-     * AI(플라스크)로 보낼 입력데이터
-     * 리팩토링 : 답안을 기록하지 않은 stId에 대해서도 찾을 수 있게 해놨으므로, 프론트단에서 클릭할 수 없게 검증
+     * AI input 데이터 플라스크에 제공
      */
     @GetMapping("/ai-input")
     public AIInputResponse getAIInput(@RequestBody AIInputRequest request){
@@ -32,9 +30,9 @@ public class AnalysisController {
     }
 
     /**
-     * AI(플라스크)에서 받은 inference 결과를 DB에 저장하기
+     * AI output 데이터 DB에 저장
      */
-    @PostMapping("/analysis")
+    @PostMapping("/ai-output")
     public void create(@RequestBody AIOutputRequest request){
         probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
     }
