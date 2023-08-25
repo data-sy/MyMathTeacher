@@ -3,8 +3,8 @@ package com.mmt.diagnosis.controller;
 import com.mmt.diagnosis.dto.AI.AIInputRequest;
 import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.AI.AIOutputRequest;
-import com.mmt.diagnosis.service.probability.ProbabilityService;
 import com.mmt.diagnosis.service.answer.AnswerService;
+import com.mmt.diagnosis.service.probability.ProbabilityService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +26,7 @@ public class AnalysisController {
      * AI(플라스크)로 보낼 입력데이터
      * 리팩토링 : 답안을 기록하지 않은 stId에 대해서도 찾을 수 있게 해놨으므로, 프론트단에서 클릭할 수 없게 검증
      */
-    @GetMapping("/analysis")
+    @GetMapping("/ai-input")
     public AIInputResponse getAIInput(@RequestBody AIInputRequest request){
         return answerService.findAIInput(request.getStudentTestId());
     }
@@ -37,11 +37,6 @@ public class AnalysisController {
     @PostMapping("/analysis")
     public void create(@RequestBody AIOutputRequest request){
         probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
-    }
-
-    @GetMapping("/ai-input")
-    public AIInputResponse connectTest(@RequestBody AIInputRequest request){
-        return answerService.findAIInput(request.getStudentTestId());
     }
 
 }

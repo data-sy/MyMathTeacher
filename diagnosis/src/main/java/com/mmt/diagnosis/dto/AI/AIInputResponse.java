@@ -1,7 +1,5 @@
 package com.mmt.diagnosis.dto.AI;
 
-import com.mmt.diagnosis.domain.AnswerCode;
-import com.mmt.diagnosis.dto.answer.AnswerCodeResponse;
 import lombok.Data;
 
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 public class AIInputResponse {
 
     private Long studentTestid;
-    private List<List<AnswerCodeResponse>> answerCodeResponseList;
+    private List<List<List<Integer>>> answerCodeResponseList;
 
     public AIInputResponse(Long studentTestid) {
         this.studentTestid = studentTestid;
