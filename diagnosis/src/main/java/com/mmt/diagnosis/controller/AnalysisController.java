@@ -24,7 +24,7 @@ public class AnalysisController {
     /**
      * AI input 데이터 플라스크에 제공
      */
-    @GetMapping("/ai-input")
+    @GetMapping("/predict")
     public AIInputResponse getAIInput(@RequestBody AIInputRequest request){
         return answerService.findAIInput(request.getStudentTestId());
     }
@@ -32,7 +32,7 @@ public class AnalysisController {
     /**
      * AI output 데이터 DB에 저장
      */
-    @PostMapping("/ai-output")
+    @PostMapping("/predict")
     public void create(@RequestBody AIOutputRequest request){
         probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
     }
