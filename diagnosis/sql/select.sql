@@ -123,3 +123,8 @@ JOIN tests_items ti ON t.test_id=ti.test_id
 JOIN items i ON ti.item_id=i.item_id
 JOIN concepts c ON i.concept_id=c.concept_id
 WHERE t.test_id<=12;
+
+-- 진단학습지 오류 확인 (수능 선택과목 이름들이 바뀌었음)
+SELECT *
+FROM concepts
+WHERE concept_id = 5806;
