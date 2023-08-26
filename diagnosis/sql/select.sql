@@ -114,3 +114,12 @@ WHERE p.answer_id IN (SELECT answer_id FROM answers WHERE student_test_id = 7)
 AND p.to_concept_depth = 2;
 
 SELECT item_id, item_answer, item_image_path FROM items WHERE item_id IN (1, 2, 10, 12, 30);
+
+-- 시나리오를 위해 진단학습지 파악
+SELECT t.test_name, t.test_comments, ti.test_item_number, c.concept_school_level, c.concept_grade_level, c.concept_semester, c.concept_chapter_name, c.concept_achievement_name,
+c.concept_name, c.concept_description
+FROM tests t
+JOIN tests_items ti ON t.test_id=ti.test_id
+JOIN items i ON ti.item_id=i.item_id
+JOIN concepts c ON i.concept_id=c.concept_id
+WHERE t.test_id<=12;
