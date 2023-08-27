@@ -24,7 +24,6 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 
     @Override
     public List<TestItems> findItems(List<Long> itemIdList) {
-
         String inSql = String.join(",", Collections.nCopies(itemIdList.size(), "?"));
         String sql = String.format("SELECT item_id, item_answer, item_image_path FROM items WHERE item_id IN (%s)", inSql);
         return jdbcTemplate.query(sql, itemsRowMapper(), itemIdList.toArray());

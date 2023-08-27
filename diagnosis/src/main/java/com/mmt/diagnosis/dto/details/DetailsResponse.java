@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class DetailsResponse {
 
-    private Long StudentTestId;
+    private Long studentTestId;
     private String studentName;
     private LocalDate studentBirthdate;
     private String testName;

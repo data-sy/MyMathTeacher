@@ -16,9 +16,7 @@ public class ItemService {
     }
 
     public List<TestItems> findItems(List<Long> itemIdList){
-        List<TestItems> test = itemRepository.findItems(itemIdList);
-        //System.out.println("아이템 서비스에서 받은 itemIdList 사이즈" + test.size());
-        return test;
+        return itemRepository.findItems(itemIdList);
     }
 
 }

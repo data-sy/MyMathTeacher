@@ -38,6 +38,8 @@ select * from students_tests;
 
 select * from answers;
 
+SELECT * FROM probabilities;
+
 -- skill_id당 정오답 결과
 SELECT c.skill_id, a.answer_code FROM answers a JOIN items i ON a.item_id = i.item_id JOIN concepts c ON c.concept_id = i.concept_id WHERE a.student_test_id=3;
 SELECT c.skill_id, a.answer_code FROM answers a JOIN items i ON a.item_id = i.item_id JOIN concepts c ON c.concept_id = i.concept_id WHERE a.student_test_id=4;
@@ -95,12 +97,12 @@ JOIN items i ON i.item_id = a.item_id
 JOIN tests_items ti ON ti.item_id = a.item_id 
 JOIN probabilities p ON p.answer_id = a.answer_id 
 JOIN concepts c ON c.concept_id = i.concept_id
-WHERE a.student_test_id = 7
+WHERE a.student_test_id = 12
 AND p.to_concept_depth = 0 ;
 
 SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent FROM answers a 
 JOIN items i ON i.item_id = a.item_id JOIN tests_items ti ON ti.item_id = a.item_id JOIN probabilities p ON p.answer_id = a.answer_id JOIN concepts c ON c.concept_id = i.concept_id 
-WHERE a.student_test_id = 7 AND p.to_concept_depth = 0 ;
+WHERE a.student_test_id = 12 AND p.to_concept_depth = 0 ;
 
 -- c_id로 선수, 후수 단위개념 찾기
 select * from concepts;
@@ -110,8 +112,8 @@ SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FR
 
 SELECT i.item_id, i.item_image_path, i.concept_id, c.concept_name, p.probability_percent FROM probabilities p
 JOIN concepts c ON p.concept_id=c.concept_id JOIN items i ON i.concept_id=c.concept_id
-WHERE p.answer_id IN (SELECT answer_id FROM answers WHERE student_test_id = 7) 
-AND p.to_concept_depth = 2;
+WHERE p.answer_id IN (SELECT answer_id FROM answers WHERE student_test_id = 12) 
+AND p.to_concept_depth = 1;
 
 SELECT item_id, item_answer, item_image_path FROM items WHERE item_id IN (1, 2, 10, 12, 30);
 
@@ -128,3 +130,12 @@ WHERE t.test_id<=12;
 SELECT *
 FROM concepts
 WHERE concept_id = 5806;
+
+-- 다영이 미적분 학습지에 따른 맞춤 문항
+SELECT *
+FROM probabilities p
+JOIN answers a ON a.answer_id=p.answer_id
+JOIN concepts c ON p.concept_id=c.concept_id
+WHERE a.student_test_id=12
+AND to_concept_depth>0
+ORDER BY c.concept_id;

@@ -9,24 +9,25 @@ import java.util.List;
 
 public class PersonalConverter {
 
-    public static ItemResponse convertToItemResponse(ItemRequest request){
-        ItemResponse response = new ItemResponse();
-        response.setItemId(request.getItemId());
-        response.setItemImagePath(request.getItemImagePath());
-        response.setConceptId(request.getConceptId());
-        response.setConceptName(request.getConceptName());
-        response.setToConceptDepth(0);
-        response.setProbabilityPercent(request.getProbabilityPercent());
-        return response;
-    }
-
-    public static List<ItemResponse> convertListToItemResponseList(List<ItemRequest> requestList) {
-        List<ItemResponse> responseList = new ArrayList<>();
-        for (ItemRequest request : requestList) {
-            responseList.add(convertToItemResponse(request));
-        }
-        return responseList;
-    }
+//    // 코드 수정으로 사용하지 않음
+//    public static ItemResponse convertToItemResponse(ItemRequest request){
+//        ItemResponse response = new ItemResponse();
+//        response.setItemId(request.getItemId());
+//        response.setItemImagePath(request.getItemImagePath());
+//        response.setConceptId(request.getConceptId());
+//        response.setConceptName(request.getConceptName());
+//        response.setToConceptDepth(0);
+//        response.setProbabilityPercent(request.getProbabilityPercent());
+//        return response;
+//    }
+//
+//    public static List<ItemResponse> convertListToItemResponseList(List<ItemRequest> requestList) {
+//        List<ItemResponse> responseList = new ArrayList<>();
+//        for (ItemRequest request : requestList) {
+//            responseList.add(convertToItemResponse(request));
+//        }
+//        return responseList;
+//    }
 
     public static ItemResponse convertToItemResponse(Item item){
         ItemResponse response = new ItemResponse();
@@ -45,6 +46,14 @@ public class PersonalConverter {
             responseList.add(convertToItemResponse(item));
         }
         return responseList;
+    }
+
+    public static List<Long> abstractItemId(List<ItemRequest> itemRequestList){
+        List<Long> itemIdList = new ArrayList<>();
+        for (ItemRequest item : itemRequestList){
+            itemIdList.add(item.getItemId());
+        }
+        return itemIdList;
     }
 
 }

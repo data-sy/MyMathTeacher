@@ -82,6 +82,7 @@ public class PersonalizationController {
 
     /**
      * 맞춤 학습지 미리보기
+     * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
     @GetMapping("personalization/personalized-tests")
     public PersonalTestResponse getPersonalTest(@RequestBody PersonalTestGetRequest request){
@@ -90,6 +91,7 @@ public class PersonalizationController {
 
     /**
      * 맞춤 학습지 다운로드
+     * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
     @PostMapping("personalization/personalized-tests")
     public void create(@RequestBody PersonalCreateRequest request){
@@ -97,6 +99,5 @@ public class PersonalizationController {
         studentTestService.create(request.getStudentId(), testId, request.getStudentTestId());
         testItemService.create(testId, request.getTestItemCreateRequestList());
     }
-
 
 }

@@ -15,6 +15,7 @@ public class PersonalItemsResponse {
 
     private Map<String, List<ItemResponse>> itemResponseMap;
 
+    private List<Long> itemIdList;
     private List<String> conceptNameList;
     private List<String> toConceptNameList;
     private List<String> fromConceptNameList;

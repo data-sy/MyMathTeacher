@@ -31,11 +31,12 @@ public class PersonalService {
         response.setStudentBirthdate(request.getStudentBirthdate());
         Map<String, List<ItemResponse>> itemResponseMap = new HashMap<>();
         // 뎁스 0
-        itemResponseMap.put("depth0", PersonalConverter.convertListToItemResponseList(request.getItemRequestList()));
+        itemResponseMap.put("depth0", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 0)));
         // 뎁스 1, 2
         itemResponseMap.put("depth1", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 1)));
         itemResponseMap.put("depth2", PersonalConverter.convertItemListToItemResponseList(probabilityRepository.findItems(studentTestId, 2)));
         response.setItemResponseMap(itemResponseMap);
+        response.setItemIdList(PersonalConverter.abstractItemId(request.getItemRequestList()));
         response.setConceptNameList(request.getConceptNameList());
         response.setToConceptNameList(request.getToConceptNameList());
         response.setFromConceptNameList(request.getFromConceptNameList());
