@@ -1,6 +1,7 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
+import com.mmt.diagnosis.dto.answer.AnswerGetRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordRequest;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
@@ -40,7 +41,7 @@ public class RecordController {
     }
 
     /**
-     * 학습지 목록 : 학생의 답안 기록 여부
+     * 학습지 목록 : 학생의 답안 기록 여부 포함
      */
     @GetMapping("/record/tests")
     public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
@@ -50,9 +51,9 @@ public class RecordController {
     /**
      * 답안 기록 : 선택한 학습지 상세보기
      */
-    @GetMapping("record/tests/{studentTestId}")
-    public PreviewResponse getTest(@PathVariable Long studentTestId){
-        return studentTestService.preview(studentTestId);
+    @GetMapping("record/answers")
+    public PreviewResponse getTest(@RequestBody AnswerGetRequest request){
+        return studentTestService.preview(request.getStudentTestId());
     }
 
     /**
