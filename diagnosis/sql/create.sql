@@ -1,29 +1,7 @@
 -- CREATE 순서
-    -- 사용자 -> 학생
 	-- 단위개념 -> 지식체계, 문항
+    -- 사용자 -> 학생
     -- (학생, 문항), 학습지 -> 학생_학습지, 학습지_문항 -> 답안 -> 확률
-
--- 사용자 테이블
-CREATE TABLE USERS (
-	user_id	VARCHAR(20),
-	user_password VARCHAR(20),
-	user_name VARCHAR(20),
-	user_phone VARCHAR(20),
-	PRIMARY KEY (user_id)
-);
-
--- 학생 테이블
-CREATE TABLE STUDENTS (
-	student_id BIGINT auto_increment,
-	student_name VARCHAR(20),
-	student_phone VARCHAR(20),
-	student_birthdate DATE,
-	student_school VARCHAR(20),
-	student_comments VARCHAR(200),
-	teacher_id VARCHAR(20),
-	PRIMARY KEY (student_id),
-	FOREIGN KEY (teacher_id) REFERENCES USERS (user_id)
-);
 
 -- 단위개념 테이블
 CREATE TABLE CONCEPTS (
@@ -59,6 +37,28 @@ CREATE TABLE ITEMS (
 	concept_id INT,
 	PRIMARY KEY (item_id),
 	FOREIGN KEY (concept_id) REFERENCES CONCEPTS (concept_id)
+);
+
+-- 사용자 테이블
+CREATE TABLE USERS (
+	user_id	VARCHAR(20),
+	user_password VARCHAR(20),
+	user_name VARCHAR(20),
+	user_phone VARCHAR(20),
+	PRIMARY KEY (user_id)
+);
+
+-- 학생 테이블
+CREATE TABLE STUDENTS (
+	student_id BIGINT auto_increment,
+	student_name VARCHAR(20),
+	student_phone VARCHAR(20),
+	student_birthdate DATE,
+	student_school VARCHAR(20),
+	student_comments VARCHAR(200),
+	teacher_id VARCHAR(20),
+	PRIMARY KEY (student_id),
+	FOREIGN KEY (teacher_id) REFERENCES USERS (user_id)
 );
 
 -- 학습지 테이블
