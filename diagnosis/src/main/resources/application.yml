@@ -1,7 +1,24 @@
+#spring:
+#  config:
+#    activate:
+#      on-profile: local
+#  datasource:
+#    url: "jdbc:h2:mem:mmt;MODE=MYSQL;NON_KEYWORDS=USER"
+#    username: "sa"
+#    password: ""
+#    driver-class-name: org.h2.Driver
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+---
 spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url: "jdbc:mysql://localhost/mmt"
     username: "root"
-    password: "show0715!"    # 윈도우
-#    password: "Show0715!"    # 맥북
+#    password: "show0715!"    # 윈도우
+    password: "Show0715!"    # 맥북, 배포 서버
     driver-class-name: com.mysql.cj.jdbc.Driver
