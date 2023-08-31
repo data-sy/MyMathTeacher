@@ -35,7 +35,7 @@ def aitest():
 
 @app.route('/analysis', methods=['POST'])
 def analysis():
-    spring_api_url = 'http://localhost:8080/predict'
+    spring_api_url = 'http://13.125.250.204:8080/predict'
 
     # 스프링 서버에서 ai_input 받기
     response_get = requests.get(spring_api_url, json=request.get_json())
