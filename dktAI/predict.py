@@ -1,13 +1,11 @@
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
-from tensorflow_core.python.saved_model import tag_constants
-
 
 def predict(input_data):
   model_path = 'savedmodel/'
 
   with tf.compat.v1.Session(graph=tf.Graph()) as sess:
-    model = tf.compat.v1.saved_model.loader.load(sess, [tag_constants.SERVING], model_path)
+    model = tf.compat.v1.saved_model.loader.load(sess, [tf.saved_model.SERVING], model_path)
 
     input_tensor = sess.graph.get_tensor_by_name("Input_index:0")
     output_tensor = sess.graph.get_tensor_by_name("strided_slice_2:0")

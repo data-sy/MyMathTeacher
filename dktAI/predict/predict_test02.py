@@ -1,6 +1,6 @@
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution() #텐서플로우 v2 에서도 실행 가능하게 하기
-from tensorflow_core.python.saved_model import tag_constants
+#from tensorflow_core.python.saved_model import tag_constants
 
 
 '''
@@ -13,7 +13,7 @@ model_path = '../savedmodel/'
 
 # 예측
 with tf.compat.v1.Session(graph=tf.Graph()) as sess:
-  model = tf.compat.v1.saved_model.loader.load(sess, [tag_constants.SERVING], model_path)
+  model = tf.compat.v1.saved_model.loader.load(sess, [tf.saved_model.SERVING], model_path)
 
   input01 = [[1171,1],[467,1],[1703,1],[1817,1],[1698,1],[623,0],[1182,0],[1614,0],[396,0],[1681,0],[1564,1],[461,1],[782,1],[593,1],[1582,1],[774,0],[1660,0],[1583,0],[790,0],[1531,0]]
   input02 = [[1171,0],[467,1],[1703,1],[1817,1],[1698,1],[623,1],[1182,1],[1614,1],[396,1],[1681,1],[1564,1],[461,1],[782,1],[593,1],[1582,1],[774,1],[1660,1],[1583,0],[790,0],[1531,1]]
