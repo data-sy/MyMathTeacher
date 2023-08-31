@@ -4,7 +4,7 @@
     -- (학생, 문항), 학습지 -> 학생_학습지, 학습지_문항 -> 답안 -> 확률
 
 -- 단위개념 테이블
-CREATE TABLE CONCEPTS (
+CREATE TABLE concepts (
 	concept_id INT,
 	concept_name VARCHAR(70),
 	concept_school_level CHAR(2),
@@ -20,27 +20,27 @@ CREATE TABLE CONCEPTS (
 );
 
 -- 지식체계 테이블
-CREATE TABLE KNOWLEDGE_TAGS (
+CREATE TABLE knowledge_tags (
 	knowledge_tag_id INT,
 	from_concept_id INT,
 	to_concept_id INT,
 	PRIMARY KEY (knowledge_tag_id),
-	FOREIGN KEY (from_concept_id) REFERENCES CONCEPTS (concept_id),
-	FOREIGN KEY (to_concept_id) REFERENCES CONCEPTS (concept_id)
+	FOREIGN KEY (from_concept_id) REFERENCES concepts (concept_id),
+	FOREIGN KEY (to_concept_id) REFERENCES concepts (concept_id)
 );
 
 -- 문항 테이블
-CREATE TABLE ITEMS (
+CREATE TABLE items (
 	item_id	BIGINT auto_increment,
 	item_answer	VARCHAR(20),
 	item_image_path	VARCHAR(255),
 	concept_id INT,
 	PRIMARY KEY (item_id),
-	FOREIGN KEY (concept_id) REFERENCES CONCEPTS (concept_id)
+	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
 );
 
 -- 사용자 테이블
-CREATE TABLE USERS (
+CREATE TABLE users (
 	user_id	VARCHAR(20),
 	user_password VARCHAR(20),
 	user_name VARCHAR(20),
@@ -49,7 +49,7 @@ CREATE TABLE USERS (
 );
 
 -- 학생 테이블
-CREATE TABLE STUDENTS (
+CREATE TABLE students (
 	student_id BIGINT auto_increment,
 	student_name VARCHAR(20),
 	student_phone VARCHAR(20),
@@ -58,11 +58,11 @@ CREATE TABLE STUDENTS (
 	student_comments VARCHAR(200),
 	teacher_id VARCHAR(20),
 	PRIMARY KEY (student_id),
-	FOREIGN KEY (teacher_id) REFERENCES USERS (user_id)
+	FOREIGN KEY (teacher_id) REFERENCES users (user_id)
 );
 
 -- 학습지 테이블
-CREATE TABLE TESTS (
+CREATE TABLE tests (
 	test_id	BIGINT auto_increment,
 	test_name VARCHAR(20),
 	test_comments VARCHAR(200),
@@ -70,42 +70,42 @@ CREATE TABLE TESTS (
 );
 
 -- 학생_학습지 테이블
-CREATE TABLE STUDENTS_TESTS (
+CREATE TABLE students_tests (
 	student_test_id	BIGINT auto_increment,
     student_id BIGINT,
     test_id BIGINT,
 	student_test_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	diagnosis_id BIGINT,
 	PRIMARY KEY (student_test_id),
-	FOREIGN KEY (student_id) REFERENCES STUDENTS (student_id),
-	FOREIGN KEY (test_id) REFERENCES TESTS (test_id),
-    FOREIGN KEY (diagnosis_id) REFERENCES STUDENTS_TESTS (student_test_id)
+	FOREIGN KEY (student_id) REFERENCES students (student_id),
+	FOREIGN KEY (test_id) REFERENCES tests (test_id),
+    FOREIGN KEY (diagnosis_id) REFERENCES students_tests (student_test_id)
 );
 
 -- 학습지-문항 테이블
-CREATE TABLE TESTS_ITEMS (
+CREATE TABLE tests_items (
 	test_item_id BIGINT auto_increment,
 	test_id	BIGINT,
 	item_id	BIGINT,
 	test_item_number INT,
 	PRIMARY KEY (test_item_id),
-	FOREIGN KEY (test_id) REFERENCES TESTS (test_id),
-	FOREIGN KEY (item_id) REFERENCES ITEMS (item_id)
+	FOREIGN KEY (test_id) REFERENCES tests (test_id),
+	FOREIGN KEY (item_id) REFERENCES items (item_id)
 );
 
 -- 답안 테이블
-CREATE TABLE ANSWERS (
+CREATE TABLE answers (
 	answer_id BIGINT auto_increment,
 	student_test_id BIGINT,
 	item_id BIGINT,
 	answer_code	INT,
 	PRIMARY KEY (answer_id),
-	FOREIGN KEY (student_test_id) REFERENCES STUDENTS_TESTS (student_test_id),
-	FOREIGN KEY (item_id) REFERENCES TESTS_ITEMS (item_id)
+	FOREIGN KEY (student_test_id) REFERENCES students_tests (student_test_id),
+	FOREIGN KEY (item_id) REFERENCES tests_items (item_id)
 );
 
 -- 확률 테이블
-CREATE TABLE PROBABILITIES (
+CREATE TABLE probabilities (
 	probability_id BIGINT auto_increment,
 	answer_id BIGINT,
     concept_id INT,
@@ -113,6 +113,6 @@ CREATE TABLE PROBABILITIES (
 	probability_percent DOUBLE,
 	probability_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (probability_id),
-	FOREIGN KEY (answer_id) REFERENCES ANSWERS (answer_id),
-	FOREIGN KEY (concept_id) REFERENCES CONCEPTS (concept_id)
+	FOREIGN KEY (answer_id) REFERENCES answers (answer_id),
+	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
 );
