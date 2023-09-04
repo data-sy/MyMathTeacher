@@ -28,13 +28,13 @@ public class JdbcTemplateConceptRepository implements ConceptRepository {
 
     @Override
     public List<String> findToConceptName(int conceptId) {
-        String sql = "SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_tags WHERE from_concept_id=?)";
+        String sql = "SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_space WHERE from_concept_id=?)";
         return jdbcTemplate.queryForList(sql, String.class, conceptId);
     }
 
     @Override
     public List<String> findFromConceptName(int conceptId) {
-        String sql = "SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_tags WHERE to_concept_id=?)";
+        String sql = "SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_space WHERE to_concept_id=?)";
         return jdbcTemplate.queryForList(sql, String.class, conceptId);
     }
 

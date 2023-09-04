@@ -20,11 +20,11 @@ CREATE TABLE concepts (
 );
 
 -- 지식체계 테이블
-CREATE TABLE knowledge_tags (
-	knowledge_tag_id INT,
+CREATE TABLE knowledge_space (
+	knowledge_space_id INT,
 	from_concept_id INT,
 	to_concept_id INT,
-	PRIMARY KEY (knowledge_tag_id),
+	PRIMARY KEY (knowledge_space_id),
 	FOREIGN KEY (from_concept_id) REFERENCES concepts (concept_id),
 	FOREIGN KEY (to_concept_id) REFERENCES concepts (concept_id)
 );

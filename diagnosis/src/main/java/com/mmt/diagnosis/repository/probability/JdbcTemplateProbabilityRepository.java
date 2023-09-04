@@ -46,7 +46,7 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
 
     @Override
     public List<Probability> findToConcept(Long answerId, int conceptId) {
-        String sql = "SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_tags k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = ?";
+        String sql = "SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_space k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = ?";
         return jdbcTemplate.query(sql, idsRowMapper(answerId), conceptId);
     }
 
@@ -65,7 +65,7 @@ public class JdbcTemplateProbabilityRepository implements ProbabilityRepository 
     @Override
     public List<String> findFromConceptName(Long studentTestId) {
         String subQuery = "SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = ?";
-        String sql = String.format("SELECT c.concept_name FROM concepts c JOIN knowledge_tags k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (%s);", subQuery);
+        String sql = String.format("SELECT c.concept_name FROM concepts c JOIN knowledge_space k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (%s);", subQuery);
         return jdbcTemplate.queryForList(sql, String.class , studentTestId);
     }
 

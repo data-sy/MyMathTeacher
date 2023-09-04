@@ -14,7 +14,7 @@ select * from concepts;
 
 select count(*) from concepts;
 
-select count(*) from knowledge_tags;
+select count(*) from knowledge_space;
 
 select * from items;
 -- 진단평가 문항들 보기
@@ -64,7 +64,7 @@ SELECT a.answer_id, i.concept_id, c.skill_id FROM items i JOIN answers a ON a.it
 
 select * from probabilities;
 
-SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_tags k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = 6104;
+SELECT k.to_concept_id, c.skill_id FROM concepts c JOIN knowledge_space k ON c.concept_id=k.to_concept_id WHERE k.from_concept_id = 6104;
 
 select * from probabilities p join answers a on a.answer_id=p.answer_id where a.student_test_id=7;
 
@@ -88,7 +88,7 @@ SELECT c.concept_name, p.to_concept_depth, p.probability_percent FROM concepts c
 
 -- 후수단위개념
 SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = 7;
-SELECT c.concept_name FROM concepts c JOIN knowledge_tags k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = 7);
+SELECT c.concept_name FROM concepts c JOIN knowledge_space k ON c.concept_id = k.from_concept_id WHERE k.to_concept_id IN (SELECT c.concept_id FROM answers a JOIN items i ON i.item_id=a.item_id JOIN concepts c ON c.concept_id=i.concept_id JOIN probabilities p ON p.answer_id=a.answer_id WHERE p.probability_percent>0.6 AND a.student_test_id = 7);
 
 -- item별 확률 등의 정보
 SELECT ti.test_item_number, i.item_image_path, c.concept_id, c.concept_name, p.probability_percent 
@@ -106,9 +106,9 @@ WHERE a.student_test_id = 12 AND p.to_concept_depth = 0 ;
 
 -- c_id로 선수, 후수 단위개념 찾기
 select * from concepts;
-select * from knowledge_tags;
-SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_tags WHERE from_concept_id=843);
-SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_tags WHERE to_concept_id=843);
+select * from knowledge_space;
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT to_concept_id FROM knowledge_space WHERE from_concept_id=843);
+SELECT concept_name FROM concepts WHERE concept_id IN (SELECT from_concept_id FROM knowledge_space WHERE to_concept_id=843);
 
 SELECT i.item_id, i.item_image_path, i.concept_id, c.concept_name, p.probability_percent FROM probabilities p
 JOIN concepts c ON p.concept_id=c.concept_id JOIN items i ON i.concept_id=c.concept_id

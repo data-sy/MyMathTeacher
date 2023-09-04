@@ -15,14 +15,14 @@ DROP TABLE IF EXISTS students_tests;
 DROP TABLE IF EXISTS tests;
 
 DROP TABLE IF EXISTS items;
-DROP TABLE IF EXISTS knowledge_tags;
+DROP TABLE IF EXISTS knowledge_space;
 DROP TABLE IF EXISTS concepts;
 
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS users;
 
 -- insert 순서
--- 단위개념 insert_concepts_escape_skillid -> 지식체계 insert_knowledge_tags
+-- 단위개념 insert_concepts_escape_skillid -> 지식체계 insert_knowledge_space
 -- 문항 insert_items_missing
 -- 진단 : 진단 학습지 insert_diag_test -> 진단 문항 insert_diag_items -> 진단학습지_진단문항 insert_diag_testsitems
 
