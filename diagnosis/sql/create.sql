@@ -1,6 +1,6 @@
 -- CREATE 순서
 	-- 단위개념 -> 지식체계, 문항
-    -- 사용자 -> 학생
+    -- 사용자 (-> 롤 -> 권한) -> 학생
     -- (학생, 문항), 학습지 -> 학생_학습지, 학습지_문항 -> 답안 -> 확률
 
 -- 단위개념 테이블
@@ -39,14 +39,14 @@ CREATE TABLE items (
 	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
 );
 
--- 사용자 테이블
-CREATE TABLE users (
-	user_id	VARCHAR(20),
-	user_password VARCHAR(20),
-	user_name VARCHAR(20),
-	user_phone VARCHAR(20),
-	PRIMARY KEY (user_id)
-);
+-- 사용자 테이블 -- jwt로 이동
+-- CREATE TABLE users (
+-- 	user_id	VARCHAR(20),
+-- 	user_password VARCHAR(20),
+-- 	user_name VARCHAR(20),
+-- 	user_phone VARCHAR(20),
+-- 	PRIMARY KEY (user_id)
+-- );
 
 -- 학생 테이블
 CREATE TABLE students (
@@ -56,7 +56,7 @@ CREATE TABLE students (
 	student_birthdate DATE,
 	student_school VARCHAR(20),
 	student_comments VARCHAR(200),
-	teacher_id VARCHAR(20),
+	teacher_id BIGINT,
 	PRIMARY KEY (student_id),
 	FOREIGN KEY (teacher_id) REFERENCES users (user_id)
 );
