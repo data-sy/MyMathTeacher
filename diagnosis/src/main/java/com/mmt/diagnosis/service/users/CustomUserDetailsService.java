@@ -37,7 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (!user.isActivated()) {
             throw new RuntimeException(userEmail + " -> 활성화되어 있지 않습니다.");
         }
-
+        // 이 부분에서 안 담겼었던 듯!
         List<GrantedAuthority> grantedAuthorities = user.getUserAuthoritySet().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthority().getAuthorityName()))
                 .collect(Collectors.toList());
@@ -46,4 +46,5 @@ public class CustomUserDetailsService implements UserDetailsService {
                 user.getUserPassword(),
                 grantedAuthorities);
     }
+
 }

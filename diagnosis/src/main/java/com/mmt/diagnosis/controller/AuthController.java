@@ -30,7 +30,6 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDTO> authorize(@Valid @RequestBody LoginDTO loginDTO) {
         JwtToken token = authService.authorize(loginDTO.getUserEmail(), loginDTO.getUserPassword());
-        System.out.println("엑세스 토큰 잘 생성 됐는지 : "+ token.getAccessToken());
 
         // 토큰을 Response Header에도 넣어주자
         HttpHeaders httpHeaders = new HttpHeaders();

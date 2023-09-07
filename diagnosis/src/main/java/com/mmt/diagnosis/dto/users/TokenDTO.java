@@ -1,12 +1,10 @@
 package com.mmt.diagnosis.dto.users;
 
 import com.mmt.diagnosis.jwt.JwtToken;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

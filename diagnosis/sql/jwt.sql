@@ -2,6 +2,8 @@
 show databases;
 use mmt;
 
+show tables;
+
 select * from users;
 select * from authority;
 select * from user_authority;

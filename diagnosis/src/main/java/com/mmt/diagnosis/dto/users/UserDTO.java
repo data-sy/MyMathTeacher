@@ -3,21 +3,20 @@ package com.mmt.diagnosis.dto.users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mmt.diagnosis.domain.Authority;
 import com.mmt.diagnosis.domain.Users;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+
     @NotNull
     @Size(min = 3, max = 50)
     private String userEmail;
