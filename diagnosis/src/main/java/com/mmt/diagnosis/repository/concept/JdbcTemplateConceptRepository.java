@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.repository.concept;
 
 import com.mmt.diagnosis.domain.Concept;
-import com.mmt.diagnosis.repository.ConceptRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

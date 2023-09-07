@@ -4,7 +4,7 @@ import com.mmt.diagnosis.domain.Student;
 import com.mmt.diagnosis.dto.student.StudentCreateRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.student.StudentUpdateRequest;
-import com.mmt.diagnosis.repository.StudentRepository;
+import com.mmt.diagnosis.repository.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

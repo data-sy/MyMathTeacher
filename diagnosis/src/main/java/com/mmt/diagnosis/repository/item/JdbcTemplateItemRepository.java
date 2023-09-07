@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.repository.item;
 
 import com.mmt.diagnosis.domain.TestItems;
-import com.mmt.diagnosis.repository.ItemRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

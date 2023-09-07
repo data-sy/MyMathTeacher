@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.repository;
+package com.mmt.diagnosis.repository.testItem;
 
 import com.mmt.diagnosis.domain.TestItems;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;

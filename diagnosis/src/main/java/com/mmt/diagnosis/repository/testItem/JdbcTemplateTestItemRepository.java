@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.repository.testItem;
 
 import com.mmt.diagnosis.domain.TestItems;
-import com.mmt.diagnosis.repository.TestItemRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;

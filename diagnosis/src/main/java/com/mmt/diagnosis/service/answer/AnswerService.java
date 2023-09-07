@@ -2,7 +2,7 @@ package com.mmt.diagnosis.service.answer;
 
 import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
-import com.mmt.diagnosis.repository.AnswerRepository;
+import com.mmt.diagnosis.repository.answer.AnswerRepository;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import org.springframework.stereotype.Service;
 

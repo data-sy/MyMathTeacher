@@ -1,14 +1,12 @@
 package com.mmt.diagnosis.repository.studentTest;
 
 import com.mmt.diagnosis.domain.StudentTests;
-import com.mmt.diagnosis.repository.StudentTestRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

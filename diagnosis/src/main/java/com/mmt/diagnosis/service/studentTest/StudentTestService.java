@@ -3,7 +3,7 @@ package com.mmt.diagnosis.service.studentTest;
 import com.mmt.diagnosis.domain.StudentTests;
 import com.mmt.diagnosis.dto.answer.IsRecordResponse;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
-import com.mmt.diagnosis.repository.StudentTestRepository;
+import com.mmt.diagnosis.repository.studentTest.StudentTestRepository;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.stereotype.Service;
 

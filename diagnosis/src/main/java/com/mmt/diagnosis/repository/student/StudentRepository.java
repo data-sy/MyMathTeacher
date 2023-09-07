@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.repository;
+package com.mmt.diagnosis.repository.student;
 
 import com.mmt.diagnosis.domain.Student;
 

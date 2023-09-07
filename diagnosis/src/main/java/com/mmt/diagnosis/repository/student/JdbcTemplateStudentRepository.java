@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.repository.student;
 
 import com.mmt.diagnosis.domain.Student;
-import com.mmt.diagnosis.repository.StudentRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

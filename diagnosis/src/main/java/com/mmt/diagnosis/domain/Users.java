@@ -1,7 +1,10 @@
 package com.mmt.diagnosis.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +12,9 @@ import java.util.Set;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Users {
 
     @JsonIgnore
@@ -30,6 +36,6 @@ public class Users {
     private boolean activated;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Authorities> authoritiesSet = new HashSet<>();
+    private Set<UserAuthority> userAuthoritySet = new HashSet<>();
 
 }

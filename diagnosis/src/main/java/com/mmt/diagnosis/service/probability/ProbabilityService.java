@@ -3,8 +3,8 @@ package com.mmt.diagnosis.service.probability;
 import com.mmt.diagnosis.domain.Probability;
 import com.mmt.diagnosis.domain.StudentTests;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
-import com.mmt.diagnosis.repository.AnswerRepository;
-import com.mmt.diagnosis.repository.ProbabilityRepository;
+import com.mmt.diagnosis.repository.answer.AnswerRepository;
+import com.mmt.diagnosis.repository.probability.ProbabilityRepository;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import org.springframework.stereotype.Service;
 

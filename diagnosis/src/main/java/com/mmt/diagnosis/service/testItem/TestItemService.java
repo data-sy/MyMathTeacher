@@ -4,7 +4,7 @@ import com.mmt.diagnosis.dto.preview.PreviewResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemCreateRequest;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
-import com.mmt.diagnosis.repository.TestItemRepository;
+import com.mmt.diagnosis.repository.testItem.TestItemRepository;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.test.TestService;
 import org.springframework.stereotype.Service;

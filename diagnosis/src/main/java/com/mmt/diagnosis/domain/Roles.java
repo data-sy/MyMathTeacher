@@ -1,14 +1,21 @@
-package com.mmt.diagnosis.domain;
-
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
-@Data
-public class Roles {
-
-    @Id
-    private String roleName;
-}
+//package com.mmt.diagnosis.domain;
+//
+//import lombok.AllArgsConstructor;
+//import lombok.Builder;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//
+//@Entity
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//public class Roles {
+//
+//    @Id
+//    private String roleName;
+//
+//}

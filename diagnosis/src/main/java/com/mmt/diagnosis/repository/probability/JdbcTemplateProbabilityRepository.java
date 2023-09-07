@@ -3,7 +3,6 @@ package com.mmt.diagnosis.repository.probability;
 import com.mmt.diagnosis.domain.Item;
 import com.mmt.diagnosis.domain.ItemProbability;
 import com.mmt.diagnosis.domain.Probability;
-import com.mmt.diagnosis.repository.ProbabilityRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;

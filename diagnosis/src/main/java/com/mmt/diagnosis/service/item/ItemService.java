@@ -1,7 +1,7 @@
 package com.mmt.diagnosis.service.item;
 
 import com.mmt.diagnosis.domain.TestItems;
-import com.mmt.diagnosis.repository.ItemRepository;
+import com.mmt.diagnosis.repository.item.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

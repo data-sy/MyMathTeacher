@@ -1,7 +1,7 @@
 package com.mmt.diagnosis.service.concept;
 
 import com.mmt.diagnosis.dto.concept.ConceptResponse;
-import com.mmt.diagnosis.repository.ConceptRepository;
+import com.mmt.diagnosis.repository.concept.ConceptRepository;
 import org.springframework.stereotype.Service;
 
 @Service

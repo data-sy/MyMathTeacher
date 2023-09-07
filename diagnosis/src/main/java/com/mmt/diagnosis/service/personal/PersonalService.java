@@ -2,7 +2,7 @@ package com.mmt.diagnosis.service.personal;
 
 import com.mmt.diagnosis.domain.TestItems;
 import com.mmt.diagnosis.dto.personal.*;
-import com.mmt.diagnosis.repository.ProbabilityRepository;
+import com.mmt.diagnosis.repository.probability.ProbabilityRepository;
 import com.mmt.diagnosis.service.item.ItemService;
 import com.mmt.diagnosis.service.testItem.TestItemConverter;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.repository;
+package com.mmt.diagnosis.repository.probability;
 
 import com.mmt.diagnosis.domain.Item;
 import com.mmt.diagnosis.domain.ItemProbability;

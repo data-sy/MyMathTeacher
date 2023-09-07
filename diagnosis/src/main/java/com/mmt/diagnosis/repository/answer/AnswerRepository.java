@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.repository;
+package com.mmt.diagnosis.repository.answer;
 
 import com.mmt.diagnosis.domain.Answer;
 import com.mmt.diagnosis.domain.AnswerCode;
