@@ -58,8 +58,8 @@ public class SecurityConfig {
                         // 해당 요청 접근 허용
                         .requestMatchers(new AntPathRequestMatcher("/api/hello")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/authenticate")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/api/signup")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/api/user/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/signup")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/user/**")).permitAll()
                         // 나머지 요청은 모두 인증
                         .anyRequest().authenticated()
                 )
