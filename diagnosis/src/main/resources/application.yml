@@ -22,8 +22,9 @@ spring:
 jwt:
   header: Authorization
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-  access-token-validity-in-seconds: 10
-  refresh-token-validity-in-seconds: 100
+  # 30초 / 10분
+  access-token-validity-in-seconds: 30
+  refresh-token-validity-in-seconds: 600
 
 logging:
   level:
@@ -70,3 +71,4 @@ logging:
 #        max-active: 10
 #        max-idle: 10
 #        min-idle: 2
+# 만료시간 30분 / 3일

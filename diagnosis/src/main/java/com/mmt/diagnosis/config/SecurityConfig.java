@@ -4,6 +4,7 @@ import com.mmt.diagnosis.jwt.JwtAccessDeniedHandler;
 import com.mmt.diagnosis.jwt.JwtAuthenticationEntryPoint;
 import com.mmt.diagnosis.jwt.JwtFilter;
 import com.mmt.diagnosis.jwt.TokenProvider;
+import com.mmt.diagnosis.util.RedisUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -22,11 +23,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final TokenProvider tokenProvider;
+    private final RedisUtil redisUtil;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
-    public SecurityConfig(TokenProvider tokenProvider, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, JwtAccessDeniedHandler jwtAccessDeniedHandler) {
+    public SecurityConfig(TokenProvider tokenProvider, RedisUtil redisUtil, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, JwtAccessDeniedHandler jwtAccessDeniedHandler) {
         this.tokenProvider = tokenProvider;
+        this.redisUtil = redisUtil;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
     }
@@ -42,7 +45,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())       // rest api, token 사용하므로
 
                 // 우리가 만들어둔 필터들 시큐리티 로직에 적용필터 적용
-                .addFilterBefore(new JwtFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(tokenProvider, redisUtil), UsernamePasswordAuthenticationFilter.class)
 //                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
 //                // 필터 2개 안 되면 jwt는 따로 만들어서 apply
 //                .apply(new JwtSecurityConfig(tokenProvider));
@@ -56,10 +59,10 @@ public class SecurityConfig {
                 // 요청들 접근 제한
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         // 해당 요청 접근 허용
-                        .requestMatchers(new AntPathRequestMatcher("/api/hello")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/api/authenticate")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/api/signup")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/api/user/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/hello")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/signup")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/authenticate")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/reissue")).permitAll()
                         // 나머지 요청은 모두 인증
                         .anyRequest().authenticated()
                 )
