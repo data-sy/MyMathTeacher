@@ -15,13 +15,15 @@ spring:
         show_sql: true
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
+  redis:
+    port: 6379
+    host: localhost
 
 jwt:
   header: Authorization
-  # HS512 ( 512bit = 64byte secret key )
-  # HS256
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-#  token-validity-in-seconds: 86400
+  access-token-validity-in-seconds: 10
+  refresh-token-validity-in-seconds: 100
 
 logging:
   level:
@@ -45,13 +47,15 @@ spring:
         show_sql: true
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
+  redis:
+    port: 6379
+    host: localhost
 
 jwt:
   header: Authorization
-  # HS512 ( 512bit = 64byte secret key )
-  # HS256
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-#  token-validity-in-seconds: 86400
+  access-token-validity-in-seconds: 60
+  refresh-token-validity-in-seconds: 600
 
 logging:
   level:
@@ -60,3 +64,9 @@ logging:
 ---
 # 배포 전 배포 설정 만들기 ( on-profile: dev, password: "Show0715!" )
 # password 하드코딩 된 부분 리팩토링
+# redis: 속성 추가
+#    lettuce:
+#      pool:
+#        max-active: 10
+#        max-idle: 10
+#        min-idle: 2
