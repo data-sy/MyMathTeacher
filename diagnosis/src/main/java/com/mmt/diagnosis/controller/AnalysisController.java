@@ -5,12 +5,10 @@ import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.AI.AIOutputRequest;
 import com.mmt.diagnosis.service.answer.AnswerService;
 import com.mmt.diagnosis.service.probability.ProbabilityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/v1/predict")
 public class AnalysisController {
 
     private final AnswerService answerService;
@@ -24,7 +22,7 @@ public class AnalysisController {
     /**
      * AI input 데이터 플라스크에 제공
      */
-    @GetMapping("/predict")
+    @GetMapping("")
     public AIInputResponse getAIInput(@RequestBody AIInputRequest request){
         return answerService.findAIInput(request.getStudentTestId());
     }
@@ -32,7 +30,7 @@ public class AnalysisController {
     /**
      * AI output 데이터 DB에 저장
      */
-    @PostMapping("/predict")
+    @PostMapping("")
     public void create(@RequestBody AIOutputRequest request){
         probabilityService.create(request.getStudentTestId(), request.getProbabilityList());
     }

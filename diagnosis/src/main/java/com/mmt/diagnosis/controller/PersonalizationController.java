@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/personalization")
 public class PersonalizationController {
 
     private final StudentService studentService;
@@ -42,7 +43,7 @@ public class PersonalizationController {
     /**
      * 학생 목록
      */
-    @GetMapping("/personalization/students")
+    @GetMapping("/students")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
         return studentService.findStudents(request.getTeacherId());
     }
@@ -50,7 +51,7 @@ public class PersonalizationController {
     /**
      * 학습지 목록
      */
-    @GetMapping("/personalization/tests")
+    @GetMapping("/tests")
     public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
         return studentTestService.findTests(request.getStudentId());
     }
@@ -58,7 +59,7 @@ public class PersonalizationController {
     /**
      * 선택한 학습지의 분석 결과 보기
      */
-    @GetMapping("/personalization/tests/{studentTestId}")
+    @GetMapping("/tests/{studentTestId}")
     public DetailsResponse getDetails(@PathVariable Long studentTestId){
         return probabilityService.findDetails(studentTestId);
     }
@@ -66,7 +67,7 @@ public class PersonalizationController {
     /**
      * [상세보기] 선택한 단위개념 자세히 보기
      */
-    @GetMapping("personalization/tests/items/{conceptId}")
+    @GetMapping("/tests/items/{conceptId}")
     public ConceptResponse getConcept(@PathVariable int conceptId){
         return conceptService.findOne(conceptId);
     }
@@ -75,7 +76,7 @@ public class PersonalizationController {
      * 맞춤 학습지 만들기
      * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
-    @GetMapping("personalization/personalized-assessment-items")
+    @GetMapping("/personalized-assessment-items")
     public PersonalItemsResponse getPersonalItems(@RequestBody PersonalItemsGetRequest request){
         return personalService.findPersonalItems(request);
     }
@@ -84,7 +85,7 @@ public class PersonalizationController {
      * 맞춤 학습지 미리보기
      * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
-    @GetMapping("personalization/personalized-tests")
+    @GetMapping("/personalized-tests")
     public PersonalTestResponse getPersonalTest(@RequestBody PersonalTestGetRequest request){
         return personalService.preview(request);
     }
@@ -93,7 +94,7 @@ public class PersonalizationController {
      * 맞춤 학습지 다운로드
      * 리팩토링 : 현재는 데이터 이동도 같이 하고 있음. 이 부분 프론트에서 개선하기
      */
-    @PostMapping("personalization/personalized-tests")
+    @PostMapping("/personalized-tests")
     public void create(@RequestBody PersonalCreateRequest request){
         Long testId = testService.create(request.getNewTestName(), request.getNewTestComments());
         studentTestService.create(request.getStudentId(), testId, request.getStudentTestId());

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/students")
 public class StudentController {
 
     private final StudentService studentService;
@@ -18,27 +19,27 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/students")
+    @PostMapping("")
     public void create(@RequestBody StudentCreateRequest request) {
         studentService.join(request);
     }
 
-    @GetMapping("/students")
+    @GetMapping("")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
         return studentService.findStudents(request.getTeacherId());
     }
 
-    @GetMapping("/students/{studentId}")
+    @GetMapping("/{studentId}")
     public StudentResponse getStudent(@PathVariable Long studentId){
         return studentService.findOne(studentId);
     }
 
-    @PutMapping("/students")
+    @PutMapping("")
     public void update(@RequestBody StudentUpdateRequest request) {
         studentService.update(request);
     }
 
-    @DeleteMapping("/students")
+    @DeleteMapping("")
     public void delete(@RequestParam Long studentId) { studentService.delete(studentId); }
 
 }

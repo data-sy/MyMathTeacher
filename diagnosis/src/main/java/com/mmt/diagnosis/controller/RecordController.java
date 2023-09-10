@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/record")
 public class RecordController {
 
     private final StudentService studentService;
@@ -35,7 +36,7 @@ public class RecordController {
      * 학생 목록
      * 리팩토링 : id와 이름만 받는 메서드 오버로드 만들기 (지금은 모든 정보 다 받음)
      */
-    @GetMapping("/record/students")
+    @GetMapping("/students")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
         return studentService.findStudents(request.getTeacherId());
     }
@@ -43,7 +44,7 @@ public class RecordController {
     /**
      * 학습지 목록 : 학생의 답안 기록 여부 포함
      */
-    @GetMapping("/record/tests")
+    @GetMapping("/tests")
     public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
         return studentTestService.findTests(request.getStudentId());
     }
@@ -51,7 +52,7 @@ public class RecordController {
     /**
      * 답안 기록 : 선택한 학습지 상세보기
      */
-    @GetMapping("record/answers")
+    @GetMapping("/answers")
     public PreviewResponse getTest(@RequestBody AnswerGetRequest request){
         return studentTestService.preview(request.getStudentTestId());
     }
@@ -59,7 +60,7 @@ public class RecordController {
     /**
      * 답안 기록 저장
      */
-    @PostMapping("record/answers")
+    @PostMapping("/answers")
     public void create(@RequestBody AnswerCreateRequest request){
         answerService.create(request);
     }
