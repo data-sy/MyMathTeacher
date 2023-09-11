@@ -2,10 +2,12 @@ import json
 
 from flask import Flask, request, jsonify
 import requests
+from flask_cors import CORS
 
 from predict import predict
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/v1/*": {"origins": "http://localhost:3000,http://localhost:8080"}})
 
 @app.route('/')
 def hello_world():
@@ -33,17 +35,24 @@ def aitest():
     }
     return jsonify(response_data), 200
 
-@app.route('/analysis', methods=['POST'])
+@app.route('/api/v1/analysis', methods=['POST'])
 def analysis():
-    spring_api_url = 'http://13.125.250.204:8080/predict'
+    # 토큰
+    jwt_token = request.headers.get('Authorization')
+    headers = {
+        "Authorization": jwt_token,
+        "Content-Type": "application/json"
+    }
+
+    spring_api_url = 'http://localhost:8080/api/v1/predict'
 
     # 스프링 서버에서 ai_input 받기
-    response_get = requests.get(spring_api_url, json=request.get_json())
+    response_get = requests.get(spring_api_url, json=request.get_json(), headers=headers)
 
     if response_get.status_code == 200:
         ai_input_response = response_get.json()
         student_test_id = ai_input_response['studentTestid']
-        input_data = ai_input_response['answerCodeResponseList']
+        input_data = [ai_input_response['answerCodeResponseList']]
 
         # 진단
         output = predict(input_data)
@@ -52,11 +61,12 @@ def analysis():
             "studentTestId": student_test_id,
             "probabilityList": output
         }
+
     else:
         return 'Failed to fetch data from Spring 1', 500
 
     # 스프링 서버로 ai_output 보내기
-    response_post = requests.post(spring_api_url, json=response_data)
+    response_post = requests.post(spring_api_url, json=response_data, headers=headers)
 
     if response_post.status_code == 200:
         return jsonify(response_data), 200
@@ -64,4 +74,4 @@ def analysis():
         return 'Failed to fetch data from Spring 2', 500
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0', port=5000)
