@@ -1,5 +1,6 @@
 package com.mmt.diagnosis.service.answer;
 
+import com.mmt.diagnosis.domain.AnswerCode;
 import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
 import com.mmt.diagnosis.repository.answer.AnswerRepository;
@@ -26,12 +27,15 @@ public class AnswerService {
 
     public AIInputResponse findAIInput(Long studentTestId){
         AIInputResponse aiInputResponse = new AIInputResponse(studentTestId);
-        List<List<List<Integer>>> answerCodeResponseList = new ArrayList<>();
+        List<List<Integer>> answerCodeResponseList = new ArrayList<>();
         // 조건에 맞는 student_test_id들 찾기
         List<Long> stIdList = studentTestService.findBefore(studentTestId);
         // student_test_id별 정오답 기록을 answerCodeList에 넣기
         for (Long stId : stIdList){
-            answerCodeResponseList.add(AnswerConverter.convertToIntegerList(answerRepository.findAnswerCode(stId)));
+            List<AnswerCode> answerCodeList = answerRepository.findAnswerCode(stId);
+            for (AnswerCode answerCode : answerCodeList){
+                answerCodeResponseList.add(AnswerConverter.convertToInteger(answerCode));
+            }
         }
         aiInputResponse.setAnswerCodeResponseList(answerCodeResponseList);
         return aiInputResponse;

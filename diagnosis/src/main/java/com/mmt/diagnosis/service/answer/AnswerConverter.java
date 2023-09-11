@@ -38,15 +38,16 @@ public class AnswerConverter {
         integerList.add(answerCode.getAnswerCode());
         return integerList;
     }
-    public static List<List<Integer>> convertToIntegerList(List<AnswerCode> lists){
-        List<List<Integer>> result = new ArrayList<>();
-        for (AnswerCode answerCode : lists ){
-            result.add(convertToInteger(answerCode));
-        }
-        return result;
-    }
 
 //    // response 수정으로 더 이상 쓰이지 않는 메서드
+//    public static List<List<Integer>> convertToIntegerList(List<AnswerCode> lists){
+//        List<List<Integer>> result = new ArrayList<>();
+//        for (AnswerCode answerCode : lists ){
+//            result.add(convertToInteger(answerCode));
+//        }
+//        return result;
+//    }
+
 //    public static AnswerCodeResponse convertToAnswerCodeResponse(AnswerCode answerCode){
 //        AnswerCodeResponse answerCodeResponse = new AnswerCodeResponse();
 //        answerCodeResponse.setSkillId(answerCode.getSkillId());

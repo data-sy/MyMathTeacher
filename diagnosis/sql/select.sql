@@ -4,6 +4,8 @@ select * from students;
 
 select * from tests;
 
+select * from items;
+
 select * from students_tests;
 
 select * from tests_items;
@@ -26,7 +28,8 @@ select * from tests_items;
 
 SELECT i.item_id, i.item_image_path, ti.test_item_number FROM tests_items ti JOIN items i ON ti.item_id = i.item_id WHERE ti.test_id = 1;
 
--- 가영이(1)는 1번, 나영이(2)는 5번, 다영이(3)는 9, 11번 진단학습지 insert
+-- 2번 나영이는 2, 4, 5 진단학습지 insert (3 학습지는 다운로드 하고 답은 기록 x)
+-- 3번 다영이는 6, 7, 8, 9, 10 진단학습지 insert
 select * from answers;
 
 -- 학습지 당 정오답 여부 함께 select

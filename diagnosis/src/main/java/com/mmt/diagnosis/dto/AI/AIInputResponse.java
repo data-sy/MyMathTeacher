@@ -8,7 +8,7 @@ import java.util.List;
 public class AIInputResponse {
 
     private Long studentTestid;
-    private List<List<List<Integer>>> answerCodeResponseList;
+    private List<List<Integer>> answerCodeResponseList;
 
     public AIInputResponse(Long studentTestid) {
         this.studentTestid = studentTestid;

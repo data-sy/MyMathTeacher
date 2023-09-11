@@ -3,6 +3,7 @@ create database mmt;
 use mmt;
 
 show tables;
+
 -- CREATE 순서
 	-- 단위개념 -> 지식체계, 문항
     -- 학습지 -> 학습지_문항
