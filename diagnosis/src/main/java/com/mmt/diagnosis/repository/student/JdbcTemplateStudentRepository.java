@@ -31,11 +31,11 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
         return jdbcTemplate.query(sql, studentRowMapper(), teacherId);
     }
 
-    @Override
-    public Student findById(Long studentId){
-        String sql = "SELECT * FROM students WHERE student_id = ?";
-        return jdbcTemplate.query(sql, studentRowMapper(), studentId).get(0);
-    }
+//    @Override
+//    public Student findById(Long studentId){
+//        String sql = "SELECT * FROM students WHERE student_id = ?";
+//        return jdbcTemplate.query(sql, studentRowMapper(), studentId).get(0);
+//    }
 
     @Override
     public Student findName(Long studentId){

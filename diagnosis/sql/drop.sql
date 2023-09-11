@@ -3,22 +3,29 @@ create database mmt;
 use mmt;
 
 show tables;
+-- CREATE 순서
+	-- 단위개념 -> 지식체계, 문항
+    -- 학습지 -> 학습지_문항
+    -- 사용자 (-> 롤 -> 권한) -> 학생
+    -- 학생_학습지 -> 답안 -> 확률
 
 -- DROP 순서 (CREATE의 역순)
-	-- 확률 -> 답안 -> 학생_학습지, 학습지_문항 -> 학습지
+	-- 확률 -> 답안 -> 학생_학습지
     -- 학생 -> (권한 -> 롤 DROP 후) 사용자
+    -- 학습지_문항 -> 학습지
     -- 문항, 지식체계 -> 단위개념
 
 -- 테이블 이름 소문자로 수정
 DROP TABLE IF EXISTS probabilities;
 DROP TABLE IF EXISTS answers;
-DROP TABLE IF EXISTS tests_items;
 DROP TABLE IF EXISTS students_tests;
-DROP TABLE IF EXISTS tests;
 
 DROP TABLE IF EXISTS students;
 -- DROP TABLE IF EXISTS users; -- jwt 추가되면서 users 테이블 따로 관리
 -- jwt.sql 파일 가서 authorities, rolse, users 드랍
+
+DROP TABLE IF EXISTS tests_items;
+DROP TABLE IF EXISTS tests;
 
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS knowledge_space;

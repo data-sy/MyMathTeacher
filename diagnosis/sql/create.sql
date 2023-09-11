@@ -1,7 +1,8 @@
 -- CREATE 순서
 	-- 단위개념 -> 지식체계, 문항
+    -- 학습지 -> 학습지_문항
     -- 사용자 (-> 롤 -> 권한) -> 학생
-    -- (학생, 문항), 학습지 -> 학생_학습지, 학습지_문항 -> 답안 -> 확률
+    -- 학생_학습지 -> 답안 -> 확률
 
 -- 단위개념 테이블
 CREATE TABLE concepts (
@@ -39,6 +40,25 @@ CREATE TABLE items (
 	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
 );
 
+-- 학습지 테이블
+CREATE TABLE tests (
+	test_id	BIGINT auto_increment,
+	test_name VARCHAR(20),
+	test_comments VARCHAR(200),
+	PRIMARY KEY (test_id)
+);
+
+-- 학습지-문항 테이블
+CREATE TABLE tests_items (
+	test_item_id BIGINT auto_increment,
+	test_id	BIGINT,
+	item_id	BIGINT,
+	test_item_number INT,
+	PRIMARY KEY (test_item_id),
+	FOREIGN KEY (test_id) REFERENCES tests (test_id),
+	FOREIGN KEY (item_id) REFERENCES items (item_id)
+);
+
 -- 사용자 테이블 -- jwt로 이동
 -- CREATE TABLE users (
 -- 	user_id	VARCHAR(20),
@@ -61,14 +81,6 @@ CREATE TABLE students (
 	FOREIGN KEY (teacher_id) REFERENCES users (user_id)
 );
 
--- 학습지 테이블
-CREATE TABLE tests (
-	test_id	BIGINT auto_increment,
-	test_name VARCHAR(20),
-	test_comments VARCHAR(200),
-	PRIMARY KEY (test_id)
-);
-
 -- 학생_학습지 테이블
 CREATE TABLE students_tests (
 	student_test_id	BIGINT auto_increment,
@@ -80,17 +92,6 @@ CREATE TABLE students_tests (
 	FOREIGN KEY (student_id) REFERENCES students (student_id),
 	FOREIGN KEY (test_id) REFERENCES tests (test_id),
     FOREIGN KEY (diagnosis_id) REFERENCES students_tests (student_test_id)
-);
-
--- 학습지-문항 테이블
-CREATE TABLE tests_items (
-	test_item_id BIGINT auto_increment,
-	test_id	BIGINT,
-	item_id	BIGINT,
-	test_item_number INT,
-	PRIMARY KEY (test_item_id),
-	FOREIGN KEY (test_id) REFERENCES tests (test_id),
-	FOREIGN KEY (item_id) REFERENCES items (item_id)
 );
 
 -- 답안 테이블

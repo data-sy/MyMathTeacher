@@ -1,9 +1,9 @@
-package com.mmt.diagnosis.dto.answer;
+package com.mmt.diagnosis.dto.test;
 
 import lombok.Data;
 
 @Data
-public class IsRecordResponse {
+public class StudentTestsResponse {
 
     private Long studentTestId;
     private String testName;

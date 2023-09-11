@@ -1,24 +1,24 @@
 package com.mmt.diagnosis.service.studentTest;
 
 import com.mmt.diagnosis.domain.StudentTests;
-import com.mmt.diagnosis.dto.answer.IsRecordResponse;
+import com.mmt.diagnosis.dto.test.StudentTestsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentTestConverter {
 
-    public static IsRecordResponse convertToStudentTestResponse(StudentTests studentTests) {
-        IsRecordResponse isRecordResponse = new IsRecordResponse();
-        isRecordResponse.setStudentTestId(studentTests.getStudentTestId());
-        isRecordResponse.setTestName(studentTests.getTestName());
-        isRecordResponse.setTestComments(studentTests.getTestComments());
-        isRecordResponse.setRecord(studentTests.isRecord());
-        return isRecordResponse;
+    public static StudentTestsResponse convertToStudentTestResponse(StudentTests studentTests) {
+        StudentTestsResponse studentTestsResponse = new StudentTestsResponse();
+        studentTestsResponse.setStudentTestId(studentTests.getStudentTestId());
+        studentTestsResponse.setTestName(studentTests.getTestName());
+        studentTestsResponse.setTestComments(studentTests.getTestComments());
+        studentTestsResponse.setRecord(studentTests.isRecord());
+        return studentTestsResponse;
     }
 
-    public static List<IsRecordResponse> convertListToStudentTestResponseList(List<StudentTests> studentTestsList) {
-        List<IsRecordResponse> responseList = new ArrayList<>();
+    public static List<StudentTestsResponse> convertListToStudentTestResponseList(List<StudentTests> studentTestsList) {
+        List<StudentTestsResponse> responseList = new ArrayList<>();
         for (StudentTests studentTests : studentTestsList) {
             responseList.add(convertToStudentTestResponse(studentTests));
         }

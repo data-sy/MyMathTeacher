@@ -27,9 +27,9 @@ public class StudentService {
         return StudentConverter.convertListToStudentResponseList(studentRepository.findAll(teacherId));
     }
 
-    public StudentResponse findOne(Long studentId){
-        return StudentConverter.convertToStudentResponse(studentRepository.findById(studentId));
-    }
+//    public StudentResponse findOne(Long studentId){
+//        return StudentConverter.convertToStudentResponse(studentRepository.findById(studentId));
+//    }
 
     public String findName(Long studentId){
         return studentRepository.findName(studentId).getStudentName();

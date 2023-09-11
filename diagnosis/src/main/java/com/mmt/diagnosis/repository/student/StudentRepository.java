@@ -10,7 +10,7 @@ public interface StudentRepository {
 
     List<Student> findAll(Long teacherId);
 
-    Student findById(Long studentId);
+//    Student findById(Long studentId);
 
     Student findName(Long studentId);
 

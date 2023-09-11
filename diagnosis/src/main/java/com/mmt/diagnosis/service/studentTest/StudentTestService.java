@@ -1,7 +1,7 @@
 package com.mmt.diagnosis.service.studentTest;
 
 import com.mmt.diagnosis.domain.StudentTests;
-import com.mmt.diagnosis.dto.answer.IsRecordResponse;
+import com.mmt.diagnosis.dto.test.StudentTestsResponse;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
 import com.mmt.diagnosis.repository.studentTest.StudentTestRepository;
 import com.mmt.diagnosis.service.testItem.TestItemService;
@@ -28,7 +28,7 @@ public class StudentTestService {
         studentTestRepository.save(studentId, testId, diagnosisId);
     }
 
-    public List<IsRecordResponse> findTests(Long studentId){
+    public List<StudentTestsResponse> findTests(Long studentId){
         return StudentTestConverter.convertListToStudentTestResponseList(studentTestRepository.findByStudentId(studentId));
     }
 
