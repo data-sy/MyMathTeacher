@@ -32,6 +32,7 @@ public class RecordController {
         this.answerService = answerService;
     }
 
+    // 학생 목록, 학습지 목록 삭제
     /**
      * 학생 목록
      * 리팩토링 : id와 이름만 받는 메서드 오버로드 만들기 (지금은 모든 정보 다 받음)

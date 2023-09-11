@@ -22,13 +22,14 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello(){
-        return ResponseEntity.ok("hello");
-    }
-
+    /**
+     * login
+     * 수정할 것 : 로그인DTO를 loginRequest로 바꾸고 변수명도 request로 바꾸기
+     * 로그인 한 회원의 id도 꺼내서 토큰과 같이 담아서 loginResponse 만들기
+     * 아! 그러면 토큰 DTO 말고 그냥 토큰 자체 담아도 될 듯!
+     */
     @PostMapping("/authenticate")
-    public ResponseEntity<TokenDTO> authorize(@Valid @RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
         JwtToken token = authService.authorize(loginDTO.getUserEmail(), loginDTO.getUserPassword());
 
         // 토큰을 Response Header에도 넣어주자

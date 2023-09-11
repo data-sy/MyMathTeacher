@@ -40,6 +40,7 @@ public class PersonalizationController {
         this.testItemService = testItemService;
     }
 
+    // 학생 목록, 학습지 목록 삭제
     /**
      * 학생 목록
      */

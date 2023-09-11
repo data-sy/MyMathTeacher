@@ -59,7 +59,7 @@ public class SecurityConfig {
                 // 요청들 접근 제한
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         // 해당 요청 접근 허용
-                        .requestMatchers(new AntPathRequestMatcher("/api/v1/hello")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/v1/hello/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/signup")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/authenticate")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/reissue")).permitAll()

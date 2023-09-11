@@ -19,26 +19,41 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    /**
+     * 학생 등록
+     */
     @PostMapping("")
     public void create(@RequestBody StudentCreateRequest request) {
         studentService.join(request);
     }
 
+    /**
+     * 학생 목록보기
+     */
     @GetMapping("")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
         return studentService.findStudents(request.getTeacherId());
     }
 
-    @GetMapping("/{studentId}")
-    public StudentResponse getStudent(@PathVariable Long studentId){
-        return studentService.findOne(studentId);
-    }
+//    /**
+//     * 학생 상세보기
+//     */
+//    @GetMapping("/{studentId}")
+//    public StudentResponse getStudent(@PathVariable Long studentId){
+//        return studentService.findOne(studentId);
+//    }
 
+    /**
+     * 학생 수정
+     */
     @PutMapping("")
     public void update(@RequestBody StudentUpdateRequest request) {
         studentService.update(request);
     }
 
+    /**
+     * 학생 삭제
+     */
     @DeleteMapping("")
     public void delete(@RequestParam Long studentId) { studentService.delete(studentId); }
 

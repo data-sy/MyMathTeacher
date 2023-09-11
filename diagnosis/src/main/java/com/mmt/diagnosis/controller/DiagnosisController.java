@@ -30,8 +30,10 @@ public class DiagnosisController {
         this.studentTestService = studentTestService;
     }
 
+    // 수정 : 학생 목록 학습지 목록은 학생컨트롤러에 만들어 둔 것 사용하기!
     /**
      * 학생 목록
+     * 수정할 것 : 삭제! studentController에 있는 거 사용하면 돼
      */
     @GetMapping("/students")
     public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
@@ -40,12 +42,14 @@ public class DiagnosisController {
 
     /**
      * 학생 상세보기
+     * 수정할 것 : 삭제! studentController에 있는 거 사용하면 돼
      */
     @GetMapping("/students/{studentId}")
     public StudentResponse getStudent(@PathVariable Long studentId){
         return studentService.findOne(studentId);
     }
 
+    // 수정할 것 : 학습지 컨트롤러 만들어서 학습지 목록, 학습지 상세보기는 거기로 옮기기
     /**
      * 학습지 목록
      */
