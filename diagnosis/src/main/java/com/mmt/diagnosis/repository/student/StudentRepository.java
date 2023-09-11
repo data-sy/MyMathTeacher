@@ -8,13 +8,13 @@ public interface StudentRepository {
 
     void save(Student student);
 
-    List<Student> findAll(String teacherId);
+    List<Student> findAll(Long teacherId);
 
     Student findById(Long studentId);
 
     Student findName(Long studentId);
 
-    boolean isStudentNotExist(Long id);
+    boolean isStudentNotExist(Long studentId);
 
     void update(Student student);
 

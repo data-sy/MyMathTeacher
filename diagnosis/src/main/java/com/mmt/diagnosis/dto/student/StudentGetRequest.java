@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class StudentGetRequest {
 
-    private String teacherId;
+    private Long teacherId;
 
 }

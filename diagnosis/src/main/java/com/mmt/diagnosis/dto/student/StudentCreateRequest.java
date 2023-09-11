@@ -12,6 +12,6 @@ public class StudentCreateRequest {
     private LocalDate studentBirthdate;
     private String studentSchool;
     private String studentComments;
-    private String teacherId;
+    private Long teacherId;
 
 }

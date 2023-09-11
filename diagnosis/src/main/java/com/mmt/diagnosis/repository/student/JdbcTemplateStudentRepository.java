@@ -26,7 +26,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
     }
 
     @Override
-    public List<Student> findAll(String teacherId){
+    public List<Student> findAll(Long teacherId){
         String sql = "SELECT * FROM students WHERE teacher_id = ?";
         return jdbcTemplate.query(sql, studentRowMapper(), teacherId);
     }
@@ -56,9 +56,9 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
 //    }
 
     @Override
-    public boolean isStudentNotExist(Long id){
-        String readSql = "SELECT * FROM students WHERE student_id = ?";
-        return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
+    public boolean isStudentNotExist(Long studentId){
+        String sql = "SELECT * FROM students WHERE student_id = ?";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> 0, studentId).isEmpty();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class JdbcTemplateStudentRepository implements StudentRepository {
             student.setStudentBirthdate(rs.getDate("student_birthdate").toLocalDate());
             student.setStudentSchool(rs.getString("student_school"));
             student.setStudentComments(rs.getString("student_comments"));
-            student.setTeacherId(rs.getString("teacher_id"));
+            student.setTeacherId(rs.getLong("teacher_id"));
             return student;
         };
     }

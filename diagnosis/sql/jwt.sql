@@ -24,13 +24,13 @@ CREATE TABLE users (
 	PRIMARY KEY (user_id)
 );
 CREATE TABLE authority (
-	authority_name VARCHAR(50),
+	authority_name VARCHAR(20),
 	PRIMARY KEY (authority_name)
 );
 CREATE TABLE user_authority (
 	user_autho_id BIGINT auto_increment,
 	user_id	BIGINT,
-	authority_name VARCHAR(50),
+	authority_name VARCHAR(20),
 	PRIMARY KEY (user_autho_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (authority_name) REFERENCES authority (authority_name)

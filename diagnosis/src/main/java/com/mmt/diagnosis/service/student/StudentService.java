@@ -23,7 +23,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public List<StudentResponse> findStudents(String teacherId){
+    public List<StudentResponse> findStudents(Long teacherId){
         return StudentConverter.convertListToStudentResponseList(studentRepository.findAll(teacherId));
     }
 
