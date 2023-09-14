@@ -79,17 +79,23 @@ public class SecurityConfig {
                 )
                 .formLogin().disable()
                 .httpBasic().disable()
+                .rememberMe().disable()
                 // 요청들 접근 제한
                 .authorizeRequests()
                 .antMatchers("/", "/favicon.ico", "/api/v1/hello/**", "api/v1/signup", "/api/v1/authenticate", "/api/v1/reissue").permitAll()
                 .antMatchers("/login.html", "/oauth2/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .anyRequest().authenticated();
+        http
                 // OAuth2 로그인
                 .oauth2Login()
+//                .authorizationEndpoint().authorizationRequestRepository(cookieAuthorizationRequestRepository)
+//                .and()
+//                .redirectionEndpoint().baseUri("/login/oauth2/code/**")
+//                  .and()
+                .userInfoEndpoint().userService(customOAuth2UserService)
+                .and()
                 .successHandler(oAuth2AuthenticationSuccessHandler)
-                .failureHandler(oAuth2AuthenticationFailureHandler)
-                .userInfoEndpoint().userService(customOAuth2UserService);
+                .failureHandler(oAuth2AuthenticationFailureHandler);
         // 필터 적용
         http
                 .addFilterBefore(new JwtFilter(tokenProvider, redisUtil), UsernamePasswordAuthenticationFilter.class);

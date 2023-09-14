@@ -25,11 +25,12 @@ import static com.mmt.diagnosis.repository.cookie.CookieAuthorizationRequestRepo
 @Component
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
+// 쿠키레파지토리는 securityConfig에서 warning 뜨고 실제로도 안 먹혀서 - 우선 패스
+    // getDefaultTargetUrl를 통해 "/"가 리다이렉트 경로가 되는 중..
 
 //    @Value("${oauth2.authorizedRedirectUri}")
 //    private String redirectUri;
-    private String redirectUri = "http://localhost:8080/login/oauth2/code/google";
+//    private String redirectUri = "http://localhost:8080/login/oauth2/code/google";
 //    private String redirectUri = "http://localhost:8080/login/oauth2/code/naver";
 //    private String redirectUri = "http://localhost:8080/login/oauth2/code/kakao";
 
@@ -67,9 +68,10 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         Optional<String> redirectUri = CookieUtil.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
 
-        if (redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
-            throw new RuntimeException("redirect URIs are not matched.");
-        }
+        // 쿠키에 담는 거 성공하면 주석 제거
+//        if (redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
+//            throw new RuntimeException("redirect URIs are not matched.");
+//        }
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
         //JWT 생성
@@ -86,14 +88,15 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         cookieAuthorizationRequestRepository.removeAuthorizationRequestCookies(request, response);
     }
 
-    private boolean isAuthorizedRedirectUri(String uri) {
-        URI clientRedirectUri = URI.create(uri);
-        URI authorizedUri = URI.create(redirectUri);
-
-        if (authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
-                && authorizedUri.getPort() == clientRedirectUri.getPort()) {
-            return true;
-        }
-        return false;
-    }
+//    private boolean isAuthorizedRedirectUri(String uri) {
+//        URI clientRedirectUri = URI.create(uri);
+//        URI authorizedUri = URI.create(redirectUri);
+//
+//        if (authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
+//                && authorizedUri.getPort() == clientRedirectUri.getPort()) {
+//            return true;
+//        }
+//        return false;
+//    }
+    
 }
