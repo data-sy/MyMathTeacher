@@ -1,4 +1,4 @@
-package com.mmt.diagnosis.service.authority;
+package com.mmt.diagnosis.service.users;
 
 import com.mmt.diagnosis.exception.UnauthorizedException;
 import com.mmt.diagnosis.jwt.JwtToken;
