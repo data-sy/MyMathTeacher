@@ -1,11 +1,10 @@
 spring:
-  config:
-    activate:
-      on-profile: local
+  profiles:
+    include: oauth2
   datasource:
     url: "jdbc:mysql://localhost/mmt"
     username: "root"
-    password: "show0715!"    # 윈도우
+    password: "show0715!"
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -30,38 +29,73 @@ logging:
   level:
     com.mmt: DEBUG
 
----
-spring:
-  config:
-    activate:
-      on-profile: mac
-  datasource:
-    url: "jdbc:mysql://localhost/mmt"
-    username: "root"
-    password: "Show0715!"    # 맥북
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
-  redis:
-    port: 6379
-    host: localhost
-
-jwt:
-  header: Authorization
-  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
-  # 1시간 / 2시간
-  access-token-validity-in-seconds: 3600
-  refresh-token-validity-in-seconds: 7200
-
-logging:
-  level:
-    com.mmt: DEBUG
+## oauth2 적용 과정에서 다중프로파일 방법이 지금 방법은 deprecated - 나중에 수정하기
+# -Dspring.profiles.active=local
+#spring:
+#  config:
+#    activate:
+#      on-profile:
+#        - local
+#  datasource:
+#    url: "jdbc:mysql://localhost/mmt"
+#    username: "root"
+#    password: "show0715!"    # 윈도우
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#  redis:
+#    port: 6379
+#    host: localhost
+#
+#jwt:
+#  header: Authorization
+#  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+#  # 1시간 / 2시간
+#  access-token-validity-in-seconds: 3600
+#  refresh-token-validity-in-seconds: 7200
+#
+#logging:
+#  level:
+#    com.mmt: DEBUG
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: mac
+#  datasource:
+#    url: "jdbc:mysql://localhost/mmt"
+#    username: "root"
+#    password: "Show0715!"    # 맥북
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#  redis:
+#    port: 6379
+#    host: localhost
+#
+#jwt:
+#  header: Authorization
+#  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+#  # 1시간 / 2시간
+#  access-token-validity-in-seconds: 3600
+#  refresh-token-validity-in-seconds: 7200
+#
+#logging:
+#  level:
+#    com.mmt: DEBUG
 
 ---
 # 배포 전 배포 설정 만들기 ( on-profile: dev, password: "Show0715!" )

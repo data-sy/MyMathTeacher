@@ -1,6 +1,7 @@
 package com.mmt.diagnosis.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mmt.diagnosis.oauth2.AuthProvider;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,14 @@ public class Users {
     // 활셩화 여부
     @JsonIgnore
     private boolean activated;
+
+    // OAuth로 추가된 컬럼
+    @JsonIgnore
+    private String oauth2Id;
+
+    @JsonIgnore
+    @Enumerated(EnumType.STRING)
+    private AuthProvider authProvider; // GOOGLE, NAVER, KAKAO
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserAuthority> userAuthoritySet = new HashSet<>();
