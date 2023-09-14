@@ -4,7 +4,7 @@ import com.mmt.diagnosis.dto.users.LoginDTO;
 import com.mmt.diagnosis.dto.users.TokenDTO;
 import com.mmt.diagnosis.jwt.JwtFilter;
 import com.mmt.diagnosis.jwt.JwtToken;
-import com.mmt.diagnosis.service.authority.AuthService;
+import com.mmt.diagnosis.service.users.AuthService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

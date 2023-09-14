@@ -31,39 +31,6 @@ public class PersonalizationController {
         this.testService = testService;
         this.testItemService = testItemService;
     }
-//
-//    // 학생 목록, 학습지 목록 삭제
-//    /**
-//     * 학생 목록
-//     */
-//    @GetMapping("/students")
-//    public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
-//        return studentService.findStudents(request.getTeacherId());
-//    }
-//
-//    /**
-//     * 학습지 목록
-//     */
-//    @GetMapping("/tests")
-//    public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
-//        return studentTestService.findTests(request.getStudentId());
-//    }
-
-//    /**
-//     * 선택한 학습지의 분석 결과 보기
-//     */
-//    @GetMapping("/tests/{studentTestId}")
-//    public DetailsResponse getDetails(@PathVariable Long studentTestId){
-//        return probabilityService.findDetails(studentTestId);
-//    }
-//
-//    /**
-//     * [상세보기] 선택한 단위개념 자세히 보기
-//     */
-//    @GetMapping("/tests/items/{conceptId}")
-//    public ConceptResponse getConcept(@PathVariable int conceptId){
-//        return conceptService.findOne(conceptId);
-//    }
 
     /**
      * 맞춤 학습지 만들기

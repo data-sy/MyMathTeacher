@@ -25,27 +25,6 @@ public class RecordController {
         this.testItemService = testItemService;
         this.answerService = answerService;
     }
-//
-//    // 학생 목록, 학습지 목록 삭제
-//    /**
-//     * 학생 목록
-//     * 리팩토링 : id와 이름만 받는 메서드 오버로드 만들기 (지금은 모든 정보 다 받음)
-//     */
-//    @GetMapping("/students")
-//    public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
-//        return studentService.findStudents(request.getTeacherId());
-//    }
-//
-//    // 기록과 맞춤의 학습지 목록보기는 바디로 보내는 게 아니라 파라미터로 보내기
-//    //  public void delete(@RequestParam Long studentId) 처럼
-//    // 여기서 파라미터는 studentId
-//    /**
-//     * 학습지 목록 : 학생의 답안 기록 여부 포함
-//     */
-//    @GetMapping("/tests")
-//    public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
-//        return studentTestService.findTests(request.getStudentId());
-//    }
 
     /**
      * 답안 기록 : 선택한 학습지 미리보기

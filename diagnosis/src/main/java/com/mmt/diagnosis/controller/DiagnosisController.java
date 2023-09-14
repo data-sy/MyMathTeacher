@@ -2,17 +2,11 @@ package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.preview.PreviewRequest;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
-import com.mmt.diagnosis.dto.student.StudentGetRequest;
-import com.mmt.diagnosis.dto.student.StudentResponse;
-import com.mmt.diagnosis.dto.test.TestResponse;
-import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.service.student.StudentService;
 import com.mmt.diagnosis.service.studentTest.StudentTestService;
 import com.mmt.diagnosis.service.test.TestService;
 import com.mmt.diagnosis.service.testItem.TestItemService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/diagnosis")

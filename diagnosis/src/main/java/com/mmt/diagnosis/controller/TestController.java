@@ -1,8 +1,8 @@
 package com.mmt.diagnosis.controller;
 
+import com.mmt.diagnosis.dto.concept.ConceptResponse;
 import com.mmt.diagnosis.dto.test.StudentTestsRequest;
 import com.mmt.diagnosis.dto.test.StudentTestsResponse;
-import com.mmt.diagnosis.dto.concept.ConceptResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
 import com.mmt.diagnosis.service.concept.ConceptService;
@@ -39,16 +39,11 @@ public class TestController {
 
     /**
      * 학생에 따른 학습지 목록
-     * 리팩토링 : 메서드 만들 당시에는 기록 페이지용으로 만들어서 DTO이름이 IsRecord =>
      */
     @GetMapping("/student")
     public List<StudentTestsResponse> getTests(@RequestBody StudentTestsRequest request){
         return studentTestService.findTests(request.getStudentId());
     }
-//    @GetMapping("/tests")
-//    public List<IsRecordResponse> getTests(@RequestBody IsRecordRequest request){
-//        return studentTestService.findTests(request.getStudentId());
-//    }
 
     /**
      * 학습지 상세보기
@@ -59,7 +54,6 @@ public class TestController {
         return testItemService.findTestItems(testId);
     }
 
-
     /**
      * 문항 상세보기 : [상세보기]버튼 클릭 시 단위개념 자세히 보기
      */
@@ -67,6 +61,5 @@ public class TestController {
     public ConceptResponse getConcept(@PathVariable int conceptId){
         return conceptService.findOne(conceptId);
     }
-
 
 }

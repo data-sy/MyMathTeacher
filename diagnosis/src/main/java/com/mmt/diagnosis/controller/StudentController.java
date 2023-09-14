@@ -35,14 +35,6 @@ public class StudentController {
         return studentService.findStudents(request.getTeacherId());
     }
 
-//    /**
-//     * 학생 상세보기
-//     */
-//    @GetMapping("/{studentId}")
-//    public StudentResponse getStudent(@PathVariable Long studentId){
-//        return studentService.findOne(studentId);
-//    }
-
     /**
      * 학생 수정
      */
