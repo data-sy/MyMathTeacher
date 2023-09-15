@@ -16,7 +16,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.util.Optional;
 
 import static com.mmt.diagnosis.repository.cookie.CookieAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
@@ -41,24 +43,16 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         log.info("OAuth2AuthenticationSuccessHandler.onAuthenticationSuccess() 실행 - 성공핸들러 - onAuthenticationSuccess 진입");
-        String targetUrl = determineTargetUrl(request, response, authentication);
 
         if (response.isCommitted()) {
             log.debug("Response has already been committed.");
             return;
         }
+
+        // 리다이렉트
+        String targetUrl = determineTargetUrl(request, response, authentication);
         clearAuthenticationAttributes(request, response);
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
-
-//        // 헤더와 바디에 담아 보내기?
-//        // 응답 바디에 담아서 보내기
-//        JwtToken token = tokenProvider.generateToken(authentication);
-//        response.setHeader("Authorization", "Bearer " + token);
-//        // JWT 토큰을 응답 본문에 추가 (예시: JSON 형태로 추가)
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String tokenJson = objectMapper.writeValueAsString(token);
-//        response.getWriter().write(tokenJson);
-//        response.getWriter().flush();
 
     }
 
@@ -68,15 +62,24 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         Optional<String> redirectUri = CookieUtil.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
 
-        // 쿠키에 담는 거 성공하면 주석 제거
+        // 쿠키에 담는 거 성공하면 주석 없애고 사용
 //        if (redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
 //            throw new RuntimeException("redirect URIs are not matched.");
 //        }
+
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
         System.out.println("핸들러에서 토큰 잘 생성 됐는지 : " + token.toString());
+
+//        // 토큰을 인코딩해서 보낸다면 사용
+//        String encodedToken = null;
+//        try {
+//            encodedToken = URLEncoder.encode(String.valueOf(token), "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace(); // 예외 처리 필요
+//        }
 
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("token", token)
@@ -98,5 +101,5 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 //        }
 //        return false;
 //    }
-    
+
 }

@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("/*") // 외부에서 들어오는 모든 url 허용
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true)
+                .allowCredentials(true) // 클라이언트에서 쿠키를 받기 위해
                 .maxAge(3600);
     }
 }

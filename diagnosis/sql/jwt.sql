@@ -8,6 +8,8 @@ select * from users;
 select * from authority;
 select * from user_authority;
 
+delete from user_authority where user_id=5;
+delete from users where user_id=5;
 
 -- DROP & CREATE
 DROP TABLE IF EXISTS user_authority;
@@ -17,10 +19,12 @@ DROP TABLE IF EXISTS authority;
 CREATE TABLE users (
 	user_id	BIGINT auto_increment,
 	user_email VARCHAR(50),
-	user_password VARCHAR(100),
+	user_password VARCHAR(200),
 	user_name VARCHAR(20),
 	user_phone VARCHAR(20),
     activated TINYINT,
+    oauth2id VARCHAR(200),
+    auth_provider VARCHAR(20),
 	PRIMARY KEY (user_id)
 );
 CREATE TABLE authority (

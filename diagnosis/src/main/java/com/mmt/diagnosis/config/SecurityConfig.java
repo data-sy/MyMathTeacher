@@ -66,7 +66,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())       // rest api, token 사용하므로
                 // Cors 설정
-                .cors().configurationSource(corsConfigurationSource())
+                .cors()
+//                .configurationSource(corsConfigurationSource())
                 .and()
                 // 잘못된 접근에 대한 예외처리
                 .exceptionHandling(exceptionHandling -> exceptionHandling
@@ -82,7 +83,7 @@ public class SecurityConfig {
                 .rememberMe().disable()
                 // 요청들 접근 제한
                 .authorizeRequests()
-                .antMatchers("/", "/favicon.ico", "/api/v1/hello/**", "api/v1/signup", "/api/v1/authenticate", "/api/v1/reissue").permitAll()
+                .antMatchers("/", "/favicon.ico", "/api/v1/hello/**", "/api/v1/signup", "/api/v1/authenticate", "/api/v1/reissue").permitAll()
                 .antMatchers("/login.html", "/oauth2/**").permitAll()
                 .anyRequest().authenticated();
         http
@@ -107,20 +108,20 @@ public class SecurityConfig {
                 .deleteCookies("JSESSIONID");
         return http.build();
     }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.addAllowedOrigin("http://localhost:3000"); // 뷰
-        configuration.addAllowedOrigin("http://localhost:5000"); // 플라스크
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/v1/**", configuration);
-        return source;
-    }
+//
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.addAllowedOrigin("http://localhost:3000"); // 뷰
+//        configuration.addAllowedOrigin("http://localhost:5000"); // 플라스크
+//        configuration.addAllowedHeader("*");
+//        configuration.addAllowedMethod("*");
+//        configuration.setAllowCredentials(true);
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/api/v1/**", configuration);
+//        return source;
+//    }
 
 }
