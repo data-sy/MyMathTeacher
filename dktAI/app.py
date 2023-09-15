@@ -13,6 +13,19 @@ CORS(app, resources={r"/api/v1/*": {"origins": "http://localhost:3000,http://loc
 def hello_world():
     return 'Hello world!'
 
+@app.route('/corstest')
+def corstest():
+    spring_api_url = 'http://15.164.232.32:8080/api/v1/hello'
+
+    # 스프링 서버에서 ai_input 받기
+    response_get = requests.get(spring_api_url, json=request.get_json(), headers=headers)
+
+    if response_get.status_code == 200:
+        response_data = response_get.json()
+        return jsonify(response_data), 200
+    else:
+        return 'Failed to fetch data from Spring', 500
+
 @app.route('/test')
 def aitest():
     input01 = [[1171, 1], [467, 1], [1703, 1], [1817, 1], [1698, 1], [623, 0], [1182, 0], [1614, 0], [396, 0],
