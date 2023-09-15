@@ -44,7 +44,7 @@ def analysis():
         "Content-Type": "application/json"
     }
 
-    spring_api_url = 'http://localhost:8080/api/v1/predict'
+    spring_api_url = 'http://15.164.232.32:8080/api/v1/predict'
 
     # 스프링 서버에서 ai_input 받기
     response_get = requests.get(spring_api_url, json=request.get_json(), headers=headers)
