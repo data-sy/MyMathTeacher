@@ -42,7 +42,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        log.info("OAuth2AuthenticationSuccessHandler.onAuthenticationSuccess() 실행 - 성공핸들러 - onAuthenticationSuccess 진입");
 
         if (response.isCommitted()) {
             log.debug("Response has already been committed.");
@@ -58,7 +57,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        log.info("OAuth2AuthenticationSuccessHandler.determineTargetUrl() 실행 - 성공핸들러 - determineTargetUrl 진입");
         Optional<String> redirectUri = CookieUtil.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
 
@@ -71,7 +69,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
-        System.out.println("핸들러에서 토큰 잘 생성 됐는지 : " + token.toString());
 
 //        // 토큰을 인코딩해서 보낸다면 사용
 //        String encodedToken = null;

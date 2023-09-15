@@ -36,6 +36,7 @@ DROP TABLE IF EXISTS concepts;
 -- 단위개념 insert_concepts_escape_skillid -> 지식체계 insert_knowledge_space
 -- 문항 insert_items_missing
 -- 진단 : 진단 학습지 insert_diag_test -> 진단 문항 insert_diag_items -> 진단학습지_진단문항 insert_diag_testsitems
+-- 진단학습지는 다시 만들 예정
 
 -- 테이블 이름 소문자로 수정
 -- DROP TABLE IF EXISTS PROBABILITIES;

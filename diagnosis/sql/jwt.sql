@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authority;
 
 CREATE TABLE users (
-	user_id	BIGINT auto_increment,
+	user_id BIGINT auto_increment,
 	user_email VARCHAR(50),
 	user_password VARCHAR(200),
 	user_name VARCHAR(20),
@@ -33,7 +33,7 @@ CREATE TABLE authority (
 );
 CREATE TABLE user_authority (
 	user_autho_id BIGINT auto_increment,
-	user_id	BIGINT,
+	user_id BIGINT,
 	authority_name VARCHAR(20),
 	PRIMARY KEY (user_autho_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id),

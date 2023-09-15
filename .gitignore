@@ -1,2 +1,4 @@
 /.metadata/
-/diagnosis/src/main/resourcds/application-oauth2.yml
+/diagnosis/src/main/resources/application-oauth2.yml
+/diagnosis/src/main/resources/application-secure.yml
+/diagnosis/src/main/resources/application-old.yml

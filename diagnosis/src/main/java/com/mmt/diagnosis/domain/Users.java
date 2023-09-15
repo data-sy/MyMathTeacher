@@ -42,7 +42,6 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private AuthProvider authProvider; // GOOGLE, NAVER, KAKAO
 
-    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserAuthority> userAuthoritySet = new HashSet<>();
 

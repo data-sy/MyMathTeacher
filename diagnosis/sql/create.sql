@@ -32,9 +32,9 @@ CREATE TABLE knowledge_space (
 
 -- 문항 테이블
 CREATE TABLE items (
-	item_id	BIGINT auto_increment,
-	item_answer	VARCHAR(20),
-	item_image_path	VARCHAR(255),
+	item_id BIGINT auto_increment,
+	item_answer VARCHAR(20),
+	item_image_path VARCHAR(255),
 	concept_id INT,
 	PRIMARY KEY (item_id),
 	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
@@ -42,7 +42,7 @@ CREATE TABLE items (
 
 -- 학습지 테이블
 CREATE TABLE tests (
-	test_id	BIGINT auto_increment,
+	test_id BIGINT auto_increment,
 	test_name VARCHAR(20),
 	test_comments VARCHAR(200),
 	PRIMARY KEY (test_id)
@@ -83,7 +83,7 @@ CREATE TABLE students (
 
 -- 학생_학습지 테이블
 CREATE TABLE students_tests (
-	student_test_id	BIGINT auto_increment,
+	student_test_id BIGINT auto_increment,
     student_id BIGINT,
     test_id BIGINT,
 	student_test_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -99,7 +99,7 @@ CREATE TABLE answers (
 	answer_id BIGINT auto_increment,
 	student_test_id BIGINT,
 	item_id BIGINT,
-	answer_code	INT,
+	answer_code INT,
 	PRIMARY KEY (answer_id),
 	FOREIGN KEY (student_test_id) REFERENCES students_tests (student_test_id),
 	FOREIGN KEY (item_id) REFERENCES tests_items (item_id)
