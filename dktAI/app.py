@@ -7,7 +7,8 @@ from flask_cors import CORS
 from predict import predict
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/v1/*": {"origins": "http://localhost:3000,http://localhost:8080"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
+# CORS(app, resources={r"/api/v1/*": {"origins": "http://localhost:5173,http://15.164.232.32:8080"}})
 
 @app.route('/')
 def hello_world():
@@ -16,15 +17,14 @@ def hello_world():
 @app.route('/corstest')
 def corstest():
     spring_api_url = 'http://15.164.232.32:8080/api/v1/hello'
-
-    # 스프링 서버에서 ai_input 받기
-    response_get = requests.get(spring_api_url, json=request.get_json(), headers=headers)
-
-    if response_get.status_code == 200:
-        response_data = response_get.json()
-        return jsonify(response_data), 200
+    response = requests.get(spring_api_url)
+    if response.status_code == 200:
+        response_text = response.text
+        print(f"Response from Spring server: {response_text}")
+        return jsonify(response_text), 200
     else:
-        return 'Failed to fetch data from Spring', 500
+        print(f"Failed to retrieve data from Spring server. Status code: {response.status_code}")
+        return 'Failed to fetch data from Spring 1', 500
 
 @app.route('/test')
 def aitest():
