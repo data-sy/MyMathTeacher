@@ -66,7 +66,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 //        }
 
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-
+        targetUrl = "http://localhost:5173";
+        System.out.println("targetUrl : " + targetUrl);
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
 
