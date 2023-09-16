@@ -29,7 +29,7 @@ public class AuthController {
      * 아! 그러면 토큰 DTO 말고 그냥 토큰 자체 담아도 될 듯!
      */
     @PostMapping("/authenticate")
-    public ResponseEntity<TokenDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDTO) {
         JwtToken token = authService.authorize(loginDTO.getUserEmail(), loginDTO.getUserPassword());
 
         // 토큰을 Response Header에도 넣어주자

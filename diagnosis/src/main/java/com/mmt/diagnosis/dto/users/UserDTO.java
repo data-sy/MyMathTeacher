@@ -17,20 +17,13 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class UserDTO {
 
-    @NotNull
-    @Size(min = 3, max = 50)
     private String userEmail;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @NotNull
-    @Size(min = 3, max = 100)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String userPassword;
 
-    @NotNull
-    @Size(min = 3, max = 50)
     private String userName;
 
-    @Size(min = 3, max = 50)
     private String userPhone;
 
     private Set<Authority> authoritySet;

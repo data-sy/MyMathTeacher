@@ -19,8 +19,9 @@ public class UserController {
         this.userService = userService;
     }
 
+    // 리퀘스트 바디 앞에 @Valid 삭제
     @PostMapping("/signup")
-    public ResponseEntity<UserDTO> signup(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> signup(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.signup(userDTO));
     }
 
