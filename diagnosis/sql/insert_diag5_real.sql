@@ -1,0 +1,43 @@
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', 'https://ibb.co/pdzjTSW', 3821);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', 'https://ibb.co/s25zyfP', 9171);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', 'https://ibb.co/MCXNBZp', 6801);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('3', 'https://ibb.co/McgKHt3', 8894);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', 'https://ibb.co/zQbnHLg', 8903);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('67.08', 'https://ibb.co/NCSttmX', 9124);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', 'https://ibb.co/7QN195K', 4661);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('3', 'https://ibb.co/mhsysdN', 2852);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('60°C', 'https://ibb.co/QQ6GhjD', 2868);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('x=4, y=3', 'https://ibb.co/v18rkTG', 4979);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('3', 'https://ibb.co/stWRDhH', 1117);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('4', 'https://ibb.co/F4SgDtc', 8404);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', 'https://ibb.co/G3f2Nst', 8426);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', 'https://ibb.co/fCWZf61', 4210);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('4', 'https://ibb.co/k4hgNyF', 4212);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', 'https://ibb.co/my6Tn4q', 10182);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('4', 'https://ibb.co/q5dyZ4F', 10180);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('x=-3, (-3. -4)', 'https://ibb.co/ZGs8DCJ', 1251);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('1/2', 'https://ibb.co/L96NNpL', 2496);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', 'https://ibb.co/9vmW0hJ', 9924);
+
+-- 컨셉에 따른 문항이 4893개 들어가 있음
+-- 4894
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4894, 1);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4895, 2);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4896, 3);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4897, 4);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4898, 5);
+INSERT INTO tests_items(test_id, item_id, test_item_ndeletumber) VALUES (5, 4899, 6);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4900, 7);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4901, 8);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4902, 9);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4903, 10);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4904, 11);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4905, 12);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4906, 13);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4907, 14);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4908, 15);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4909, 16);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4910, 17);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4911, 18);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4912, 19);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4913, 20);

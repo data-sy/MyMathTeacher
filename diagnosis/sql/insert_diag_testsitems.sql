@@ -1,3 +1,5 @@
+-- insert할 item_id 바뀜
+-- 진단학습지 5번부터 입력해서 test_id=5 부터 item_id=4894임
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (1, 4894, 1);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (1, 4895, 2);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (1, 4896, 3);

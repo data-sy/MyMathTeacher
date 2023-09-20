@@ -1,3 +1,4 @@
+-- 중간에 있는 진단학습지 5번부터 리얼학습지로 insert
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', '/images/items/진단평가1_1번', 5283);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', '/images/items/진단평가1_2번', 616);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('3', '/images/items/진단평가1_3번', 2120);
