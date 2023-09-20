@@ -55,7 +55,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     }
 
-
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         Optional<String> redirectUri = CookieUtil.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
@@ -64,10 +63,10 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 //        if (redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
 //            throw new RuntimeException("redirect URIs are not matched.");
 //        }
+//        String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
+        // 그 전까지는 그냥 직접 적기
+        String targetUrl = "http://localhost:5173";
 
-        String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-        targetUrl = "http://localhost:5173";
-        System.out.println("targetUrl : " + targetUrl);
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
 
