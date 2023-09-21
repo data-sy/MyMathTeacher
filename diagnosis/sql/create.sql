@@ -33,7 +33,7 @@ CREATE TABLE knowledge_space (
 -- 문항 테이블
 CREATE TABLE items (
 	item_id BIGINT auto_increment,
-	item_answer VARCHAR(20),
+	item_answer VARCHAR(100),
 	item_image_path VARCHAR(255),
 	concept_id INT,
 	PRIMARY KEY (item_id),
@@ -43,7 +43,7 @@ CREATE TABLE items (
 -- 학습지 테이블
 CREATE TABLE tests (
 	test_id BIGINT auto_increment,
-	test_name VARCHAR(20),
+	test_name VARCHAR(50),
 	test_comments VARCHAR(200),
 	PRIMARY KEY (test_id)
 );
