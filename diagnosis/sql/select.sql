@@ -16,6 +16,8 @@ select * from concepts;
 
 select count(*) from concepts;
 
+select * from knowledge_space;
+
 select count(*) from knowledge_space;
 
 select * from items;
