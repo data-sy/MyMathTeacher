@@ -65,7 +65,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 //        }
 //        String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
         // 그 전까지는 그냥 직접 적기
-        String targetUrl = "http://localhost:5173";
+        String targetUrl = "http://localhost:3000";
 
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
