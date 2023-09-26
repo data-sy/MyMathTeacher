@@ -68,7 +68,7 @@ def analysis():
 
     if response_get.status_code == 200:
         ai_input_response = response_get.json()
-        student_test_id = ai_input_response['studentTestid']
+        student_test_id = ai_input_response['studentTestId']
         input_data = [ai_input_response['answerCodeResponseList']]
 
         # 진단
