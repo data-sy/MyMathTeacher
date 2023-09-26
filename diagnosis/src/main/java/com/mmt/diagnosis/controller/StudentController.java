@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.student.StudentCreateRequest;
-import com.mmt.diagnosis.dto.student.StudentGetRequest;
 import com.mmt.diagnosis.dto.student.StudentResponse;
 import com.mmt.diagnosis.dto.student.StudentUpdateRequest;
 import com.mmt.diagnosis.service.student.StudentService;
@@ -31,22 +30,22 @@ public class StudentController {
      * 학생 목록보기
      */
     @GetMapping("")
-    public List<StudentResponse> getStudents(@RequestBody StudentGetRequest request){
-        return studentService.findStudents(request.getTeacherId());
+    public List<StudentResponse> getStudents(@RequestParam Long teacherId){
+        return studentService.findStudents(teacherId);
     }
 
     /**
      * 학생 수정
      */
-    @PutMapping("")
-    public void update(@RequestBody StudentUpdateRequest request) {
-        studentService.update(request);
+    @PutMapping("/{studentId}")
+    public void update(@PathVariable Long studentId, @RequestBody StudentUpdateRequest request) {
+        studentService.update(studentId, request);
     }
 
     /**
      * 학생 삭제
      */
-    @DeleteMapping("")
-    public void delete(@RequestParam Long studentId) { studentService.delete(studentId); }
+    @DeleteMapping("/{studentId}")
+    public void delete(@PathVariable Long studentId) { studentService.delete(studentId); }
 
 }

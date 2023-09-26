@@ -35,8 +35,8 @@ public class StudentService {
         return studentRepository.findName(studentId).getStudentName();
     }
 
-    public void update(StudentUpdateRequest request) {
-        if(studentRepository.isStudentNotExist(request.getStudentId())){
+    public void update(Long studentId, StudentUpdateRequest request) {
+        if(studentRepository.isStudentNotExist(studentId)){
             throw new IllegalArgumentException();
         }
         Student student = StudentConverter.convertToStudent(request);

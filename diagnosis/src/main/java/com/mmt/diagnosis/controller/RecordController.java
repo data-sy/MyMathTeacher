@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.answer.AnswerCreateRequest;
-import com.mmt.diagnosis.dto.answer.AnswerGetRequest;
 import com.mmt.diagnosis.dto.preview.PreviewResponse;
 import com.mmt.diagnosis.service.answer.AnswerService;
 import com.mmt.diagnosis.service.student.StudentService;
@@ -26,14 +25,14 @@ public class RecordController {
         this.answerService = answerService;
     }
 
-    /**
-     * 답안 기록 : 선택한 학습지 미리보기
-     */
-    @GetMapping("")
-    public PreviewResponse getTest(@RequestBody AnswerGetRequest request){
-        return studentTestService.preview(request.getStudentTestId());
-    }
-    // +) 추가 : 재기록 시 student_test 테이블에 다시 저장하고 새 student_test_id 받은 뒤 답안기록 떠야 해
+//    /**
+//     * 답안 기록 : 선택한 학습지 미리보기
+//     */
+//    @GetMapping("")
+//    public PreviewResponse getTest(@RequestParam Long studentTestId){
+//        return studentTestService.preview(studentTestId);
+//    }
+//    // +) 추가 : 재기록 시 student_test 테이블에 다시 저장하고 새 student_test_id 받은 뒤 답안기록 떠야 해
 
     /**
      * 답안 기록 저장

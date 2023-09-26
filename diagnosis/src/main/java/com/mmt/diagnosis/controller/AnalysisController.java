@@ -1,9 +1,7 @@
 package com.mmt.diagnosis.controller;
 
-import com.mmt.diagnosis.dto.AI.AIInputRequest;
 import com.mmt.diagnosis.dto.AI.AIInputResponse;
 import com.mmt.diagnosis.dto.AI.AIOutputRequest;
-import com.mmt.diagnosis.dto.AI.AnalysisRequest;
 import com.mmt.diagnosis.dto.details.DetailsResponse;
 import com.mmt.diagnosis.service.answer.AnswerService;
 import com.mmt.diagnosis.service.probability.ProbabilityService;
@@ -24,9 +22,9 @@ public class AnalysisController {
     /**
      * AI input 데이터 플라스크에 제공
      */
-    @GetMapping("/predict")
-    public AIInputResponse getAIInput(@RequestBody AIInputRequest request){
-        return answerService.findAIInput(request.getStudentTestId());
+    @GetMapping("/predict/{studentTestId}")
+    public AIInputResponse getAIInput(@PathVariable Long studentTestId){
+        return answerService.findAIInput(studentTestId);
     }
 
     /**
@@ -40,9 +38,9 @@ public class AnalysisController {
     /**
      * 선택한 학습지의 분석 결과 보기
      */
-    @GetMapping("/analysis")
-    public DetailsResponse getDetails(@RequestBody AnalysisRequest request){
-        return probabilityService.findDetails(request.getStudentTestId());
+    @GetMapping("/analysis/{studentTestId}")
+    public DetailsResponse getDetails(@PathVariable Long studentTestId){
+        return probabilityService.findDetails(studentTestId);
     }
 
 }

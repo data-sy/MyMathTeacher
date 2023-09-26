@@ -1,7 +1,6 @@
 package com.mmt.diagnosis.controller;
 
 import com.mmt.diagnosis.dto.concept.ConceptResponse;
-import com.mmt.diagnosis.dto.test.StudentTestsRequest;
 import com.mmt.diagnosis.dto.test.StudentTestsResponse;
 import com.mmt.diagnosis.dto.test.TestResponse;
 import com.mmt.diagnosis.dto.testItem.TestItemsResponse;
@@ -41,8 +40,8 @@ public class TestController {
      * 학생에 따른 학습지 목록
      */
     @GetMapping("/student")
-    public List<StudentTestsResponse> getTests(@RequestBody StudentTestsRequest request){
-        return studentTestService.findTests(request.getStudentId());
+    public List<StudentTestsResponse> getTests(@RequestParam Long studentId){
+        return studentTestService.findTests(studentId);
     }
 
     /**

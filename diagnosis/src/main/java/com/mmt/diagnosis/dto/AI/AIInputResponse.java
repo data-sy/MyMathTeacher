@@ -7,10 +7,10 @@ import java.util.List;
 @Data
 public class AIInputResponse {
 
-    private Long studentTestid;
+    private Long studentTestId;
     private List<List<Integer>> answerCodeResponseList;
 
     public AIInputResponse(Long studentTestid) {
-        this.studentTestid = studentTestid;
+        this.studentTestId = studentTestid;
     }
 }
