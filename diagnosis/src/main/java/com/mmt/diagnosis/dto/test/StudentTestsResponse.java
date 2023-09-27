@@ -6,6 +6,7 @@ import lombok.Data;
 public class StudentTestsResponse {
 
     private Long studentTestId;
+    private Long testId;
     private String testName;
     private String testComments;
     private boolean isRecord;

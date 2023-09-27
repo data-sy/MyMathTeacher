@@ -11,6 +11,7 @@ public class StudentTestConverter {
     public static StudentTestsResponse convertToStudentTestResponse(StudentTests studentTests) {
         StudentTestsResponse studentTestsResponse = new StudentTestsResponse();
         studentTestsResponse.setStudentTestId(studentTests.getStudentTestId());
+        studentTestsResponse.setTestId(studentTests.getTestId());
         studentTestsResponse.setTestName(studentTests.getTestName());
         studentTestsResponse.setTestComments(studentTests.getTestComments());
         studentTestsResponse.setRecord(studentTests.isRecord());

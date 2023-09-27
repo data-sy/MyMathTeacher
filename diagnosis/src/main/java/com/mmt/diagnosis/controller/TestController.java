@@ -49,7 +49,6 @@ public class TestController {
      */
     @GetMapping("/{testId}")
     public List<TestItemsResponse> getTestItems(@PathVariable Long testId){
-        // 리팩토링 : 사실 여기서는 답안 필요 없는데 메서드 재사용하려고 item_answer도 같이 리스펀스
         return testItemService.findTestItems(testId);
     }
 

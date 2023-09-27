@@ -34,7 +34,7 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
     @Override
     public List<StudentTests> findByStudentId(Long studentId) {
         // answers 테이블애 student_test_id가 있는지 없는지에 따라 t/f를 반환하게 만듦
-        String sql = "SELECT st.student_test_id, t.test_name, t.test_comments, \n" +
+        String sql = "SELECT st.student_test_id, t.test_id, t.test_name, t.test_comments, \n" +
                 "CASE WHEN EXISTS (SELECT 1 FROM answers a WHERE a.student_test_id = st.student_test_id) \n" +
                 "THEN TRUE ELSE FALSE END AS is_record \n" +
                 "FROM students_tests st JOIN tests t ON st.test_id = t.test_id\n" +
@@ -70,6 +70,7 @@ public class JdbcTemplateStudentTestRepository implements StudentTestRepository 
         return (rs, rowNum) -> {
             StudentTests studentTests = new StudentTests();
             studentTests.setStudentTestId(rs.getLong("student_test_id"));
+            studentTests.setTestId(rs.getLong("test_id"));
             studentTests.setTestName(rs.getString("test_name"));
             studentTests.setTestComments(rs.getString("test_comments"));
             studentTests.setRecord(rs.getBoolean("is_Record"));
