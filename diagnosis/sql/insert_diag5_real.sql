@@ -19,6 +19,8 @@ INSERT INTO items(item_answer, item_image_path, concept_id) values ('x=-3, (-3. 
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('1/2', 'https://ibb.co/L96NNpL', 2496);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', 'https://ibb.co/9vmW0hJ', 9924);
 
+select * from concepts where concept_id in (3821, 9171, 6801, 8894, 8903, 9124, 4661, 2852, 2868, 4979, 1117, 8404, 8426, 4210, 4212, 10182, 10180, 1251, 2496, 9924);
+
 -- 컨셉에 따른 문항이 4893개 들어가 있음
 -- 4894
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4894, 1);
@@ -26,7 +28,7 @@ INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4895, 2);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4896, 3);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4897, 4);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4898, 5);
-INSERT INTO tests_items(test_id, item_id, test_item_ndeletumber) VALUES (5, 4899, 6);
+INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4899, 6);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4900, 7);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4901, 8);
 INSERT INTO tests_items(test_id, item_id, test_item_number) VALUES (5, 4902, 9);
