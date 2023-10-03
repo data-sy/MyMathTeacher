@@ -61,7 +61,7 @@ def analysis():
     request_data = request.get_json()
     stu_test_id = request_data.get('studentTestId')
 
-    spring_api_url = 'http://15.164.232.32:8080/api/v1/predict/'+str(stu_test_id)
+    spring_api_url = 'http://localhost:8080/api/v1/predict/'+str(stu_test_id)
 
     # 스프링 서버에서 ai_input 받기
     response_get = requests.get(spring_api_url, headers=headers)
@@ -83,7 +83,7 @@ def analysis():
         return 'Failed to fetch data from Spring 1', 500
 
 
-    spring_api_url2 = 'http://15.164.232.32:8080/api/v1/predict'
+    spring_api_url2 = 'http://localhost:8080/api/v1/predict'
 
     # 스프링 서버로 ai_output 보내기
     response_post = requests.post(spring_api_url2, json=response_data, headers=headers)
