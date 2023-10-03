@@ -239,3 +239,44 @@ INSERT INTO items(item_answer, item_image_path, concept_id) values ('4', '/image
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('1', '/images/items/진단평가12_18번', 5510);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('2', '/images/items/진단평가12_19번', 813);
 INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가12_20번', 812);
+
+
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_1번', 77);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_2번', 3160);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_3번', 3225);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_4번', 3799);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_5번', 3815);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_6번', 3167);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_7번', 3274);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_8번', 3808);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_9번', 4079);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_10번', 3225);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_10번', 3160);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_11번', 4050);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_12번', 3230);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_12번', 4023);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_13번', 4050);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_14번', 4050);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_14번', 4051);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_15번', 3179);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_15번', 5320);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가13_16번', 3368);
+
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_1번', 4079);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_2번', 4077);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_3번', 4104);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_4번', 4107);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_5번', 4225);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_6번', 4260);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_7번', 4259);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_8번', 4226);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_9번', 4708);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_9번', 5292);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_10번', 5301);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_11번', 5294);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_12번', 5371);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_13번', 4086);
+INSERT INTO items(item_answer, item_image_path, concept_id) values ('5', '/images/items/진단평가14_14번', 4107);
+
+select count(*) from items;
+select * from items where item_id between 5120 and 5180;

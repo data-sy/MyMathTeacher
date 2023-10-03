@@ -144,3 +144,19 @@ JOIN concepts c ON p.concept_id=c.concept_id
 WHERE a.student_test_id=12
 AND to_concept_depth>0
 ORDER BY c.concept_id;
+
+-- 미적분 뽑기
+SELECT * FROM concepts WHERE concept_grade_level = '수1';
+
+-- 1학기 중간고사
+SELECT concept_id, skill_id FROM concepts WHERE concept_id in (77, 3160, 3225, 3799, 3815, 
+3167, 3274, 3808, 4079, 3225, 3160, 
+4050, 3230, 4023, 4050, 4050, 4051, 3179, 5320, 
+3368);
+-- 1학기 기말고사
+SELECT concept_id, skill_id FROM concepts WHERE concept_id in (4079, 4077, 4104, 4107, 4225, 4260, 4259, 4226,
+ 4708, 5292, 5301, 5294, 5371, 4086, 4107);
+-- 2학기 중간고사
+SELECT concept_id, skill_id FROM concepts WHERE concept_id in (11);
+
+-- 학습지 

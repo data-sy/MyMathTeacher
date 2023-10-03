@@ -37,7 +37,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = oAuth2UserService.loadUser(userRequest);
 
-        // 최종적으로 여기서 princibal 객체가 생성되면 돼
+        // 최종적으로 여기서 principal 객체가 생성되면 돼
         return processOAuth2User(userRequest, oAuth2User);
     }
 

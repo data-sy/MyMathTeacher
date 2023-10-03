@@ -9,7 +9,7 @@
 
 <script>
 // 로그인화면에서 회원가입 누르면 dialog창 뜨는 게 이 페이지
-// sakai 에서 src/views/pages/auth/Crud.vue 에서 new 버튼 누르면 dialog 나오는 거 사용하기
+// sakai 에서 src/views/pages/auth/Crud.vue 에서 new 버튼 누르면 모달 창 나오는 거 사용하기
 // 회원가입 버튼을 누르면 http://15.164.232.32:8080/api/v1/signup으로 post 보내고
 import { ref } from "vue";
 import { useApi } from "../../composables/api.js";

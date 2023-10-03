@@ -10,3 +10,6 @@ INSERT INTO tests (test_name, test_comments) VALUES ('진단평가9', '수능공
 INSERT INTO tests (test_name, test_comments) VALUES ('진단평가10', '수능선택_미적');
 INSERT INTO tests (test_name, test_comments) VALUES ('진단평가11', '수능선택_기하');
 INSERT INTO tests (test_name, test_comments) VALUES ('진단평가12', '수능선택_확통');
+
+INSERT INTO tests (test_name, test_comments) VALUES ('진단평가13', '미적 1학기 중간');
+INSERT INTO tests (test_name, test_comments) VALUES ('진단평가14', '미적 1학기 기말');

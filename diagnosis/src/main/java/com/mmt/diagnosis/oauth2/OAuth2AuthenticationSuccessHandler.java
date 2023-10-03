@@ -70,14 +70,6 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         //JWT 생성
         JwtToken token = tokenProvider.generateToken(authentication);
 
-//        // 토큰을 인코딩해서 보낸다면 사용
-//        String encodedToken = null;
-//        try {
-//            encodedToken = URLEncoder.encode(String.valueOf(token), "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace(); // 예외 처리 필요
-//        }
-
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("token", token)
                 .build().toUriString();
