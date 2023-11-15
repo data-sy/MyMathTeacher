@@ -71,7 +71,7 @@ def scenario():
 
     # 스프링 서버로 output 보내기
     spring_api_url = 'http://127.0.0.1:8080/scenario'
-    response_post = requests.post(spring_api_url, json=response_data, headers=headers)
+    response_post = requests.post(spring_api_url, json=response_data)
 
     if response_post.status_code == 200:
         return jsonify(response_data), 200
