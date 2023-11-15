@@ -26,7 +26,7 @@ def corstest():
         print(f"Failed to retrieve data from Spring server. Status code: {response.status_code}")
         return 'Failed to fetch data from Spring 1', 500
 
-@app.route('/test')
+@app.route('/aitest')
 def aitest():
     input01 = [[1171, 1], [467, 1], [1703, 1], [1817, 1], [1698, 1], [623, 0], [1182, 0], [1614, 0], [396, 0],
                [1681, 0], [1564, 1], [461, 1], [782, 1], [593, 1], [1582, 1], [774, 0], [1660, 0], [1583, 0], [790, 0],
@@ -41,12 +41,42 @@ def aitest():
                [1523, 0], [1526, 1], [1428, 1], [1383, 1], [1396, 1], [1397, 0], [1395, 0], [1404, 0], [1401, 0],
                [1389, 0], [1384, 0]]
     input_data = [input01, input02, input03, input04]
-    output = predict(input_data)
+    output_data = predict(input_data)
     response_data = {
         "studentTestId": 4,
-        "probabilityList": output
+        "probabilityList": output_data
     }
     return jsonify(response_data), 200
+
+@app.route('/scenario')
+def scenario():
+    # # request body에서 정오답 시퀀스 추출
+    request_data = request.get_json()
+    scenario_case = request_data.get('scenarioCase')
+    input_data = request_data.get('inputData')
+
+    # 데이터 늘리는 여러 버전으로 실행
+    pro_list = []
+    for i in [1, 10, 100, 500] :
+        duplicated_list = [sublist for sublist in input_data for _ in range(i)]
+
+        # ai실행
+        output_data = predict(duplicated_list)
+        pro_list.append([i, output_data])
+
+    response_data = {
+        "scenarioCase": scenario_case,
+        "probabilityList": pro_list
+    }
+
+    # 스프링 서버로 output 보내기
+    spring_api_url = 'http://127.0.0.1:8080/scenario'
+    response_post = requests.post(spring_api_url, json=response_data, headers=headers)
+
+    if response_post.status_code == 200:
+        return jsonify(response_data), 200
+    else:
+        return 'Failed to fetch data from Spring', 500
 
 @app.route('/api/v1/analysis', methods=['POST'])
 def analysis():
