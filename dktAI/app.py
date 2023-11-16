@@ -62,7 +62,7 @@ def scenario():
 
         # ai실행
         output_data = predict(duplicated_list)
-        pro_list.append([i, output_data])
+        pro_list.append(output_data)
 
     response_data = {
         "scenarioCase": scenario_case,
@@ -123,5 +123,6 @@ def analysis():
     else:
         return 'Failed to fetch data from Spring 2', 500
 
+# 맥에서는 5000 포트 번호를 이미 사용중, 5001은 Noe4J에서 사용,  8000 사용하자
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=8000)
