@@ -159,9 +159,20 @@ SELECT concept_id, skill_id FROM concepts WHERE concept_id in (4079, 4077, 4104,
 -- 2학기 중간고사
 SELECT concept_id, skill_id FROM concepts WHERE concept_id in (11);
 
--- 학습지
-select * from probabilities p 
-JOIN answers a ON p.answer_id = a.answer_id
-where student_test_id = 10;
+-- 단위개념 세분화
+select * from concepts where concept_school_level = '초등';
+select * from concepts where concept_school_level = '고등';
 
-select * from concepts where concept_id in (select concept_id from probabilities where to_concept_depth=1 and answer_id in (157, 160, 163, 165, 167, 169 ))
+-- 시나리오 테스트
+select * from scenario;
+
+select * from concepts where concept_school_level = '초등';
+-- 도형
+select skill_id from concepts where concept_id in (331, 332, 339, 342, 346);
+select * from concepts where concept_school_level = '고등';
+-- 집합, 확률
+select skill_id from concepts where concept_id in (105, 106, 107, 5772, 5773, 5779);
+
+select * from scenario where scenario_case in (7, 8);
+select * from scenario where scenario_case in (1, 3);
+

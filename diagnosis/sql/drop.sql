@@ -17,6 +17,7 @@ show tables;
     -- 문항, 지식체계 -> 단위개념
 
 -- 테이블 이름 소문자로 수정
+DROP TABLE IF EXISTS scenario;
 DROP TABLE IF EXISTS probabilities;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS students_tests;

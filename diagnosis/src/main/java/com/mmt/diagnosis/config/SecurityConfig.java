@@ -84,7 +84,7 @@ public class SecurityConfig {
                 // 요청들 접근 제한
                 .authorizeRequests()
                 // 프론트 개발을 위해 우선 열어둠
-                .antMatchers("/**").permitAll()
+                .antMatchers("/scenario/**").permitAll()
                 .antMatchers("/api/v1/**").permitAll()
                 .antMatchers("/login.html", "/oauth2/**").permitAll()
                 .antMatchers("/", "/favicon.ico", "/api/v1/hello/**", "/api/v1/signup", "/api/v1/authenticate", "/api/v1/reissue").permitAll()

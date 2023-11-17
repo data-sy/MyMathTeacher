@@ -117,3 +117,15 @@ CREATE TABLE probabilities (
 	FOREIGN KEY (answer_id) REFERENCES answers (answer_id),
 	FOREIGN KEY (concept_id) REFERENCES concepts (concept_id)
 );
+
+-- 시나리오 테이블
+CREATE TABLE scenario (
+	scenario_id BIGINT auto_increment,
+    scenario_case INT,
+    mom_id INT,
+    skill_id INT,
+    pro_list VARCHAR(200),
+	PRIMARY KEY (scenario_id),
+	FOREIGN KEY (mom_id) REFERENCES concepts (concept_id)
+-- 	FOREIGN KEY (skill_id) REFERENCES concepts (skill_id)
+);

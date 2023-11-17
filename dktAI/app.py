@@ -61,11 +61,13 @@ def scenario():
         duplicated_list = [sublist for sublist in input_data for _ in range(i)]
 
         # ai실행
-        output_data = predict(duplicated_list)
+        output_data = predict([duplicated_list])
         pro_list.append(output_data)
 
     response_data = {
         "scenarioCase": scenario_case,
+        "conceptId": request_data.get('conceptId'),
+        "checkList": request_data.get('checkList'),
         "probabilityList": pro_list
     }
 
